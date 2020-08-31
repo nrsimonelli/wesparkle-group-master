@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-
 import {connect} from 'react-redux';
 
 // corresponds to 1.3
@@ -11,9 +9,11 @@ class FeedbackForm extends Component {
 
   render() {
     return (
-      <div>
-
-      </div>
+      <>
+        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Email" />
+        <textarea placeholder="Type your message here..."></textarea>
+      </>
   ) // end return
 } // end render
 } // end class
