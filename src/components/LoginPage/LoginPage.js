@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
 class LoginPage extends Component {
   state = {
@@ -33,8 +32,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
-        <FeedbackForm />
-        {/* {this.props.errors.loginMessage && (
+        {this.props.errors.loginMessage && (
           <h2
             className="alert"
             role="alert"
@@ -83,7 +81,7 @@ class LoginPage extends Component {
           >
             Register
           </button>
-        </center> */}
+        </center>
       </div>
     );
   }
