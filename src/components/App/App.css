@@ -47,3 +47,44 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
 }
+
+/* Globals */
+.image-title {
+
+}
+.image-box {
+
+}
+/* for an image use this.. */
+/* .image {
+    background-image: url('/images/.imageName.jpg');
+} */
+
+
+/* Benefits Styling */
+.benefits-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    border: 2px solid black;
+    justify-content: space-around;
+    align-items: center;
+}
+.benefits.image-title {
+
+}
+.benefits.image-box {
+    border: 2px solid green;
+    width: 50vw;
+    min-width: 400px;
+    min-height: 200px;
+
+}
+.image-1 {
+    background-image: url('/images/birdGang.jpg');
+
+}
+.image-2 {
+    background-image: url('/images/birdGang.jpg');
+
+}

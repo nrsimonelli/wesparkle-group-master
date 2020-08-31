@@ -11,7 +11,21 @@ class BenefitsCopy extends Component {
 
   render() {
     return (
-      <div>
+      <div className='benefits-container'>
+        <div className='benefits image-title'>
+          Title One
+        </div>
+        <div className='benefits image-box'>
+          <div className='image-1'></div>
+
+        </div>
+        <div className='benefits image-title'>
+          Title Two
+        </div>
+        <div className='benefits image-box'>
+          <div className='image-2'></div>
+
+        </div>
 
       </div>
   ) // end return

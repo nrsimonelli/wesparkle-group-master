@@ -1,4 +1,5 @@
 import React from 'react';
+import BenefitsCopy from '../BenefitsCopy/BenefitsCopy';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -12,6 +13,7 @@ const AboutPage = () => (
         This about page is for anyone to read!
       </p>
     </div>
+    <BenefitsCopy />
   </div>
 );
 
