@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import '../FeedbackForm/FeedbackForm.css';
 
 // corresponds to 1.3
 class FeedbackForm extends Component {
@@ -18,4 +19,4 @@ class FeedbackForm extends Component {
 } // end render
 } // end class
 
-export default connect()(FeedbackForm);
+export default connect()(FeedbackForm);       
