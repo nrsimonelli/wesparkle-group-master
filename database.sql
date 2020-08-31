@@ -8,3 +8,31 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "link" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INT REFERENCES "user",
+	"long_url" VARCHAR (2000),
+	"short_url" VARCHAR (1000),
+	"disabled_link" BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE "tag" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INT REFERENCES "user",
+	"tag_name" VARCHAR (1000)
+);
+
+CREATE TABLE "link_tag" (
+	"id" SERIAL PRIMARY KEY,
+	"link_id" INT REFERENCES "link",
+	"tag_id" INT REFERENCES "tag"
+);
+
+CREATE TABLE "click" (
+	"id" SERIAL PRIMARY KEY,
+	"link_id" INT REFERENCES "link",
+	"location" VARCHAR (2000),
+	"referral" VARCHAR (2000),
+	"time" TIMESTAMP
+);
