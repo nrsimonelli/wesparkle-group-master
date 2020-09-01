@@ -1,20 +1,29 @@
+.root {
+  --battleship-grey: #888787ff;
+  --white: #ffffffff;
+  --vermilion: #da291cff;
+  --midnight-blue: #0c1466ff;
+  background-color: var(--white);
+  color: var(--midnight-blue);
+}
+
 .nav-title {
     font-size: 24px;
     font-weight: 700;
     display: inline-block;
-    color: #f2f2f2;
+    color: var(--vermilion);
     padding-left: 10px;
 }
 
 .nav {
   overflow: hidden;
-  background-color: #00acb0;
+  background-color: var(--white);
 }
 
 .nav-link {
   float: left;
-  color: #f2f2f2;
-  background-color: #00acb0;
+  color: var(--midnight-blue);
+  background-color: var(--white);
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -28,7 +37,7 @@
 }
 
 .nav-link:hover {
-  background-color: #008183;
+  color: var(--vermilion);
 }
 
 .nav-right {
