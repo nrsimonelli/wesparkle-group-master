@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import LinkShortener from "../LinkShortener/LinkShortener";
 import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
+import TextField from '@material-ui/core/TextField'
+
 
 class LoginPage extends Component {
   state = {
@@ -44,26 +46,35 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
+            
+              <TextField
+                id='outlined-username-input'
+                label="Username"
+                type='text'
+                className='text-field'
                 name="username"
+                margin='normal'
+                variant='outlined'
                 value={this.state.username}
                 onChange={this.handleInputChangeFor("username")}
               />
-            </label>
+            
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
+            
+              <TextField
+                id="outlined-password-input"
+                label="Password"
+                className='text-field'
                 type="password"
+                autoComplete="current-password"
+                margin="normal"
+                variant="outlined"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor("password")}
               />
-            </label>
+            
           </div>
           <div>
             <input

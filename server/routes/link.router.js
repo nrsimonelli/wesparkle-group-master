@@ -33,6 +33,20 @@ router.get("/", (req, res) => {
   }
 });
 
+router.get("/:short_url", (req, res) => {
+  let queryString = `SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
+  pool
+    .query(queryString)
+    .then((result) => {
+      console.log("in GET/:short_url - Trying to redirect to", result.rows[0].long_url)
+      res.redirect(result.rows[0].long_url);
+    })
+    .catch((error) => {
+      console.log("Error in GET/:short_url redirect. Error is", error);
+      res.sendStatus(500);
+    });
+});
+
 router.post("/", (req, res) => {
   // didn't want to rejectUnauth here if non logged in users can add link
   console.log("req.body is:", req.body);
