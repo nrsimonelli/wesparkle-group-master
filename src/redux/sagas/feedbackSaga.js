@@ -2,9 +2,18 @@ import axios from 'axios';
 import {put, takeLatest} from 'redux-saga/effects';
 
   function* fetchFeedback(action) {
+
+    console.log( 'in saga! ')
+    console.log( 'saga action: ', action )
     try {
+
       const response = yield axios.get( '/api/feedback', action.payload );
-      yield put({ type: 'SET_FEEDBACK', payload: response.data });
+      console.log( 'saga response: ', response )
+      // AUDRY - response message to user 'yay it sent'
+
+      // AUDRY - i don't think i need a reducer....
+      //yield put({ type: 'SET_FEEDBACK', payload: response.data });
+
       
     } catch (error) {
       console.log('Feedback get request failed', error);

@@ -1,4 +1,7 @@
-const feedbackReducer = (state = [], action) => {
+const feedbackReducer = (state = {}, action) => {
+
+  console.log( 'in reducer! ')
+
     switch (action.type) {
       case 'SET_FEEDBACK':
         return action.payload;
