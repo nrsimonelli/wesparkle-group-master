@@ -48,6 +48,14 @@ input {
     cursor: pointer;
 }
 
+
+.shortener.container{
+    display: flex;
+    align-content: center;
+    width: 40%;
+    
+}
+
 /* Globals */
 .container {
     display: flex;
@@ -144,3 +152,4 @@ a {
 .support.description {
     max-width: 400px;
 }
+
