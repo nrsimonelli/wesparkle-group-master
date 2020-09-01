@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LinkShortener from "../LinkShortener/LinkShortener";
+import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
 import TextField from '@material-ui/core/TextField'
+
 
 class LoginPage extends Component {
   state = {
@@ -40,6 +42,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <LinkShortener />
+        <FeedbackCarousel />
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
