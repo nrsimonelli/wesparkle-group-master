@@ -22,7 +22,7 @@ class LinkShortener extends Component {
     // Base URL goes in this variable
     // This can be changed to a custom domain later,
     // if needed.
-    const baseUrl = "https://localhost:3000/";
+    const baseUrl = "localhost:5000/api/link/";
     const shortString = shortId.generate();
     this.setState({
       shortenedUrl: baseUrl + shortString,
