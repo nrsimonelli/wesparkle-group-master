@@ -18,9 +18,14 @@ class LinkShortener extends Component {
 
   generateClicked = () => {
     console.log("Button clicked");
+
+    // Base URL goes in this variable
+    // This can be changed to a custom domain later,
+    // if needed.
+    const baseUrl = "https://localhost:3000/";
     const shortString = shortId.generate();
     this.setState({
-      shortenedUrl: "https://wespark.le/" + shortString,
+      shortenedUrl: baseUrl + shortString,
     });
     console.log(
       "In generateClicked. this.state.shortenedUrl is",
@@ -89,8 +94,8 @@ class LinkShortener extends Component {
 
             <QRCode value={this.state.shortenedUrl} />
             <p>
-            this.state.shortenedUrl is:{" "}
-            {JSON.stringify(this.state.shortenedUrl)}
+              this.state.shortenedUrl is:{" "}
+              {JSON.stringify(this.state.shortenedUrl)}
             </p>
           </div>
         </div>
