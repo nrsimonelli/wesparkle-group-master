@@ -7,7 +7,7 @@ import {takeLatest} from 'redux-saga/effects';
 
     try {
 
-      const response = yield axios.get( '/api/feedback', action.payload );
+      const response = yield axios.post( '/api/feedback', action.payload );
 
       console.log( 'saga response: ', response )
       // AUDRY - response message to user 'yay it sent'

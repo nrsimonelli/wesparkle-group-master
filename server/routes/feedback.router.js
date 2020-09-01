@@ -4,7 +4,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
 
     // where is my data? i want this from the saga call!:
       // payload: {
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
       // AUDRY - from...
       //from: paxossparkles-2038ac@inbox.mailtrap.io
       to: 'paxossparkles-2038ac@inbox.mailtrap.io',   // process.env.EMAIL || 'abc@gmail.com'
-      text: 'user objects'
+      text: `from: ${req.body.userName}, their email: ${req.body.userEmail}, and their feedback: ${req.body.emailBody}`
     };
 
     // send that email!
