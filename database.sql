@@ -14,7 +14,7 @@ CREATE TABLE "link" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user",
 	"long_url" VARCHAR (2000),
-	"short_url" VARCHAR (1000),
+	"short_url" VARCHAR (1000) UNIQUE,
 	"disabled_link" BOOLEAN DEFAULT FALSE
 );
 
