@@ -11,12 +11,6 @@ class FeedbackForm extends Component {
     emailBody: ''
   }
 
-  handleInputChangeFor = (propertyName) => (event) => {
-    this.setState({
-      [propertyName]: event.target.value,
-    });
-  }; // End handleInputChangeFor()
-
   prepareToSendEmail = () => {
 
     // AUDRY - can I just send this.state?
@@ -28,18 +22,15 @@ class FeedbackForm extends Component {
         userName: this.state.userName
       },
     });
-    
-    // // make a nice object server can understand
-    // let userEmail = {
-    //                     emailBody: this.state.emailBody,
-    //                     userEmail: this.state.userEmail,
-    //                     userName: this.state.userName
-    //                  }
-
-    // // ask saga to help us do it
-    //this.props.dispatch({ type: 'FETCH_FEEDBACK', payload: userEmail });
 
   } // End prepareToSendEmail()
+
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  }; // End handleInputChangeFor()
 
 
   render() {

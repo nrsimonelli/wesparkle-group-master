@@ -6,18 +6,16 @@ const nodemailer = require('nodemailer');
 
 router.get('/', (req, res) => {
 
-    console.log('in router!');
-
-
-    const {
-            emailBody,
-            userEmail,
-            userName
-          } = req.body;
-
-          //what how i get data? action payload
+    // where is my data? i want this from the saga call!:
+      // payload: {
+      //   emailBody: this.state.emailBody,
+      //   userEmail: this.state.userEmail,
+      //   userName: this.state.userName
+      // }
 
     console.log( 'req body', req.body );
+    // req.body = {} empty!
+
 
     // this is the ship the user's email rides
     var transport = nodemailer.createTransport({
@@ -34,7 +32,8 @@ router.get('/', (req, res) => {
 
     // here's where we set who does what
     let mailOptions = {
-      //from: 'audrywolters@gmail.com', // req.body.userEmail - orWhateverIcallIt <-- huh 
+      // AUDRY - from...
+      //from: paxossparkles-2038ac@inbox.mailtrap.io
       to: 'paxossparkles-2038ac@inbox.mailtrap.io',   // process.env.EMAIL || 'abc@gmail.com'
       text: 'user objects'
     };
