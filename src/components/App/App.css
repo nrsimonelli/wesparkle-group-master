@@ -49,11 +49,29 @@ input {
 }
 
 /* Globals */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
 .image-title {
-
+    font-size: calc(10px + 2vmin);
+    font-weight: 400;
+    letter-spacing: .1em;
 }
 .image-box {
+    border: 2px solid black;
+    width: 50vw;
+    min-width: 400px;
+    min-height: 200px;
+    max-width: 600px;
 
+}
+a {
+    color: inherit; 
+    text-decoration: inherit; 
 }
 /* for an image use this.. */
 /* .image {
@@ -62,29 +80,67 @@ input {
 
 
 /* Benefits Styling */
-.benefits-container {
+.benefits.container {
+    min-height: 600px;
+    /* display: flex;
+    flex-direction: column;
+    width: 100vw;
+    border: 2px solid black;
+    justify-content: space-between;
+    align-items: center; */
+}
+.benefits.image-title {
+  /* margin: .2em;  
+  font-size: calc(10px + 2vmin);
+  font-weight: 400;
+  letter-spacing: .1em; */
+
+}
+.benefits.image-box {
+    /* margin: .2em;
+    padding: .2em;
+    border: 2px solid pink;
+    width: 50vw;
+    min-width: 400px;
+    min-height: 200px;
+    max-width: 600px; */
+
+}
+.image-1 {
+    background-image: url('https://i.picsum.photos/id/314/536/354.jpg?hmac=uQME2VgtwoULPclwqxIs5OqNE84y_4z4uIGmMgynbLU');
+    background-position: center;
+    background-size: cover;
+}
+.image-2 {
+    background-image: url('/images/birdGang.jpg');
+    background-position: center;
+    background-size: cover;
+}
+/* Support Styling 1.1 */
+.support.container {
     display: flex;
     flex-direction: column;
+    min-height: 400px;
     width: 100vw;
     border: 2px solid black;
     justify-content: space-around;
     align-items: center;
 }
-.benefits.image-title {
+.support.image-title {
+  /* margin: .2em;  
+  font-size: calc(10px + 2vmin);
+  font-weight: 400;
+  letter-spacing: .1em; */
 
 }
-.benefits.image-box {
-    border: 2px solid green;
+.support.image-box {
+    border: 2px solid pink;
     width: 50vw;
     min-width: 400px;
     min-height: 200px;
+    max-width: 600px;
 
 }
-.image-1 {
-    background-image: url('/images/birdGang.jpg');
-
-}
-.image-2 {
-    background-image: url('/images/birdGang.jpg');
-
+.support.description {
+    max-width: 400px;
 }
