@@ -20,4 +20,4 @@ export default function* rootSaga() {
               userSaga(),
               feedbackSaga()
             ]);
-}
+  }

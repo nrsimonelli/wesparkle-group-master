@@ -169,4 +169,9 @@ a {
  
     height: 200px;
 }
+.text-field {
+    margin: inherit;
+    color: var(--battleship-grey);
+    background-color: var(--white);
+}
 
