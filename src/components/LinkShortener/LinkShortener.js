@@ -15,23 +15,25 @@ class LinkShortener extends Component {
     copySuccess: "",
   };
 
-  buttonClicked = () => {
+  generateClicked = () => {
     console.log("Button clicked");
+    const shortString = shortId.generate();
     this.setState({
-      shortenedUrl: "https://wespark.le/" + shortId.generate(),
+      shortenedUrl: "https://wespark.le/" + shortString,
     });
     console.log(
-      "In buttonClicked. this.state.shortenedUrl is",
+      "In generateClicked. this.state.shortenedUrl is",
       this.state.shortenedUrl
     );
     this.props.dispatch({
       type: "ADD_LINK",
       payload: {
-        inputURL: this.state.inputUrl,
-        shortenedUrl: this.state.shortenedUrl,
+        //variable names changed here to match names on '/' POST route
+        long_url: this.state.inputUrl,
+        short_url: shortString,
       },
     });
-  }; // end buttonClicked()
+  }; // end generateClicked()
 
   copyToClipboard = (e) => {
     this.textArea.select();
@@ -59,7 +61,7 @@ class LinkShortener extends Component {
             value={this.state.username}
             onChange={this.handleInputChangeFor("inputUrl")}
           />
-          <button onClick={this.buttonClicked}>Generate</button>
+          <button onClick={this.generateClicked}>Generate</button>
           <br />
           Your shortened link:
           <br />
@@ -67,7 +69,7 @@ class LinkShortener extends Component {
           <textarea
             ref={(textarea) => (this.textArea = textarea)}
             name="username"
-            value={this.state.shortenedUrl}
+            defaultValue={this.state.shortenedUrl}
           />
           {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
           <div>
@@ -83,8 +85,8 @@ class LinkShortener extends Component {
                 </div>
               )
             }
-            
-            this.state.shortenedUrl is: {JSON.stringify(this.state.shortenedUrl)}
+            this.state.shortenedUrl is:{" "}
+            {JSON.stringify(this.state.shortenedUrl)}
           </div>
         </div>
       </center>
