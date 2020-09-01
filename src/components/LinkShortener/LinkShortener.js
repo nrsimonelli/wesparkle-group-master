@@ -18,9 +18,14 @@ class LinkShortener extends Component {
 
   generateClicked = () => {
     console.log("Button clicked");
+
+    // Base URL goes in this variable
+    // This can be changed to a custom domain later,
+    // if needed.
+    const baseUrl = "localhost:5000/api/link/";
     const shortString = shortId.generate();
     this.setState({
-      shortenedUrl: "https://wespark.le/" + shortString,
+      shortenedUrl: baseUrl + shortString,
     });
     console.log(
       "In generateClicked. this.state.shortenedUrl is",
@@ -36,15 +41,19 @@ class LinkShortener extends Component {
     });
   }; // end generateClicked()
 
-  copyToClipboard = (e) => {
+  copyClicked = (e) => {
     this.textArea.select();
     document.execCommand("copy");
     // Next two lines from example code:
     // This is just personal preference.
     // I prefer to not show the whole text area selected.
     e.target.focus();
-    this.setState({ copySuccess: "Link copied!" });
-  }; // end copyToClipboard()
+    this.setState({
+      copySuccess: "Link copied!",
+      inputUrl: "",
+      shortenedUrl: "",
+    });
+  }; // end copyClicked()
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -59,7 +68,7 @@ class LinkShortener extends Component {
           <input
             type="text"
             name="username"
-            value={this.state.username}
+            value={this.state.inputUrl}
             onChange={this.handleInputChangeFor("inputUrl")}
           />
           <button onClick={this.generateClicked}>Generate</button>
@@ -79,7 +88,7 @@ class LinkShortener extends Component {
             button if the copy command exists */
               document.queryCommandSupported("copy") && (
                 <div>
-                  <button onClick={this.copyToClipboard}>
+                  <button onClick={this.copyClicked}>
                     Copy Shortened Link
                   </button>
                   {this.state.copySuccess}
@@ -89,8 +98,8 @@ class LinkShortener extends Component {
 
             <QRCode value={this.state.shortenedUrl} />
             <p>
-            this.state.shortenedUrl is:{" "}
-            {JSON.stringify(this.state.shortenedUrl)}
+              this.state.shortenedUrl is:{" "}
+              {JSON.stringify(this.state.shortenedUrl)}
             </p>
           </div>
         </div>
