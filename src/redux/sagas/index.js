@@ -12,5 +12,9 @@ import userSaga from "./userSaga";
 // the registration triggers a login
 // and login triggers setting the user
 export default function* rootSaga() {
-  yield all([linkSaga(), loginSaga(), registrationSaga(), userSaga()]);
+  yield all([
+    linkSaga(), 
+    loginSaga(), 
+    registrationSaga(), 
+    userSaga()]);
 }
