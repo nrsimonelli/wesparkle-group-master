@@ -7,7 +7,6 @@ import QRCode from "qrcode.react";
 class LinkShortener extends Component {
   componentDidMount() {
     console.log("component did mount, link Shortener");
-    console.log(shortId.generate());
   }
 
   state = {
