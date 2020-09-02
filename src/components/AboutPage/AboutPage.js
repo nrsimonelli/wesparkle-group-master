@@ -2,6 +2,7 @@ import React from 'react';
 import BenefitsCopy from '../BenefitsCopy/BenefitsCopy';
 import LinkSupportCopy from '../LinkSupportCopy/LinkSupportCopy';
 import LinkToMain from '../LinkToMain/LinkToMain';
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -10,6 +11,12 @@ import LinkToMain from '../LinkToMain/LinkToMain';
 
 const AboutPage = () => (
   <div>
+    <div>
+      <p>
+        This about page is for anyone to read!
+      </p>
+    </div>
+    <FeedbackForm />
     <BenefitsCopy />
     <LinkSupportCopy />
     <LinkToMain />

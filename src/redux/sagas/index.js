@@ -3,6 +3,7 @@ import linkSaga from "./linkSaga";
 import loginSaga from "./loginSaga";
 import registrationSaga from "./registrationSaga";
 import userSaga from "./userSaga";
+import feedbackSaga from "./feedbackSaga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -13,8 +14,10 @@ import userSaga from "./userSaga";
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    linkSaga(), 
-    loginSaga(), 
-    registrationSaga(), 
-    userSaga()]);
-}
+              linkSaga(), 
+              loginSaga(), 
+              registrationSaga(), 
+              userSaga(),
+              feedbackSaga()
+            ]);
+  }
