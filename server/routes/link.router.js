@@ -1,12 +1,15 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get("/", (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
   // Maybe one route for free, another for registered/logged in?
-  if (req.user != undefined) {
-    let queryString = `SELECT * FROM "link" WHERE "user_id" = $1
+  // if (req.user != undefined) {
+    let queryString = `SELECT * FROM "link" 
+    WHERE "user_id" = $1
+    AND  "disabled_link" = FALSE
     ;`;
     pool
       .query(queryString, [req.user.id])
@@ -17,20 +20,20 @@ router.get("/", (req, res) => {
         console.log("Error making SELECT for links when logged in:", error);
         res.sendStatus(500);
       });
-  } //end if user is logged in
-  else {
-    let queryString = `SELECT * FROM "link"
-          ;`;
-    pool
-      .query(queryString)
-      .then((result) => {
-        res.send(result.rows);
-      })
-      .catch((error) => {
-        console.log("Error making SELECT for links when not logged in:", error);
-        res.sendStatus(500);
-      });
-  }
+   //end if user is logged in
+  // else {
+  //   let queryString = `SELECT * FROM "link"
+  //         ;`;
+  //   pool
+  //     .query(queryString)
+  //     .then((result) => {
+  //       res.send(result.rows);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error making SELECT for links when not logged in:", error);
+  //       res.sendStatus(500);
+  //     });
+  // }
 });
 
 router.get("/:short_url", (req, res) => {
@@ -45,6 +48,17 @@ router.get("/:short_url", (req, res) => {
       console.log("Error in GET/:short_url redirect. Error is", error);
       res.sendStatus(500);
     });
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('in link router disable by id', req.params.id);
+  const link_id = req.params.id;
+
+  const queryString = `UPDATE "link" SET disabled_link = true WHERE link.id = $1;`;
+
+  pool.query(queryString, [link_id])
+    .then(()=> res.sendStatus(201))
+    .catch(()=> res.sendStatus(500));
 });
 
 router.post("/", (req, res) => {
