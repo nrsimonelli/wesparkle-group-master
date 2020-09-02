@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LinkShortener from "../LinkShortener/LinkShortener";
+import LinkList from "../LinkList/LinkList";
 import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
 import TextField from '@material-ui/core/TextField'
 
@@ -42,6 +43,7 @@ class LoginPage extends Component {
           </h2>
         )}
         <LinkShortener />
+        <LinkList />
         <FeedbackCarousel />
         <form onSubmit={this.login}>
           <h1>Login</h1>
