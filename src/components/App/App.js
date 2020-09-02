@@ -16,6 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import ProtectedLinkShortener from '../ProtectedLinkShortener'
 
 import './App.css';
 
@@ -46,7 +47,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={ProtectedLinkShortener}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
