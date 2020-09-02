@@ -11,22 +11,23 @@ class FeedbackCarousel extends Component {
 
   render() {
     return (
-      <div className="carousel">
-        <Carousel className="feedback">
-          <div className="feedback">
-          <p>"What a great feature. I love this!"</p>
-          <p>-Mary M.</p>
-          </div>
-          <div className="feedback">
-          <p>"Whoever built this is awesome!"</p>
-          <p>-Dev J.</p>
-          </div>
-          <div className="feedback">
-          <p>"I mean, it sure ain't terrible!"</p>
-          <p>-Parakeet Pete.</p>
-          </div>
-        </Carousel>
-      </div>
+      <center>
+          <Carousel className="feedback">
+            <div>
+              <img src="/images/parakeetCooking.jpg" />
+              <p>"What a great feature. I love this!"</p>
+              <p>-Mary M.</p>
+            </div>
+            <div>
+              <p>"Whoever built this is awesome!"</p>
+              <p>-Dev J.</p>
+            </div>
+            <div>
+              <p>"I mean, it sure ain't terrible!"</p>
+              <p>-Parakeet Pete.</p>
+            </div>
+          </Carousel>
+        </center>
     );
   }
 }
