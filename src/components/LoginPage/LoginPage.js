@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import LinkShortener from "../LinkShortener/LinkShortener";
 import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
-import TextField from '@material-ui/core/TextField'
-
+import TextField from "@material-ui/core/TextField";
+import FeedbackForm from "../FeedbackForm/FeedbackForm";
 
 class LoginPage extends Component {
   state = {
@@ -46,35 +46,31 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            
-              <TextField
-                id='outlined-username-input'
-                label="Username"
-                type='text'
-                className='text-field'
-                name="username"
-                margin='normal'
-                variant='outlined'
-                value={this.state.username}
-                onChange={this.handleInputChangeFor("username")}
-              />
-            
+            <TextField
+              id="outlined-username-input"
+              label="Username"
+              type="text"
+              className="text-field"
+              name="username"
+              margin="normal"
+              variant="outlined"
+              value={this.state.username}
+              onChange={this.handleInputChangeFor("username")}
+            />
           </div>
           <div>
-            
-              <TextField
-                id="outlined-password-input"
-                label="Password"
-                className='text-field'
-                type="password"
-                autoComplete="current-password"
-                margin="normal"
-                variant="outlined"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor("password")}
-              />
-            
+            <TextField
+              id="outlined-password-input"
+              label="Password"
+              className="text-field"
+              type="password"
+              autoComplete="current-password"
+              margin="normal"
+              variant="outlined"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInputChangeFor("password")}
+            />
           </div>
           <div>
             <input
@@ -96,6 +92,7 @@ class LoginPage extends Component {
             Register
           </button>
         </center>
+        <FeedbackForm />
       </div>
     );
   }
