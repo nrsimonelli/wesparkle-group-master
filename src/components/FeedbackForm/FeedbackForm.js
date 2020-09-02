@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../FeedbackForm/FeedbackForm.css";
+import * as EmailValidator from "email-validator";
 
 // corresponds to 1.3
 class FeedbackForm extends Component {
@@ -8,24 +9,33 @@ class FeedbackForm extends Component {
     userEmail: "",
     userName: "",
     emailBody: "",
+    emailValid: false,
+    emailError: false,
   };
 
   prepareToSendEmail = () => {
-    // AUDRY - can I just send this.state?
-    this.props.dispatch({
-      type: "FETCH_FEEDBACK",
-      payload: {
-        emailBody: this.state.emailBody,
-        userEmail: this.state.userEmail,
-        userName: this.state.userName,
-      },
-    });
-    // Clear inputs after submit
-    this.setState({
-      emailBody: "",
-      userEmail: "",
-      userName: "",
-    });
+    if (EmailValidator.validate(this.state.userEmail)) {
+      this.setState({ emailValid: true });
+      this.setState({ emailError: false });
+      // AUDRY - can I just send this.state?
+      this.props.dispatch({
+        type: "FETCH_FEEDBACK",
+        payload: {
+          emailBody: this.state.emailBody,
+          userEmail: this.state.userEmail,
+          userName: this.state.userName,
+        },
+      });
+      // Clear inputs after submit
+      this.setState({
+        emailBody: "",
+        userEmail: "",
+        userName: "",
+      });
+    } else {
+      this.setState({ emailError: true });
+      console.log("E-mail address error");
+    }
   }; // End prepareToSendEmail()
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -62,6 +72,12 @@ class FeedbackForm extends Component {
             ></textarea>
           </p>
           <button onClick={this.prepareToSendEmail}>Submit</button>
+          {this.state.emailValid ? <p>E-mail sent successfully</p> : <p></p>}
+          {this.state.emailError ? (
+            <p>Error: invalid email address</p>
+          ) : (
+            <p></p>
+          )}
         </center>
       </>
     ); // end return
