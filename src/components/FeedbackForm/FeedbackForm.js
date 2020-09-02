@@ -18,7 +18,7 @@ class FeedbackForm extends Component {
       // set booleans for conditional rendering of email verification on DOM
       this.setState({ emailValid: true });
       this.setState({ emailError: false });
-      // AUDRY - can I just send this.state?
+
       this.props.dispatch({
         type: "FETCH_FEEDBACK",
         payload: {
