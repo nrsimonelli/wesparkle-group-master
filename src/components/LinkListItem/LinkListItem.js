@@ -14,22 +14,26 @@ class LinkListItem extends Component {
   copyLink = () => {
     console.log("copyLink clicked");
   };
-  deleteLink = (row) => {
-    console.log("deleteLink clicked,", row);
+
+  deleteLink = (link) => {
+    //id isn't being passed yet
+    console.log("deleteLink clicked,", link);
+    this.props.dispatch({ type: "REMOVE_LINK", payload: link})
   };
 
   render() {
-    const row = this.props.reduxState.link;
+    const link = this.props.link
 
     return (
       <div className="container link-item">
         <p>LinkListItem </p>
-        {JSON.stringify(this.props.reduxState.link)}
-
+        Long URL: {JSON.stringify(link.long_url)}
+        Short URL: {JSON.stringify(link.short_url)}
+          {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
           <button onClick={this.copyLink}>copy</button>
           <button onClick={this.editDetails}>edit</button>
-          <button onClick={()=>this.deleteLink(row.id)}>x</button>
+          <button onClick={()=>this.deleteLink(link)}>x</button>
         </div>
       </div>
     ); // end return
