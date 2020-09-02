@@ -15,6 +15,7 @@ class FeedbackForm extends Component {
 
   prepareToSendEmail = () => {
     if (EmailValidator.validate(this.state.userEmail)) {
+      // set booleans for conditional rendering of email verification on DOM
       this.setState({ emailValid: true });
       this.setState({ emailError: false });
       // AUDRY - can I just send this.state?
@@ -33,6 +34,7 @@ class FeedbackForm extends Component {
         userName: "",
       });
     } else {
+      // set booleans for conditional rendering of email verification on DOM
       this.setState({ emailValid: false });
       this.setState({ emailError: true });
       console.log("E-mail address error");
