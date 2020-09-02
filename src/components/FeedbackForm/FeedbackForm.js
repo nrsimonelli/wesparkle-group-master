@@ -33,6 +33,7 @@ class FeedbackForm extends Component {
         userName: "",
       });
     } else {
+      this.setState({ emailValid: false });
       this.setState({ emailError: true });
       console.log("E-mail address error");
     }
