@@ -8,7 +8,7 @@ class LinkListItem extends Component {
     //payload of the selected link's details
     this.props.dispatch({ type: 'SET_DETAILS', payload: { ...this.props.link } })
     //Then pushes history and brings us to the selected link's details
-    this.props.history.push('/details');
+    //this.props.history.push('/details');
   };
 
   copyLink = () => {
@@ -26,8 +26,8 @@ class LinkListItem extends Component {
 
     return (
       <div className="container link-item">
-        <p>LinkListItem </p>
         Long URL: {JSON.stringify(link.long_url)}
+        <br></br>
         Short URL: {JSON.stringify(link.short_url)}
           {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
