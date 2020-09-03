@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import copy from "clipboard-copy";
+import Button from '@material-ui/core/Button'
 
 class LinkListItem extends Component {
   state = {
@@ -42,16 +43,27 @@ class LinkListItem extends Component {
         Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
         {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
-          <button 
-          onClick={this.copyLink}
-          >copy</button>
-          <button 
-          onClick={() => this.goToDetails(link)}
-          >details</button>
-          <button 
-          onClick={()=>this.deleteLink(link)}
-          >x</button>
-
+          <Button 
+            id='copy'
+            onClick={this.copyLink}
+            variant='outlined'
+            color='primary'
+            >copy
+          </Button>
+          <Button 
+            id='edit'
+            onClick={() => this.goToDetails(link)}
+            variant='outlined'
+            color='default'
+            >edit
+          </Button>
+          <Button 
+            id='delete'
+            onClick={() => this.deleteLink(link)}
+            variant='outlined'
+            color='secondary'
+            >x
+          </Button>
         </div>
       </div>
     ); // end return

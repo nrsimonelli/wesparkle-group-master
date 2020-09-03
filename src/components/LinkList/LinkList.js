@@ -12,8 +12,7 @@ class LinkList extends Component {
 
   render() {
     return (
-      <div>
-        <p>Link List</p>
+      <div className='link-list container'>
         {/* maps links in database and 
     passes down props to LinkListItem */}
     {/* {JSON.stringify(this.props.reduxState.link)} */}
