@@ -1,12 +1,10 @@
 .feedback {
     margin: 10%;
     width: 300px;
-
 }
 
 .carousel .slide {
-    /* Nick - how do I access .root MidnightBlue color? */
-    background: #da291cff;
+    background: var(--vermilion);
     color: white;
 }
 
