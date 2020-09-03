@@ -23,6 +23,7 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
+      this.props.history.push('/protected')
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
@@ -42,9 +43,6 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <LinkShortener />
-        <LinkList />
-        <FeedbackCarousel />
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
@@ -84,7 +82,16 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
-          <button
+        <button
+            type="button"
+            className="link-button"
+            onClick={() => {
+              this.props.history.push('/register');
+            }}
+          >
+            Register
+          </button>
+          {/* <button
             type="button"
             className="link-button"
             onClick={() => {
@@ -92,9 +99,9 @@ class LoginPage extends Component {
             }}
           >
             Register
-          </button>
+          </button> */}
         </center>
-        <FeedbackForm />
+        
       </div>
     );
   }

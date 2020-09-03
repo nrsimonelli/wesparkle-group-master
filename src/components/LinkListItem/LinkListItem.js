@@ -1,39 +1,50 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import copy from "clipboard-copy";
 
 class LinkListItem extends Component {
+  state = {
+    copySuccess: "",
+    baseUrl: "https://localhost:5000/api/link/",
+  };
   editDetails = () => {
     console.log("editDetails clicked");
     // calls SET_DETAILS (details reducer) with
     //payload of the selected link's details
-    this.props.dispatch({ type: 'SET_DETAILS', payload: { ...this.props.link } })
+    this.props.dispatch({
+      type: "SET_DETAILS",
+      payload: { ...this.props.link },
+    });
     //Then pushes history and brings us to the selected link's details
     //this.props.history.push('/details');
   };
 
   copyLink = () => {
     console.log("copyLink clicked");
+    // this calls the clipboard-copy library imported above
+    copy(this.state.baseUrl + this.props.link.short_url);
   };
 
   deleteLink = (link) => {
     //id isn't being passed yet
     console.log("deleteLink clicked,", link);
-    this.props.dispatch({ type: "REMOVE_LINK", payload: link})
+    this.props.dispatch({ type: "REMOVE_LINK", payload: link });
   };
 
   render() {
-    const link = this.props.link
+    const link = this.props.link;
 
     return (
       <div className="container link-item">
-        Long URL: {JSON.stringify(link.long_url)}
+        Long URL: {<span>{link.long_url}</span>}
         <br></br>
-        Short URL: {JSON.stringify(link.short_url)}
-          {/* <p>{link.short_url}</p> */}
+        Short URL: {this.state.baseUrl}
+        {link.short_url}
+        {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
           <button onClick={this.copyLink}>copy</button>
           <button onClick={this.editDetails}>edit</button>
-          <button onClick={()=>this.deleteLink(link)}>x</button>
+          <button onClick={() => this.deleteLink(link)}>x</button>
         </div>
       </div>
     ); // end return
