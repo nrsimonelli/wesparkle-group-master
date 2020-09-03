@@ -15,11 +15,36 @@ class LinkDetails extends Component {
     console.log("this.props.reduxState...", this.props.reduxState);
   }
 
+  copyLink = () => {
+    console.log("copyLink clicked");
+  };
+
+  deleteLink = (link) => {
+    //   deletes (disables) link and returns user to main page
+    console.log("deleteLink clicked,", link);
+    this.props.dispatch({ type: "REMOVE_LINK", payload: link });
+    this.props.history.push(`/`);
+  };
+
   render() {
+    const link = this.props.reduxState.details;
     return (
       <div>
         <p>Link Details</p>
-        {JSON.stringify(this.props.reduxState.details)}
+        <div className="container link-item">
+          Long URL: {link.long_url}
+          <br></br>
+          Short URL: {link.short_url}
+          {/* <p>{link.short_url}</p> */}
+          <div className="link-item button">
+            <button 
+            onClick={this.copyLink}
+            >copy</button>
+            <button 
+            onClick={() => this.deleteLink(link)}
+            >x</button>
+          </div>
+        </div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     AND user_id = $2;`;
     pool.query(query, [req.params.id, req.user.id])
         .then((result) => {
-            res.send(result.rows);
+            res.send(result.rows[0]);
         })
         .catch((error) => {
             console.log('Error making SELECT for details:', error);
