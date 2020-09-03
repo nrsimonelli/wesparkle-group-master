@@ -2,6 +2,7 @@ import shortId from "shortid";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QRCode from "qrcode.react";
+import copy from "clipboard-copy";
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -94,12 +95,7 @@ class LinkShortener extends Component {
                 </div>
               )
             }
-
             <QRCode value={this.state.shortenedUrl} />
-            <p>
-              this.state.shortenedUrl is:{" "}
-              {JSON.stringify(this.state.shortenedUrl)}
-            </p>
           </div>
         </div>
       </center>
