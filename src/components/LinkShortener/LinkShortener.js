@@ -95,7 +95,18 @@ class LinkShortener extends Component {
                 </div>
               )
             }
-            <QRCode value={this.state.shortenedUrl} />
+            {/* Render QR code only if URL has been submitted */}
+            <p>
+              {this.state.shortenedUrl != "" ? (
+                <>
+                  <QRCode value={this.state.shortenedUrl} />
+                  <br />
+                  Right click or long press to save image
+                </>
+              ) : (
+                <div />
+              )}
+            </p>
           </div>
         </div>
       </center>
