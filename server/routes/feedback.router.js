@@ -7,8 +7,8 @@ const nodemailer = require("nodemailer");
 router.post("/", (req, res) => {
   // this is the ship the user's email rides
   var transport = nodemailer.createTransport({
-    host: 'smtp.mail.yahoo.com',
-    port: 465,
+    host: "smtp.mailtrap.io",
+    port: 2525,
     auth: {
       user: process.env.FEEDBACK_EMAIL_USERNAME || "abc@gmail.com", // AUDRY - do we want an OR?
       pass: process.env.FEEDBACK_EMAIL_PASSWORD || "1234", // AUDRY - do we want an OR?
@@ -19,8 +19,8 @@ router.post("/", (req, res) => {
   let mailOptions = {
     to: process.env.FEEDBACK_EMAIL || "abc@gmail.com", // AUDRY - do we want an OR?
     html: `<p>From: ${req.body.userName}</p>
-             <p>Email: ${req.body.userEmail}</p>
-             <p>Message: ${req.body.emailBody}</p>`,
+           <p>Email: ${req.body.userEmail}</p>
+           <p>Message: ${req.body.emailBody}</p>`,
   };
 
   // send that email!

@@ -12,9 +12,9 @@ class FeedbackCarousel extends Component {
   render() {
     return (
       <center>
-          <Carousel className="feedback">
+          <Carousel showThumbs={false} className="feedback">
             <div>
-              <img src="/images/parakeetCooking.jpg" />
+              <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
               <p>"What a great feature. I love this!"</p>
               <p>-Mary M.</p>
             </div>
