@@ -19,8 +19,8 @@ router.post("/", (req, res) => {
   let mailOptions = {
     to: process.env.FEEDBACK_EMAIL || "abc@gmail.com", // AUDRY - do we want an OR?
     html: `<p>From: ${req.body.userName}</p>
-             <p>Email: ${req.body.userEmail}</p>
-             <p>Message: ${req.body.emailBody}</p>`,
+           <p>Email: ${req.body.userEmail}</p>
+           <p>Message: ${req.body.emailBody}</p>`,
   };
 
   // send that email!
