@@ -5,7 +5,7 @@ import copy from "clipboard-copy";
 class LinkListItem extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "https://localhost:5000/api/link/",
+    baseUrl: "http://localhost:5000/api/link/",
   };
   editDetails = () => {
     console.log("editDetails clicked");
@@ -36,10 +36,9 @@ class LinkListItem extends Component {
 
     return (
       <div className="container link-item">
-        Long URL: {<span>{link.long_url}</span>}
+        Long URL: {<a href={link.long_url}>{link.long_url}</a>}
         <br></br>
-        Short URL: {this.state.baseUrl}
-        {link.short_url}
+        Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
         {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
           <button onClick={this.copyLink}>copy</button>
