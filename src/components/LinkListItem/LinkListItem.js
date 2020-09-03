@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 import copy from "clipboard-copy";
 import Button from '@material-ui/core/Button'
 
 class LinkListItem extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "https://localhost:5000/api/link/",
+    baseUrl: "http://localhost:5000/api/link/",
   };
-  editDetails = () => {
+   goToDetails = (link) => {
     console.log("editDetails clicked");
     // calls SET_DETAILS (details reducer) with
     //payload of the selected link's details
@@ -17,7 +18,7 @@ class LinkListItem extends Component {
       payload: { ...this.props.link },
     });
     //Then pushes history and brings us to the selected link's details
-    //this.props.history.push('/details');
+    this.props.history.push(`/details/${link.id}`);
   };
 
   copyLink = () => {
@@ -37,10 +38,9 @@ class LinkListItem extends Component {
 
     return (
       <div className="container link-item">
-        Long URL: {<span>{link.long_url}</span>}
+        Long URL: {<a href={link.long_url}>{link.long_url}</a>}
         <br></br>
-        Short URL: <span>{this.state.baseUrl}
-        {link.short_url}</span>
+        Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
         {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
           <Button 
@@ -52,7 +52,7 @@ class LinkListItem extends Component {
           </Button>
           <Button 
             id='edit'
-            onClick={this.editDetails}
+            onClick={() => this.goToDetails(link)}
             variant='outlined'
             color='default'
             >edit
@@ -74,4 +74,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(LinkListItem);
+export default withRouter(connect(mapReduxStateToProps)(LinkListItem));

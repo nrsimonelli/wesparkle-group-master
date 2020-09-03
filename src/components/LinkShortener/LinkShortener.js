@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import QRCode from "qrcode.react";
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import copy from "clipboard-copy";
+
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -120,6 +122,20 @@ class LinkShortener extends Component {
                 
               )
             }
+
+            {/* Render QR code only if URL has been submitted */}
+            <p>
+              {this.state.shortenedUrl != "" ? (
+                <>
+                  <QRCode value={this.state.shortenedUrl} />
+                  <br />
+                  Right click or long press to save image
+                </>
+              ) : (
+                <div />
+              )}
+            </p>
+
           </div>
             
             <QRCode className='qr' value={this.state.shortenedUrl} />

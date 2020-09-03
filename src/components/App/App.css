@@ -116,12 +116,12 @@ a {
     justify-content: space-between;
     align-items: center; */
 }
+/* 
 .benefits.image-title {
-  /* margin: .2em;  
+  margin: .2em;  
   font-size: calc(10px + 2vmin);
   font-weight: 400;
-  letter-spacing: .1em; */
-
+  letter-spacing: .1em; 
 }
 .benefits.image-box {
     /* margin: .2em;
@@ -130,9 +130,9 @@ a {
     width: 50vw;
     min-width: 400px;
     min-height: 200px;
-    max-width: 600px; */
+    max-width: 600px; 
 
-}
+}*/
 .image-1 {
     background-image: url('/images/birdGang.jpg');
     background-position: center;
@@ -157,13 +157,13 @@ a {
     justify-content: space-around;
     align-items: center;
 }
-.support.image-title {
+/* .support.image-title {
   /* margin: .2em;  
   font-size: calc(10px + 2vmin);
   font-weight: 400;
-  letter-spacing: .1em; */
+  letter-spacing: .1em; 
 
-}
+} */
 .support.image-box {
     width: 50vw;
     min-width: 400px;
