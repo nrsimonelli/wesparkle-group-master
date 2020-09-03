@@ -61,7 +61,7 @@ input {
 
 .shortener.container{
     display: flex;
-    align-content: center;
+    align-items: center;
     width: 40%;
     
 }
@@ -73,6 +73,9 @@ input {
     width: 100vw;
     justify-content: space-around;
     align-items: center;
+    border: 2px solid black;
+    padding: 0;
+    margin: 0;
 }
 .image-title {
     font-size: calc(10px + 2vmin);
@@ -174,4 +177,36 @@ a {
     color: var(--battleship-grey);
     background-color: var(--white);
 }
+
+
+/* linkListItem */
+.link-item.container {
+    height: 150px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: .2em;
+    padding: .2em;
+}
+.link-item.button {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+/* linkShortener */
+.container.link-shortener {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 400px;
+}
+
+
 

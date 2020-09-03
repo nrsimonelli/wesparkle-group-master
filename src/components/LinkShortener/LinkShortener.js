@@ -2,6 +2,8 @@ import shortId from "shortid";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QRCode from "qrcode.react";
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -62,19 +64,29 @@ class LinkShortener extends Component {
 
   render() {
     return (
-      <center>
-        <div>
-          <input
+      <div className='container link-shortener'>
+       
+          <TextField
+            id="outlined-link-input"
+            label="Type link here"
             type="text"
-            name="username"
+            className="text-field"
+            name="link"
+            margin="normal"
+            variant="outlined"
             value={this.state.inputUrl}
             onChange={this.handleInputChangeFor("inputUrl")}
           />
-          <button onClick={this.generateClicked}>Generate</button>
-          <br />
+          <Button 
+            onClick={this.generateClicked}
+            variant='outlined'
+            color='default'
+            >Generate
+          </Button>
+          <div>
           Your shortened link:
-          <br />
-          {/* <input type="text" name="username" value={this.state.shortenedUrl} /> */}
+          </div>
+    
           <textarea
             ref={(textarea) => (this.textArea = textarea)}
             name="username"
@@ -87,22 +99,26 @@ class LinkShortener extends Component {
             button if the copy command exists */
               document.queryCommandSupported("copy") && (
                 <div>
-                  <button onClick={this.copyClicked}>
+                  <Button 
+                    onClick={this.copyClicked}
+                    variant='outlined'
+                    color='primary'
+                    >
                     Copy Shortened Link
-                  </button>
+                  </Button>
                   {this.state.copySuccess}
                 </div>
               )
             }
+          </div>
 
             <QRCode value={this.state.shortenedUrl} />
-            <p>
-              this.state.shortenedUrl is:{" "}
-              {JSON.stringify(this.state.shortenedUrl)}
-            </p>
-          </div>
-        </div>
-      </center>
+            
+              {/* {JSON.stringify(this.state.shortenedUrl)} */}
+           
+          
+        
+      </div>
     ); // end return
   } // end render
 } // end class

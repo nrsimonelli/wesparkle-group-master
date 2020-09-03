@@ -7,6 +7,7 @@ import BenefitsCopy from '../BenefitsCopy/BenefitsCopy';
 import LinkSupportCopy from '../LinkSupportCopy/LinkSupportCopy';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import LinkToMain from '../LinkToMain/LinkToMain';
+import LoginButton from '../LoginButton/LoginButton';
 
 class Landing extends Component {
 
@@ -15,7 +16,7 @@ class Landing extends Component {
     return (
       <div>
         <LinkShortener />
-        <button onClick={()=> this.props.history.push('/login')}>Login/Register for Advanced Features</button>
+        <LoginButton />
         <BenefitsCopy />
         <LinkSupportCopy />
         <FeedbackCarousel />
