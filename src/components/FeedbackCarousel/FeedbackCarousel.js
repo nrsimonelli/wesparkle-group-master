@@ -12,17 +12,19 @@ class FeedbackCarousel extends Component {
   render() {
     return (
       <center>
-          <Carousel showThumbs={false} className="feedback">
+          <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedback">
             <div>
               <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
               <p>"What a great feature. I love this!"</p>
               <p>-Mary M.</p>
             </div>
             <div>
+              <img alt="a parakeet cooking in a mini kitchen" src="/images/mervyn.png" />
               <p>"Whoever built this is awesome!"</p>
               <p>-Dev J.</p>
             </div>
             <div>
+              <img alt="a parakeet cooking in a mini kitchen" src="/images/mervynChair.png" />
               <p>"I mean, it sure ain't terrible!"</p>
               <p>-Parakeet Pete.</p>
             </div>
