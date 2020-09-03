@@ -1,21 +1,15 @@
 .feedback {
-    background-color: white;
     margin: 10%;
-    width: 200px;
-    height: 300px;
+    width: 300px;
+
 }
 
-/* .feedback {
-    margin: 10%;
-    width: 200px;
-    height: 600px;
-} */
-
-.feedback.img {
-    background-size: contain;
-    background-repeat: no-repeat;
+.carousel .slide {
+    /* Nick - how do I access .root MidnightBlue color? */
+    background: #da291cff;
+    color: white;
 }
 
-.image-one {
-    background-image: url('/images/parakeetCooking.jpg');
+.feedback p {
+    padding: 0 0 10px 0;
 }

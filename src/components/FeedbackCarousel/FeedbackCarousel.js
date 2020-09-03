@@ -15,13 +15,19 @@ class FeedbackCarousel extends Component {
           <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedback">
             <div>
               <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
-              <p>"What a great feature. I love this!"</p>
-              <p>-Mary M.</p>
+              <p>
+                "What a great feature. I love this!"
+                <br /><br />
+                 -Mary M.
+              </p>
             </div>
             <div>
               <img alt="a parakeet cooking in a mini kitchen" src="/images/mervyn.png" />
-              <p>"Whoever built this is awesome!"</p>
-              <p>-Dev J.</p>
+              <p>
+                "Whoever built this is awesome!"
+                <br /><br />
+                -Dev J.
+              </p>
             </div>
             <div>
               <img alt="a parakeet cooking in a mini kitchen" src="/images/mervynChair.png" />
