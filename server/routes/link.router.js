@@ -10,6 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     let queryString = `SELECT * FROM "link" 
     WHERE "user_id" = $1
     AND  "disabled_link" = FALSE
+    ORDER BY "id" DESC
     ;`;
     pool
       .query(queryString, [req.user.id])
