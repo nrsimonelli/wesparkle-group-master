@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
 class LinkListItem extends Component {
-  editDetails = () => {
-    console.log("editDetails clicked");
+  goToDetails = (link) => {
+    console.log("editDetails clicked", link);
     // calls SET_DETAILS (details reducer) with
     //payload of the selected link's details
     this.props.dispatch({ type: 'SET_DETAILS', payload: { ...this.props.link } })
     //Then pushes history and brings us to the selected link's details
-    //this.props.history.push('/details');
+    this.props.history.push('/details');
   };
 
   copyLink = () => {
@@ -31,9 +32,15 @@ class LinkListItem extends Component {
         Short URL: {JSON.stringify(link.short_url)}
           {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
-          <button onClick={this.copyLink}>copy</button>
-          <button onClick={this.editDetails}>edit</button>
-          <button onClick={()=>this.deleteLink(link)}>x</button>
+          <button 
+          onClick={this.copyLink}
+          >copy</button>
+          <button 
+          onClick={() => this.goToDetails(link)}
+          >details</button>
+          <button 
+          onClick={()=>this.deleteLink(link)}
+          >x</button>
         </div>
       </div>
     ); // end return
@@ -44,4 +51,4 @@ const mapReduxStateToProps = (reduxState) => ({
   reduxState,
 });
 
-export default connect(mapReduxStateToProps)(LinkListItem);
+export default withRouter(connect(mapReduxStateToProps)(LinkListItem));
