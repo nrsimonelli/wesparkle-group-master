@@ -57,8 +57,7 @@ class App extends Component {
               component={InfoPage}
             />
             <ProtectedRoute
-              exact
-              path="/details"
+              exact path="/details/:id"
               component={LinkDetails}
             />
             {/* If none of the other routes matched, we will show a 404. */}
