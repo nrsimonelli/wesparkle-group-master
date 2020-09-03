@@ -22,7 +22,7 @@ class FeedbackCarousel extends Component {
               </p>
             </div>
             <div>
-              <img alt="a parakeet cooking in a mini kitchen" src="/images/mervyn.png" />
+              <img alt="a cat sleeping" src="/images/mervyn.png" />
               <p>
                 "Whoever built this is awesome!"
                 <br /><br />
@@ -30,9 +30,12 @@ class FeedbackCarousel extends Component {
               </p>
             </div>
             <div>
-              <img alt="a parakeet cooking in a mini kitchen" src="/images/mervynChair.png" />
-              <p>"I mean, it sure ain't terrible!"</p>
-              <p>-Parakeet Pete.</p>
+              <img alt="a cat in a chair" src="/images/mervynChair.png" />              
+              <p>
+                "I mean, it sure ain't terrible!"
+                <br /><br />
+                -Parakeet Pete
+              </p>
             </div>
           </Carousel>
         </center>
