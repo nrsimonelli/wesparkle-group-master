@@ -7,11 +7,11 @@ class LoginButton extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <Button 
+      <div className='container login-button'>
+        <Button
+          id='advanced' 
           onClick={()=> this.props.history.push('/login')}
           variant='outlined'
-          color='secondary'
           >Login/Register for Advanced Features
         </Button>
       </div>

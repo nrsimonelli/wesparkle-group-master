@@ -77,7 +77,9 @@ class LinkShortener extends Component {
             value={this.state.inputUrl}
             onChange={this.handleInputChangeFor("inputUrl")}
           />
-          <Button 
+          <Button
+            id='generate' 
+            className='big'
             onClick={this.generateClicked}
             variant='outlined'
             color='default'
@@ -88,8 +90,11 @@ class LinkShortener extends Component {
           </div>
     
           <textarea
-            ref={(textarea) => (this.textArea = textarea)}
-            name="username"
+            
+            type='text'
+            className='text-field'
+            ref={(textArea) => (this.textArea = textArea)}
+            name="shorturl"
             defaultValue={this.state.shortenedUrl}
           />
           {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
@@ -100,19 +105,24 @@ class LinkShortener extends Component {
               document.queryCommandSupported("copy") && (
                 <div>
                   <Button 
+                    id='copy'
+                    className='big'
                     onClick={this.copyClicked}
                     variant='outlined'
                     color='primary'
                     >
                     Copy Shortened Link
                   </Button>
+                  <center>
                   {this.state.copySuccess}
+                  </center>
                 </div>
+                
               )
             }
           </div>
-
-            <QRCode value={this.state.shortenedUrl} />
+            
+            <QRCode className='qr' value={this.state.shortenedUrl} />
             
               {/* {JSON.stringify(this.state.shortenedUrl)} */}
            

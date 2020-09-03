@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LinkShortener from "../LinkShortener/LinkShortener";
-import LinkList from "../LinkList/LinkList";
-import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
 import TextField from "@material-ui/core/TextField";
-import FeedbackForm from "../FeedbackForm/FeedbackForm";
+import Button from '@material-ui/core/Button';
 
 class LoginPage extends Component {
   state = {
@@ -37,7 +34,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container landing'>
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
@@ -91,15 +88,7 @@ class LoginPage extends Component {
           >
             Register
           </button>
-          {/* <button
-            type="button"
-            className="link-button"
-            onClick={() => {
-              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
-            }}
-          >
-            Register
-          </button> */}
+          
         </center>
         
       </div>

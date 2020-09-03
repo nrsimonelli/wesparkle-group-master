@@ -44,18 +44,21 @@ class LinkListItem extends Component {
         {/* <p>{link.short_url}</p> */}
         <div className="link-item button">
           <Button 
+            id='copy'
             onClick={this.copyLink}
             variant='outlined'
-            color='default'
+            color='primary'
             >copy
           </Button>
           <Button 
+            id='edit'
             onClick={this.editDetails}
             variant='outlined'
-            color='primary'
+            color='default'
             >edit
           </Button>
           <Button 
+            id='delete'
             onClick={() => this.deleteLink(link)}
             variant='outlined'
             color='secondary'

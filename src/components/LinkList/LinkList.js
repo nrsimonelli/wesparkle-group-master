@@ -13,7 +13,6 @@ class LinkList extends Component {
   render() {
     return (
       <div className='link-list container'>
-        <p>History of Shortened Links</p>
         {/* maps links in database and 
     passes down props to LinkListItem */}
     {/* {JSON.stringify(this.props.reduxState.link)} */}
