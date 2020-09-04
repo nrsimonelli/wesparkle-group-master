@@ -30,7 +30,7 @@ class LinkShortener extends Component {
       copySuccess: "Link copied!",
       inputUrl: "",
       // Don't reset short url since we want shortened link and
-      //QR code to persist after copy 
+      //QR code to persist after copy
       //shortenedUrl: "",
     });
   }; // end copyClicked()
@@ -45,7 +45,7 @@ class LinkShortener extends Component {
     const shortString = shortId.generate();
     this.setState({
       shortenedUrl: baseUrl + shortString,
-      copySuccess: '',
+      copySuccess: "",
     });
     console.log(
       "In generateClicked. this.state.shortenedUrl is",
@@ -53,12 +53,32 @@ class LinkShortener extends Component {
     );
     // Use url-parse library (as 'parse') to clean input URL
     let cleanUrl = this.state.inputUrl;
-    cleanUrl = parse(cleanUrl);
+    console.log("this.state.inputUrl is", this.state.inputUrl);
+    console.log("cleanUrl is", cleanUrl);
+    cleanUrl = parse(cleanUrl, {
+      host: "",
+      hostname: "",
+      href: cleanUrl,
+      origin: "",
+      password: "",
+      pathname: "",
+      port: "",
+      protocol: "http:",
+      query: "",
+      slashes: true,
+      username: "",
+    });
+    // Check if URL has 'http://'. If not, add it
+    console.log("cleanUrl after parse is", cleanUrl);
+    if (cleanUrl.domain === "") {
+      cleanUrl.domain = "http://";
+    }
+    console.log("cleanUrl.href is", cleanUrl.href);
     this.props.dispatch({
       type: "ADD_LINK",
       payload: {
         //variable names changed here to match names on '/' POST route
-        long_url: this.state.inputUrl,
+        long_url: cleanUrl.href,
         short_url: shortString,
       },
     });
@@ -93,7 +113,7 @@ class LinkShortener extends Component {
         >
           Generate
         </Button>
-        <div className='short'>Your shortened link:</div>
+        <div className="short">Your shortened link:</div>
 
         <textarea
           type="text"
