@@ -5,21 +5,13 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LinkDetails from '../LinkDetails/LinkDetails';
-import Landing from '../Landing/Landing';
-import AdvancedLanding from '../AdvancedLanding/AdvancedLanding';
-
+import Home from '../Home/Home';
 import './App.css';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -35,14 +27,13 @@ class App extends Component {
         <div className='root'>
           <Nav />
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
-            {/* Visiting localhost:3000/about will show the about page.
+            {/* Visiting localhost:3000 will redirect to localhost:3000/home 
             This is a route anyone can see, no login necessary */}
+            <Redirect exact from="/" to="/home" />
             <Route
               exact
               path="/home"
-              component={Landing}
+              component={Home}
             />
             <Route 
               exact
@@ -59,18 +50,14 @@ class App extends Component {
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            <ProtectedRoute
+            {/* <ProtectedRoute
               exact
               path="/protected"
               component={AdvancedLanding}
-            />
+            /> */}
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            <ProtectedRoute
-              exact
-              path="/info"
-              component={InfoPage}
-            />
+
             <ProtectedRoute
               exact path="/details/:id"
               component={LinkDetails}
