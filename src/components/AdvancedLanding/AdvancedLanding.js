@@ -18,7 +18,6 @@ class AdvancedLanding extends Component {
         <FeedbackCarousel />
         <FeedbackForm />
         <LinkToMain />
-        <LogOutButton className="log-in" />
       </div>
     );
   }

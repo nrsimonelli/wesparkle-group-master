@@ -11,7 +11,7 @@ class FeedbackCarousel extends Component {
 
   render() {
     return (
-      <center>
+      <div className='carousel-flex'>
           <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedback">
             <div>
               <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
@@ -38,7 +38,7 @@ class FeedbackCarousel extends Component {
               </p>
             </div>
           </Carousel>
-        </center>
+        </div>
     );
   }
 }
