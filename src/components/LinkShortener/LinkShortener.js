@@ -55,7 +55,19 @@ class LinkShortener extends Component {
     let cleanUrl = this.state.inputUrl;
     console.log("this.state.inputUrl is", this.state.inputUrl);
     console.log("cleanUrl is", cleanUrl);
-    cleanUrl = parse(cleanUrl);
+    cleanUrl = parse(cleanUrl, {
+      host: "",
+      hostname: "",
+      href: cleanUrl,
+      origin: "",
+      password: "",
+      pathname: "",
+      port: "",
+      protocol: "http:",
+      query: "",
+      slashes: true,
+      username: "",
+    });
     // Check if URL has 'http://'. If not, add it
     console.log("cleanUrl after parse is", cleanUrl);
     if (cleanUrl.domain === "") {
