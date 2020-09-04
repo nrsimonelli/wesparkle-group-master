@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import copy from "clipboard-copy";
 import parse from "url-parse";
+import validUrl from "valid-url";
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -17,6 +18,7 @@ class LinkShortener extends Component {
     inputUrl: "",
     shortenedUrl: "",
     copySuccess: "",
+    urlIsValid: true,
   };
 
   copyClicked = (e) => {
@@ -37,51 +39,62 @@ class LinkShortener extends Component {
 
   generateClicked = () => {
     console.log("Button clicked");
+    // Only generate if they have entered a URL
+    if (this.state.inputUrl != "") {
+      // Use url-parse library (as 'parse') to clean input URL
+      let cleanUrl = this.state.inputUrl;
+      console.log("this.state.inputUrl is", this.state.inputUrl);
+      console.log("cleanUrl is", cleanUrl);
+      // Use parse to create the parsed object, forcing any URL
+      // to the http (not https) protocol
+      cleanUrl = parse(cleanUrl, {
+        host: "",
+        hostname: "",
+        href: cleanUrl,
+        origin: "",
+        password: "",
+        pathname: "",
+        port: "",
+        protocol: "http:",
+        query: "",
+        slashes: true,
+        username: "",
+      });
+      console.log("cleanUrl.href is", cleanUrl.href);
+      // Check if URL generated above is valid. If not, show error.
+      if (validUrl.isUri(cleanUrl.href)) {
+        console.log("URL looks valid");
+        this.setState({
+          urlIsValid: true,
+        });
 
-    // Base URL goes in this variable
-    // This can be changed to a custom domain later,
-    // if needed.
-    const baseUrl = "localhost:5000/api/link/";
-    const shortString = shortId.generate();
-    this.setState({
-      shortenedUrl: baseUrl + shortString,
-      copySuccess: "",
-    });
-    console.log(
-      "In generateClicked. this.state.shortenedUrl is",
-      this.state.shortenedUrl
-    );
-    // Use url-parse library (as 'parse') to clean input URL
-    let cleanUrl = this.state.inputUrl;
-    console.log("this.state.inputUrl is", this.state.inputUrl);
-    console.log("cleanUrl is", cleanUrl);
-    cleanUrl = parse(cleanUrl, {
-      host: "",
-      hostname: "",
-      href: cleanUrl,
-      origin: "",
-      password: "",
-      pathname: "",
-      port: "",
-      protocol: "http:",
-      query: "",
-      slashes: true,
-      username: "",
-    });
-    // Check if URL has 'http://'. If not, add it
-    console.log("cleanUrl after parse is", cleanUrl);
-    if (cleanUrl.domain === "") {
-      cleanUrl.domain = "http://";
+        // Base URL goes in this variable
+        // This can be changed to a custom domain later,
+        // if needed.
+        const baseUrl = "localhost:5000/api/link/";
+        const shortString = shortId.generate();
+        this.setState({
+          shortenedUrl: baseUrl + shortString,
+          copySuccess: "",
+        });
+        console.log(
+          "In generateClicked. this.state.shortenedUrl is",
+          this.state.shortenedUrl
+        );
+        this.props.dispatch({
+          type: "ADD_LINK",
+          payload: {
+            //variable names changed here to match names on '/' POST route
+            long_url: cleanUrl.href,
+            short_url: shortString,
+          },
+        });
+      } else {
+        this.setState({
+          urlIsValid: false,
+        });
+      }
     }
-    console.log("cleanUrl.href is", cleanUrl.href);
-    this.props.dispatch({
-      type: "ADD_LINK",
-      payload: {
-        //variable names changed here to match names on '/' POST route
-        long_url: cleanUrl.href,
-        short_url: shortString,
-      },
-    });
   }; // end generateClicked()
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -93,6 +106,12 @@ class LinkShortener extends Component {
   render() {
     return (
       <div className="container link-shortener">
+        {/* If the user submits an invalid URL, show error */}
+        {this.state.urlIsValid ? (
+          <div />
+        ) : (
+          <span>Please enter a valid URL</span>
+        )}
         <TextField
           id="outlined-link-input"
           label="Type link here"
