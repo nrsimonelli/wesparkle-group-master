@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import QRCode from "qrcode.react";
+import copy from "clipboard-copy";
+import LinkTags from '../LinkTags/LinkTags';
 
 class LinkDetails extends Component {
+  state = {
+    copySuccess: "",
+    baseUrl: "http://localhost:5000/api/link/",
+  };
+
   componentDidMount() {
     //if no details in redux, it will call this
     //to get it from server based on id in /details/:id
@@ -17,6 +25,11 @@ class LinkDetails extends Component {
 
   copyLink = () => {
     console.log("copyLink clicked");
+    // this calls the clipboard-copy library imported above
+    copy(this.state.baseUrl + this.props.reduxState.details.short_url);
+    this.setState({
+        copySuccess: "Link copied!",
+      });
   };
 
   deleteLink = (link) => {
@@ -29,23 +42,28 @@ class LinkDetails extends Component {
   render() {
     const link = this.props.reduxState.details;
     return (
-      <div>
+      <center>
         <p>Link Details</p>
         <div className="container link-item">
-          Long URL: {link.long_url}
-          <br></br>
-          Short URL: {link.short_url}
-          {/* <p>{link.short_url}</p> */}
-          <div className="link-item button">
-            <button 
-            onClick={this.copyLink}
-            >copy</button>
-            <button 
-            onClick={() => this.deleteLink(link)}
-            >x</button>
-          </div>
+        Long URL: {<a href={link.long_url}>{link.long_url}</a>}
+        <br></br>
+        Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
+        {/* <p>{link.short_url}</p> */}
+        <p>{this.state.copySuccess}</p>
+        <div className="link-item button">
+          <button 
+          onClick={this.copyLink}
+          >copy</button>
+          <button 
+          onClick={()=>this.deleteLink(link)}
+          >x</button> </div>
+         {/* asynchronicity doesn't like this. 
+         It tries to generate QR before componentDidMount 
+         <QRCode value={link.short_url} /> */}
+         
         </div>
-      </div>
+        <LinkTags />
+      </center>
     );
   }
 }

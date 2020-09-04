@@ -20,7 +20,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         });
 });
 
-//PUT template 
+//PUT template, doesn't do anything yet unless we need it 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('PUT req.body: ', req.body);
     console.log('PUT req.user: ', req.user);
