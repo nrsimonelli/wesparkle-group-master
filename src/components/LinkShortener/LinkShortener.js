@@ -77,7 +77,7 @@ class LinkShortener extends Component {
           id="outlined-link-input"
           label="Type link here"
           type="text"
-          className="text-field"
+          className="text-field short"
           name="link"
           margin="normal"
           variant="outlined"
@@ -86,24 +86,24 @@ class LinkShortener extends Component {
         />
         <Button
           id="generate"
-          className="big"
+          className="big short"
           onClick={this.generateClicked}
           variant="outlined"
           color="default"
         >
           Generate
         </Button>
-        <div>Your shortened link:</div>
+        <div className='short'>Your shortened link:</div>
 
         <textarea
           type="text"
-          className="text-area"
+          className="text-area short"
           ref={(textArea) => (this.textArea = textArea)}
           name="shorturl"
           defaultValue={this.state.shortenedUrl}
         />
         {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
-        <div className="qr-div">
+        <div className="qr-div short">
           {
             /* Logical shortcut for only displaying the 
             button if the copy command exists */
@@ -111,7 +111,7 @@ class LinkShortener extends Component {
               <div>
                 <Button
                   id="copy"
-                  className="big"
+                  className="big short"
                   onClick={this.copyClicked}
                   variant="outlined"
                   color="primary"
