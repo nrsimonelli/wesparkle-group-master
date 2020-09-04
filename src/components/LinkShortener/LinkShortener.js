@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import copy from "clipboard-copy";
 import parse from "url-parse";
+import validUrl from "valid-url";
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -77,6 +78,9 @@ class LinkShortener extends Component {
         cleanUrl.domain = "http://";
       }
       console.log("cleanUrl.href is", cleanUrl.href);
+      if (validUrl.isUri(cleanUrl.href)) {
+        console.log("URL looks valid");
+      }
       this.props.dispatch({
         type: "ADD_LINK",
         payload: {

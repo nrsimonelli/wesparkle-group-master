@@ -34,7 +34,8 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
     "shortid": "^2.2.15",
-    "url-parse": "^1.4.7"
+    "url-parse": "^1.4.7",
+    "valid-url": "^1.0.9"
   },
   "scripts": {
     "start": "node server/server.js",
