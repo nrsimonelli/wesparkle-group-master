@@ -29,6 +29,7 @@ class LinkShortener extends Component {
     const shortString = shortId.generate();
     this.setState({
       shortenedUrl: baseUrl + shortString,
+      copySuccess: '',
     });
     console.log(
       "In generateClicked. this.state.shortenedUrl is",
