@@ -29,7 +29,9 @@ class LinkShortener extends Component {
     this.setState({
       copySuccess: "Link copied!",
       inputUrl: "",
-      shortenedUrl: "",
+      // Don't reset short url since we want shortened link and
+      //QR code to persist after copy 
+      //shortenedUrl: "",
     });
   }; // end copyClicked()
 
@@ -43,6 +45,7 @@ class LinkShortener extends Component {
     const shortString = shortId.generate();
     this.setState({
       shortenedUrl: baseUrl + shortString,
+      copySuccess: '',
     });
     console.log(
       "In generateClicked. this.state.shortenedUrl is",
