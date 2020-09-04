@@ -3,20 +3,9 @@ import {takeLatest} from 'redux-saga/effects';
 
   function* fetchFeedback(action) {
 
-    console.log( 'saga action: ', action )
-
     try {
-
-      const response = yield axios.post( '/api/feedback', action.payload );
-
-      console.log( 'saga response: ', response )
-      // AUDRY - response message to user 'yay it sent'
-
-
-      
-      // AUDRY - i don't think i need a reducer....
-      //yield put({ type: 'SET_FEEDBACK', payload: response.data });
-
+      // send email via nodemailer
+      yield axios.post( '/api/feedback', action.payload );
       
     } catch (error) {
       console.log('Feedback get request failed', error);
