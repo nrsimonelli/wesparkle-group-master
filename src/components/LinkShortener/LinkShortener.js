@@ -44,7 +44,7 @@ class LinkShortener extends Component {
       // Use url-parse library (as 'parse') to clean input URL
       let cleanUrl = this.state.inputUrl;
       console.log("this.state.inputUrl is", this.state.inputUrl);
-      console.log("cleanUrl is", cleanUrl);
+
       // Use parse to create the parsed object, forcing any URL
       // to the http (not https) protocol
       cleanUrl = parse(cleanUrl, {
@@ -60,6 +60,7 @@ class LinkShortener extends Component {
         slashes: true,
         username: "",
       });
+      console.log("cleanUrl is", cleanUrl);
       console.log("cleanUrl.href is", cleanUrl.href);
       // Check if URL generated above is valid. If not, show error.
       if (validUrl.isUri(cleanUrl.href)) {
