@@ -328,8 +328,9 @@ a {
     color: var(--midnight-blue);
     
 }
-.item-link {
-    /* font-style: italic; */
+.item-link:hover {
+    font-weight: 600;
+    color: var(--midnight-blue);
 }
 
 .feedback-input {
