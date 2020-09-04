@@ -37,53 +37,55 @@ class LinkShortener extends Component {
 
   generateClicked = () => {
     console.log("Button clicked");
-
-    // Base URL goes in this variable
-    // This can be changed to a custom domain later,
-    // if needed.
-    const baseUrl = "localhost:5000/api/link/";
-    const shortString = shortId.generate();
-    this.setState({
-      shortenedUrl: baseUrl + shortString,
-      copySuccess: "",
-    });
-    console.log(
-      "In generateClicked. this.state.shortenedUrl is",
-      this.state.shortenedUrl
-    );
-    // Use url-parse library (as 'parse') to clean input URL
-    let cleanUrl = this.state.inputUrl;
-    console.log("this.state.inputUrl is", this.state.inputUrl);
-    console.log("cleanUrl is", cleanUrl);
-    // Use parse to create the parsed object, forcing any URL
-    // to the http (not https) protocol
-    cleanUrl = parse(cleanUrl, {
-      host: "",
-      hostname: "",
-      href: cleanUrl,
-      origin: "",
-      password: "",
-      pathname: "",
-      port: "",
-      protocol: "http:",
-      query: "",
-      slashes: true,
-      username: "",
-    });
-    // Check if URL has 'http://'. If not, add it
-    console.log("cleanUrl after parse is", cleanUrl);
-    if (cleanUrl.domain === "") {
-      cleanUrl.domain = "http://";
+    // Only generate if they have entered a URL
+    if (this.state.inputUrl != "") {
+      // Base URL goes in this variable
+      // This can be changed to a custom domain later,
+      // if needed.
+      const baseUrl = "localhost:5000/api/link/";
+      const shortString = shortId.generate();
+      this.setState({
+        shortenedUrl: baseUrl + shortString,
+        copySuccess: "",
+      });
+      console.log(
+        "In generateClicked. this.state.shortenedUrl is",
+        this.state.shortenedUrl
+      );
+      // Use url-parse library (as 'parse') to clean input URL
+      let cleanUrl = this.state.inputUrl;
+      console.log("this.state.inputUrl is", this.state.inputUrl);
+      console.log("cleanUrl is", cleanUrl);
+      // Use parse to create the parsed object, forcing any URL
+      // to the http (not https) protocol
+      cleanUrl = parse(cleanUrl, {
+        host: "",
+        hostname: "",
+        href: cleanUrl,
+        origin: "",
+        password: "",
+        pathname: "",
+        port: "",
+        protocol: "http:",
+        query: "",
+        slashes: true,
+        username: "",
+      });
+      // Check if URL has 'http://'. If not, add it
+      console.log("cleanUrl after parse is", cleanUrl);
+      if (cleanUrl.domain === "") {
+        cleanUrl.domain = "http://";
+      }
+      console.log("cleanUrl.href is", cleanUrl.href);
+      this.props.dispatch({
+        type: "ADD_LINK",
+        payload: {
+          //variable names changed here to match names on '/' POST route
+          long_url: cleanUrl.href,
+          short_url: shortString,
+        },
+      });
     }
-    console.log("cleanUrl.href is", cleanUrl.href);
-    this.props.dispatch({
-      type: "ADD_LINK",
-      payload: {
-        //variable names changed here to match names on '/' POST route
-        long_url: cleanUrl.href,
-        short_url: shortString,
-      },
-    });
   }; // end generateClicked()
 
   handleInputChangeFor = (propertyName) => (event) => {
