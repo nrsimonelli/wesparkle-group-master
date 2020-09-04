@@ -62,7 +62,6 @@ class FeedbackForm extends Component {
               name="name"
               margin="normal"
               variant="outlined"
-              type="text"
               value={this.state.userName}
               onChange={this.handleInputChangeFor("userName")}
             />
@@ -73,9 +72,7 @@ class FeedbackForm extends Component {
               type="text"
               name="email"
               margin="normal"
-              variant="outlined"
-              type="text"
-              
+              variant="outlined"            
               value={this.state.userEmail}
               onChange={this.handleInputChangeFor("userEmail")}
             />
