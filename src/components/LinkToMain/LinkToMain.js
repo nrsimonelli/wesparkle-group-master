@@ -16,7 +16,7 @@ class LinkToMain extends Component {
         <div className='support description'>A different but very similar discription than the one above about the same topic. should be the same style and lead to the same place.</div>
         <div className='image-title link-button'>
         <a href='https://www.wesparkle.org/' target='blank'>
-        Learn More about how we help small businesses
+        Learn More About how we help small businesses
         </a>
         </div>
       </div>

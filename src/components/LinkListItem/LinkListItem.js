@@ -38,10 +38,18 @@ class LinkListItem extends Component {
 
     return (
       <div className="container link-item">
-        Long URL: {<a href={link.long_url}>{link.long_url}</a>}
-        <br></br>
-        Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
-        {/* <p>{link.short_url}</p> */}
+        <div className='item-text item-title'>
+        Long URL:
+        </div>
+        <div className='item-text item-link'>
+        {<a href={link.long_url}>{link.long_url}</a>}
+        </div>
+        <div className='item-text item-title'>
+        Short URL:
+        </div>
+        <div className='item-text item-link'>
+        {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
+        </div>
         <div className="link-item button">
           <Button 
             id='copy'

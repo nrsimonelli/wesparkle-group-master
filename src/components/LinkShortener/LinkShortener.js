@@ -94,13 +94,13 @@ class LinkShortener extends Component {
           <textarea
             
             type='text'
-            className='text-field'
+            className='text-area'
             ref={(textArea) => (this.textArea = textArea)}
             name="shorturl"
             defaultValue={this.state.shortenedUrl}
           />
           {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
-          <div>
+          <div className='qr-div'>
             {
               /* Logical shortcut for only displaying the 
             button if the copy command exists */
@@ -124,22 +124,19 @@ class LinkShortener extends Component {
             }
 
             {/* Render QR code only if URL has been submitted */}
-            <p>
-              {this.state.shortenedUrl != "" ? (
-                <>
-                  <QRCode value={this.state.shortenedUrl} />
+            <div>
+              {this.state.shortenedUrl !== "" ? (
+                <center>
+                  <QRCode className='qr' value={this.state.shortenedUrl} />
                   <br />
                   Right click or long press to save image
-                </>
+                </center>
               ) : (
                 <div />
               )}
-            </p>
+            </div>
 
-          </div>
-            
-            <QRCode className='qr' value={this.state.shortenedUrl} />
-            
+          </div>            
               {/* {JSON.stringify(this.state.shortenedUrl)} */}
            
           
