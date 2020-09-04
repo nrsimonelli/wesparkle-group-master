@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 class LinkDetails extends Component {
   componentDidMount() {
@@ -29,23 +30,60 @@ class LinkDetails extends Component {
   render() {
     const link = this.props.reduxState.details;
     return (
-      <div>
-        <p>Link Details</p>
-        <div className="container link-item">
-          Long URL: {link.long_url}
-          <br></br>
-          Short URL: {link.short_url}
-          {/* <p>{link.short_url}</p> */}
-          <div className="link-item button">
-            <button 
-            onClick={this.copyLink}
-            >copy</button>
-            <button 
-            onClick={() => this.deleteLink(link)}
-            >x</button>
+      <div className='landing'>
+                <h1>Link Details</h1>
+
+        <div className='container link-item'>
+          <div className='item-text item-title'>
+            Long URL: 
+            </div>
+            <div className='item-text item-link'>
+            {link.long_url}
+            </div>
+            <div className='item-text item-title'>
+
+            Short URL:
+            </div>
+            <div className='item-text item-link'>
+
+            {link.short_url}
+            </div>
+            <div className="link-item button">
+              <Button
+              id="copy"
+              className="short"
+              onClick={this.copyLink}
+              variant="outlined"
+              color="primary" 
+              >copy</Button>
+              <Button
+              id="edit"
+              className="short"
+              onClick={() => this.props.history.push('/home')}
+              variant="outlined"
+              color="primary" 
+              >back</Button>
+              <Button 
+              id='delete'
+              onClick={() => this.deleteLink(link)}
+              variant='outlined'
+              color='secondary'
+              >x
+            </Button>
           </div>
         </div>
+        <div className='container link-item'>
+          component 1 goes here
+        </div>
+        <div className='container link-item'>
+          component 2 goes here
+        </div>
+        <div className='container link-item'>
+          component 3 goes here
+        </div>
+        
       </div>
+      
     );
   }
 }
