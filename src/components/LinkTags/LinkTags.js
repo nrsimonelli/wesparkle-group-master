@@ -5,7 +5,7 @@ import "./LinkTags.css";
 
 class LinkTags extends Component {
   state = {
-      tags: ["Cats in"],
+      tags: this.props.reduxState.details.tags,
     };
   
     componentDidMount() {
@@ -28,18 +28,14 @@ class LinkTags extends Component {
   inputKeyDown = (e) => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
-      if (
-        this.state.tags.find((tag) => tag.toLowerCase() === val.toLowerCase())
-      ) {
-        return;
-      }
-      this.setState({ tags: [...this.state.tags, val] });
+      this.setState({ tags: [...this.state.tags, val.toLowerCase()] });
       this.tagInput.value = null;
     } else if (e.key === "Backspace" && !val) {
       this.removeTag(this.state.tags.length - 1);
     }
   };
 
+  ///"save tags" button that calls a PUT request to update the details of the link
   render() {
     const { tags } = this.state;
 
@@ -47,7 +43,7 @@ class LinkTags extends Component {
       <div className="input-tag">
         <p>Tags Component</p>
         <ul className="input-tag__tags">
-          {this.props.reduxState.details.tags.map((tag, i) => (
+          {tags.map((tag, i) => (
             <li key={tag}>
               {tag}
               <button
