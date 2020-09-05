@@ -17,7 +17,7 @@ class LinkListItem extends Component {
       payload: { ...this.props.link },
     });
     //Then pushes history and brings us to the selected link's details
-    this.props.history.push(`/details/${link.id}`);
+    this.props.history.push(`/details/${link.link_id}`);
   };
 
   copyLink = () => {

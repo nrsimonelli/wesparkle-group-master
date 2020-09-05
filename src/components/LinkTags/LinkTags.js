@@ -3,11 +3,22 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
 
-class LinkTags extends React.Component {
+class LinkTags extends Component {
   state = {
-      tags: ["Dogs", "Cats"],
+      tags: ["Cats in"],
     };
   
+    componentDidMount() {
+      //if no details in redux, it will call this
+      //to get it from server based on id in /details/:id
+      if (!this.props.reduxState.details.link_id) {
+        this.props.dispatch({
+          type: "FETCH_DETAILS",
+          payload: this.props.match.params.id,
+        });
+      }
+      console.log("this.props.reduxState...", this.props.reduxState);
+    }
   removeTag = (i) => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
@@ -36,7 +47,7 @@ class LinkTags extends React.Component {
       <div className="input-tag">
         <p>Tags Component</p>
         <ul className="input-tag__tags">
-          {tags.map((tag, i) => (
+          {this.props.reduxState.details.tags.map((tag, i) => (
             <li key={tag}>
               {tag}
               <button
@@ -45,7 +56,7 @@ class LinkTags extends React.Component {
                   this.removeTag(i);
                 }}
               >
-                X
+                +
               </button>
             </li>
           ))}
@@ -63,5 +74,9 @@ class LinkTags extends React.Component {
     );
   }
 }
+const mapReduxStateToProps = (reduxState) => ({
+  reduxState,
+});
 
-export default LinkTags;
+export default withRouter(connect(mapReduxStateToProps)(LinkTags));
+
