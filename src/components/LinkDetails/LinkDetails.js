@@ -14,7 +14,7 @@ class LinkDetails extends Component {
   componentDidMount() {
     //if no details in redux, it will call this
     //to get it from server based on id in /details/:id
-    if (!this.props.reduxState.details.link_id) {
+    if (!this.props.reduxState.details.id) {
       this.props.dispatch({
         type: "FETCH_DETAILS",
         payload: this.props.match.params.id,
@@ -62,7 +62,7 @@ class LinkDetails extends Component {
          <QRCode value={link.short_url} /> */}
          
         </div>
-        {this.props.reduxState.details.link_id ? 
+        {this.props.reduxState.details.id ? 
         <LinkTags link={link}/>
         :
         <></>}

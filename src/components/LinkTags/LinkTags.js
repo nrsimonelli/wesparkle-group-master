@@ -11,7 +11,8 @@ class LinkTags extends Component {
     componentDidMount() {
       //if no details in redux, it will call this
       //to get it from server based on id in /details/:id
-      if (!this.props.reduxState.details.link_id) {
+      if (!this.props.reduxState.details.id) {
+        console.log('in fetch details for linktags')
         this.props.dispatch({
           type: "FETCH_DETAILS",
           payload: this.props.match.params.id,
@@ -36,15 +37,16 @@ class LinkTags extends Component {
   };
 
   saveTags = () => {
-    console.log('saveTags clicks', this.state, this.props.reduxState.details.link_id)
+    console.log('saveTags clicks, this.state is', this.state)
+    console.log('saveTags clicks, this.props.reduxState.details is', this.props.reduxState.details)
     const tags = this.state.tags;
     const details = this.props.reduxState.details;
     this.props.dispatch({
       type: "SAVE_TAGS",
       payload: {tags, details}
     });
+    ///Could reroute to main dashboard after save?
   }
-  ///"save tags" button that calls a PUT request to update the details of the link
   render() {
     const { tags } = this.state;
 

@@ -7,15 +7,13 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
+  console.log('req.user', req.user)
   // Maybe one route for free, another for registered/logged in?
   // if (req.user != undefined) {
   let queryString = `
-  SELECT "disabled_link", "tag"."user_id", "link_id", "long_url", "short_url", array_agg(tag_name) as tags from link_tag
-  FULL OUTER JOIN "tag" on "tag_id" = "tag"."id"
-  FULL OUTER JOIN "link" on "link"."id" = "link_tag"."link_id"
-  WHERE "tag"."user_id" = $1 AND "disabled_link" = FALSE 
-  GROUP BY "disabled_link", "link_id", "long_url", "short_url", "tag"."user_id"
-  ORDER BY "link_id" DESC
+  SELECT * from link
+  WHERE "user_id" = $1 AND "disabled_link" = FALSE 
+  ORDER BY "id" DESC
   ;`;
   pool
     .query(queryString, [req.user.id])
@@ -78,40 +76,18 @@ router.post("/", async (req, res) => {
   const link = req.body;
   // This seems like a janky workaround, but works for now
   if (req.user != undefined) {
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-
-      const firstQueryString = `INSERT INTO "link" ("user_id", "long_url", "short_url")
-      VALUES ($1, $2, $3) RETURNING id;`;
-      const firstResult = await client.query(firstQueryString, [
-        req.user.id,
-        link.long_url,
-        link.short_url,
-      ]);
-
-      const secondQueryString = `INSERT INTO "tag" ("user_id", "tag_name") 
-      VALUES($1, 'tag example') RETURNING id;`;
-      const secondResult = await client.query(secondQueryString, [req.user.id]);
-
-      const InsertText = `INSERT INTO "link_tag" ("link_id", "tag_id") 
-      VALUES($1, $2);`;
-      await client.query(InsertText, [
-        firstResult.rows[0].id,
-        secondResult.rows[0].id,
-      ]);
-
-      console.log("successful add link!");
-      await client.query("COMMIT");
-      res.sendStatus(201);
-      // Need transaction here to also insert into link_tag
-    } catch (error) {
-      await client.query("ROLLBACK");
-      console.log("error with add", error);
-      res.sendStatus(500);
-    } finally {
-      client.release();
-    }
+    const queryString = `INSERT INTO "link" ("user_id", "long_url", "short_url", "tags")
+    VALUES ($1, $2, $3, '{"example tag"}');`;
+    pool
+      .query(queryString, [req.user.id, link.long_url, link.short_url])
+      .then((result) => {
+        console.log("Successful link POST add!");
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log("error in link POST when no user is registered:", error);
+        res.sendStatus(500);
+      });
   } //end if there is a user
   else {
     const queryString = `INSERT INTO "link" ("long_url", "short_url")
