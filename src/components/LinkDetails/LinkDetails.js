@@ -63,7 +63,7 @@ class LinkDetails extends Component {
          
         </div>
         {this.props.reduxState.details.link_id ? 
-        <LinkTags />
+        <LinkTags link={link}/>
         :
         <></>}
       </center>

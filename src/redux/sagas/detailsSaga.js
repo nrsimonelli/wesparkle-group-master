@@ -12,9 +12,18 @@ function* fetchDetailSaga(action) {
     }
 }
 
-
+function* saveTagsSaga(action) {
+    console.log('in saveTagsSaga...', action.payload)
+    try {
+        const response = yield axios.put(`/api/details/${action.payload.details.link_id}`, action.payload)
+        yield put({ type: 'FETCH_DETAILS', payload: response.data })
+    } catch (error) {
+        console.log('issue with saveTagsSaga :', error)
+    }
+  }
 function* detailsSaga() {
     yield takeLatest('FETCH_DETAILS', fetchDetailSaga);
+    yield takeLatest('SAVE_TAGS', saveTagsSaga);
   }
 
 export default detailsSaga;

@@ -35,6 +35,15 @@ class LinkTags extends Component {
     }
   };
 
+  saveTags = () => {
+    console.log('saveTags clicks', this.state, this.props.reduxState.details.link_id)
+    const tags = this.state.tags;
+    const details = this.props.reduxState.details;
+    this.props.dispatch({
+      type: "SAVE_TAGS",
+      payload: {tags, details}
+    });
+  }
   ///"save tags" button that calls a PUT request to update the details of the link
   render() {
     const { tags } = this.state;
@@ -66,6 +75,9 @@ class LinkTags extends Component {
             />
           </li>
         </ul>
+        <button
+        onClick={this.saveTags}
+        >Save Tags</button>
       </div>
     );
   }

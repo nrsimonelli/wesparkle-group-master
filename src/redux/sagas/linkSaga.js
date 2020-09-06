@@ -23,9 +23,9 @@ function* getLink(action){
 }
 
 function* disableLink(action){
-  console.log('disabling link', action.payload.id)
+  console.log('disabling link', action.payload.link_id)
   try {
-    const response = yield axios.put(`/api/link/${action.payload.id}`);
+    const response = yield axios.put(`/api/link/${action.payload.link_id}`);
     yield put({ type: 'FETCH_LINKS', payload: response.data });
   } catch (error){
     console.log('error with get link Saga:', error)
