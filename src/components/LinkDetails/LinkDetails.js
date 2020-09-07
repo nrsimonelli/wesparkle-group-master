@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import ClickCount from "../ClickCount/ClickCount";
 
 class LinkDetails extends Component {
   componentDidMount() {
@@ -73,7 +74,7 @@ class LinkDetails extends Component {
           </div>
         </div>
         <div className='container link-item'>
-          component 1 goes here
+          <ClickCount />
         </div>
         <div className='container link-item'>
           component 2 goes here
