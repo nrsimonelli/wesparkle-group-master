@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import GraphOne from '../GraphOne/GraphOne';
+import GraphTwo from '../GraphTwo/GraphTwo';
+import GraphThree from '../GraphThree/GraphThree';
 
 class LinkDetails extends Component {
   componentDidMount() {
@@ -72,14 +75,14 @@ class LinkDetails extends Component {
             </Button>
           </div>
         </div>
-        <div className='container link-item'>
-          component 1 goes here
+        <div className='container graph link-item'>
+          <GraphOne />
         </div>
-        <div className='container link-item'>
-          component 2 goes here
+        <div className='container graph link-item'>
+          <GraphTwo />
         </div>
-        <div className='container link-item'>
-          component 3 goes here
+        <div className='container graph link-item'>
+          <GraphThree />
         </div>
         
       </div>

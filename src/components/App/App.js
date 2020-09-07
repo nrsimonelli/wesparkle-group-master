@@ -13,6 +13,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import LinkDetails from '../LinkDetails/LinkDetails';
 import Home from '../Home/Home';
 import './App.css';
+import '../../../node_modules/react-vis/dist/style.css'
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
