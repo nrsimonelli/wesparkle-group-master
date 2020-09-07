@@ -33,6 +33,7 @@ CREATE TABLE "link_tag" (
 CREATE TABLE "click" (
 	"id" SERIAL PRIMARY KEY,
 	"link_id" INT REFERENCES "link",
+	"count" INT, <--- check out totally rad column
 	"location" VARCHAR (2000),
 	"referral" VARCHAR (2000),
 	"time" TIMESTAMP

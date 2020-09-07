@@ -5,9 +5,6 @@ import { Carousel } from "react-responsive-carousel";
 import "./FeedbackCarousel.css";
 
 class FeedbackCarousel extends Component {
-  componentDidMount() {
-    console.log("did mount FeedbackCarousel");
-  }
 
   render() {
     return (

@@ -57,16 +57,65 @@ router.get("/:short_url", (req, res) => {
     });
 });
 
+// Someone has clicked the short link so let's update the metric
+router.put("/:short_url", async (req, res) => {
+
+  // AUDRY - remove
+  console.log(`yo Audry. were in put count`);
+  console.log(`req.body`, req.body);
+
+  const short_url = req.params.short_url;
+
+  // Get a single connection from the pool to do the transaction
+  const connection = await pool.connect();
+
+  try {
+    // Start transaction
+    await connection.query('BEGIN;');
+
+    // Get the previous amount of clicks
+    const clickCountQuery = `SELECT count FROM "link" WHERE short_url = $1;`;
+    const countQueryResult = await connection.query( clickCountQuery, [short_url] );
+    // AUDRY - remove
+    console.log('countQueryResult: ', countQueryResult);
+
+    // Grab the cell value
+    let clickCount = countQueryResult.rows[0].count;
+    // AUDRY - remove
+    console.log('click count: ', clickCount);
+    // A new click
+    clickCount++;
+
+    // Add the new click count to the DB
+    const updateCountQuery = `UPDATE "link" SET count = $1 WHERE short_url = $2;`;
+    await connection.query( updateCountQuery, [clickCount, short_url]);
+
+    // End transaction w/ COMMIT
+    await connection.query('COMMIT;')
+    res.sendStatus(200);
+
+  } catch (err) {
+    console.log('Error on update click count', err);
+    // Transaction failed, so end with ROLLBACK
+    await connection.query('ROLLBACK');
+    res.sendStatus(500);
+
+  } finally {
+    // Put the connection back in the pool to be used again later
+    connection.release();
+  }
+})
+
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  console.log("in link router disable by id", req.params.id);
-  const link_id = req.params.id;
+console.log("in link router disable by id", req.params.id);
+const link_id = req.params.id;
 
-  const queryString = `UPDATE "link" SET disabled_link = true WHERE link.id = $1;`;
+const queryString = `UPDATE "link" SET disabled_link = true WHERE link.id = $1;`;
 
-  pool
-    .query(queryString, [link_id])
-    .then(() => res.sendStatus(201))
-    .catch(() => res.sendStatus(500));
+pool
+  .query(queryString, [link_id])
+  .then(() => res.sendStatus(201))
+  .catch(() => res.sendStatus(500));
 });
 
 router.post("/", (req, res) => {
