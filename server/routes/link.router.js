@@ -92,12 +92,16 @@ router.get("/:short_url", async (req, res) => {
     const clientIP = req.connection.remoteAddress;
     console.log("clientIP is", clientIP);
     // Get location from iplocate
-    // await iplocate(clientIP).then((results) => {
-    //   console.log("results is", results);
-    //   const clientLocation = results;
-    // });
+    let clientPostalCode = "";
+    await iplocate(clientIP).then((results) => {
+      console.log("results is", results);
+      clientPostalCode = results.postal_code;
+    });
     const queryString2 = `INSERT INTO click (link_id, location, referral) VALUES ($1, $2, '${req.headers.referer}');`;
-    await connection.query(queryString2, [linkRecord.rows[0].id, clientIP]);
+    await connection.query(queryString2, [
+      linkRecord.rows[0].id,
+      clientPostalCode,
+    ]);
     await connection.query("COMMIT;");
     res.redirect(longUrl);
   } catch (err) {
