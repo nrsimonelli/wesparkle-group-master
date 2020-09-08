@@ -14,17 +14,23 @@ class Home extends Component {
   render() {
     return (
       <>
-        { this.props.user.id ? (<AdvancedLanding />) : (<Landing />)}
-      </>
+        { this.props.reduxState.user.id ? (<AdvancedLanding />) : (<Landing />)}
+        
+        {/* Not an ideal way to do this as it reroutes after rendering */}
+        { this.props.reduxState.errors.loginMessage != "" ? 
+         this.props.history.push('/login')
+        :
+        <></>
+ }
+ </>
     ) // end return
   } // end render
 } // end class
 
 // Instead of taking everything from state, we just want the user info.
-const mapStateToProps = (state) => ({
-    user: state.user,
-  });
-  
-  // this allows us to use <App /> in index.js
-  export default connect(mapStateToProps)(Home);
+const mapReduxStateToProps = (reduxState) => ({
+  reduxState
+});
+
+export default connect(mapReduxStateToProps)(Home);
   
