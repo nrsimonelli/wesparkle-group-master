@@ -7,7 +7,7 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
-  console.log('req.user', req.user)
+  console.log("req.user", req.user);
   // Maybe one route for free, another for registered/logged in?
   // if (req.user != undefined) {
 
@@ -44,7 +44,11 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 
 // This route performs the redirection
 router.get("/:short_url", (req, res) => {
-  let queryString = `SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
+  let queryString = `
+    SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
+  // This is how we get referer information:
+  //let queryString2 = `INSERT INTO click (link_id, location, referral) VALUES (1, 'Namibia', '${req.headers.referer}';`;
+
   pool
     .query(queryString)
     .then((result) => {
@@ -52,6 +56,7 @@ router.get("/:short_url", (req, res) => {
         "in GET/:short_url - Trying to redirect to",
         result.rows[0].long_url
       );
+      console.log("req.headers.referrer is", req.headers.referer);
       res.redirect(result.rows[0].long_url);
     })
     .catch((error) => {
