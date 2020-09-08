@@ -42,28 +42,65 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   // }
 });
 
-// This route performs the redirection
-router.get("/:short_url", (req, res) => {
-  let queryString = `
-    SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
-  // This is how we get referer information:
-  //let queryString2 = `INSERT INTO click (link_id, location, referral) VALUES (1, 'Namibia', '${req.headers.referer}';`;
+// // This route performs the redirection
+// router.get("/:short_url", (req, res) => {
+//   let queryString = `
+//     SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
+//   // This is how we get referer information:
+//   //let queryString2 = `INSERT INTO click (link_id, location, referral) VALUES (1, 'Namibia', '${req.headers.referer}';`;
 
-  pool
-    .query(queryString)
-    .then((result) => {
-      console.log(
-        "in GET/:short_url - Trying to redirect to",
-        result.rows[0].long_url
-      );
-      console.log("req.headers.referrer is", req.headers.referer);
-      res.redirect(result.rows[0].long_url);
-    })
-    .catch((error) => {
-      console.log("Error in GET/:short_url redirect. Error is", error);
-      res.sendStatus(500);
-    });
-});
+//   pool
+//     .query(queryString)
+//     .then((result) => {
+//       console.log(
+//         "in GET/:short_url - Trying to redirect to",
+//         result.rows[0].long_url
+//       );
+//       console.log("req.headers.referrer is", req.headers.referer);
+//       res.redirect(result.rows[0].long_url);
+//     })
+//     .catch((error) => {
+//       console.log("Error in GET/:short_url redirect. Error is", error);
+//       res.sendStatus(500);
+//     });
+// });
+
+// Attempt at GET /:short_url transaction
+router.get('/:short_url', async (req, res)=>{
+  console.log('req.body is', req.body);
+
+  const connection = await pool.connect();
+
+  try{
+    await connection.query('BEGIN;')
+
+    // Get appropriate 'link' for submitted short_url
+    const queryString = `
+      SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
+    // We care about the result coming out of the database, sos sae it (need id)
+    const linkRecord = await connection.query(queryString)
+
+    // Get the id from the query result
+    const longUrl = linkRecord.rows[0].long_url;
+    console.log('longUrl is', longUrl);
+
+    // const depositStatement = `INSERT INTO register (acct_id, amount) VALUES ($1, $2);`
+    // // We don't care about the result coming back so ignore it
+    // await connection.query(depositStatement, [newAcctId, amount]);
+
+    await connection.query('COMMIT;');
+    res.sendStatus(200);
+  }catch (err) {
+    console.log("Error on redirect/add click", err);
+    await connection.query("ROLLBACK;");
+    res.sendst;
+  } finally {
+    // THIS IS ALSO REALLY IMPORTANT!!!
+    // Puts the connection back in the pool to be used again later.
+    // FREE THE CONNECTION IN FINALLY
+    connection.release();
+  }
+})
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   console.log("in link router disable by id", req.params.id);
