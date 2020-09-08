@@ -49,6 +49,14 @@ class LinkDetails extends Component {
     return (
       <div className='landing'>
                 <h1>Link Details</h1>
+                {/* move to nav?? */}
+                <Button
+              id="edit"
+              className="short"
+              onClick={() => this.props.history.push('/home')}
+              variant="outlined"
+              color="primary" 
+              >back</Button>
 
         <div className='container link-item'>
           <div className='item-text item-title'>
@@ -64,6 +72,10 @@ class LinkDetails extends Component {
             <div className='item-text item-link'>
             {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
             </div>
+            {this.props.reduxState.details.id ? 
+        <LinkTags link={link}/>
+        :
+        <></>}
             <div className="link-item button">
               <Button
               id="copy"
@@ -72,13 +84,15 @@ class LinkDetails extends Component {
               variant="outlined"
               color="primary" 
               >copy</Button>
+
               <Button
-              id="edit"
+              id="save"
               className="short"
-              onClick={() => this.props.history.push('/home')}
+              // onClick={}
               variant="outlined"
               color="primary" 
-              >back</Button>
+              >Save</Button>
+
               <Button 
               id='delete'
               onClick={() => this.deleteLink(link)}
@@ -88,10 +102,7 @@ class LinkDetails extends Component {
             </Button>
           </div>
          <p>{this.state.copySuccess}</p>
-                 {this.props.reduxState.details.id ? 
-        <LinkTags link={link}/>
-        :
-        <></>}
+                 
         </div>
         <h1>Graph Title</h1>
         <div className='container graph link-item'>

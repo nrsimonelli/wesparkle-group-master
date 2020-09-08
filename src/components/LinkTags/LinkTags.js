@@ -4,8 +4,10 @@ import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
 
 class LinkTags extends Component {
+  // to move to link details re show:false
   state = {
       tags: this.props.reduxState.details.tags,
+      show: false,
     };
   
     componentDidMount() {
@@ -23,7 +25,9 @@ class LinkTags extends Component {
   removeTag = (i) => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
-    this.setState({ tags: newTags });
+    this.setState({ tags: newTags,
+                    show: true
+                  });
   };
 
   inputKeyDown = (e) => {
@@ -36,6 +40,12 @@ class LinkTags extends Component {
     }
   };
 
+  revealMe = () => {
+    this.setState({
+      show: true
+    });
+  }
+
   saveTags = () => {
     console.log('saveTags clicks, this.state is', this.state)
     console.log('saveTags clicks, this.props.reduxState.details is', this.props.reduxState.details)
@@ -45,6 +55,9 @@ class LinkTags extends Component {
       type: "SAVE_TAGS",
       payload: {tags, details}
     });
+    this.setState ({
+      show: false
+    });
     ///Could reroute to main dashboard after save?
   }
   render() {
@@ -52,7 +65,6 @@ class LinkTags extends Component {
 
     return (
       <div className="input-tag">
-        <p>Tags Component</p>
         <ul className="input-tag__tags">
           {tags.map((tag, i) => (
             <li key={tag}>
@@ -72,15 +84,19 @@ class LinkTags extends Component {
               type="text"
               placeholder="Add a tag here!"
               onKeyDown={this.inputKeyDown}
+              onChange={()=> this.revealMe()}
               ref={(c) => {
                 this.tagInput = c;
               }}
             />
           </li>
         </ul>
-        <button
-        onClick={this.saveTags}
-        >Save Tags</button>
+        {this.state.show === true && (
+          <button
+          onClick={this.saveTags}
+          >Save Tags</button>
+        )}
+        
       </div>
     );
   }
