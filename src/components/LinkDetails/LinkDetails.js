@@ -75,12 +75,15 @@ class LinkDetails extends Component {
             </Button>
           </div>
         </div>
+        <h1>Graph Title</h1>
         <div className='container graph link-item'>
           <GraphOne />
         </div>
+        <h1>Graph Title</h1>
         <div className='container graph link-item'>
           <GraphTwo />
         </div>
+        <h1>Graph Title</h1>
         <div className='container graph link-item'>
           <GraphThree />
         </div>

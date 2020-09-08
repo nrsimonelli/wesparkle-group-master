@@ -20,9 +20,13 @@ class GraphThree extends Component {
           <HorizontalGridLines />
           <LineSeries
             data={[
-              {x: 1, y: 10},
+              {x: 1, y: 1},
               {x: 2, y: 5},
-              {x: 3, y: 15}
+              {x: 3, y: 4},
+              {x: 4, y: 3},
+              {x: 5, y: 7},
+              {x: 6, y: 5},
+              {x: 7, y: 10}
             ]}/>
   
         </XYPlot>
