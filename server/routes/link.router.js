@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
+const geoIP = require('geoip-lite');
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
@@ -66,31 +67,35 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 // });
 
 // Attempt at GET /:short_url transaction
-router.get('/:short_url', async (req, res)=>{
-  console.log('req.body is', req.body);
+router.get("/:short_url", async (req, res) => {
+  console.log("req.body is", req.body);
 
   const connection = await pool.connect();
 
-  try{
-    await connection.query('BEGIN;')
+  try {
+    await connection.query("BEGIN;");
 
     // Get appropriate 'link' for submitted short_url
     const queryString = `
       SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
     // We care about the result coming out of the database, sos sae it (need id)
-    const linkRecord = await connection.query(queryString)
+    const linkRecord = await connection.query(queryString);
 
     // Get the id from the query result
     const longUrl = linkRecord.rows[0].long_url;
-    console.log('longUrl is', longUrl);
+    console.log("longUrl is", longUrl);
 
     // const depositStatement = `INSERT INTO register (acct_id, amount) VALUES ($1, $2);`
     // // We don't care about the result coming back so ignore it
     // await connection.query(depositStatement, [newAcctId, amount]);
 
-    await connection.query('COMMIT;');
-    res.sendStatus(200);
-  }catch (err) {
+    const queryString2 = `INSERT INTO click (link_id, location, referral) VALUES ($1, $2, '${req.headers.referer}');`;
+    await connection.query(
+      queryString2, [linkRecord.rows[0].id, "Minneapolis"]
+    );
+    await connection.query("COMMIT;");
+    res.redirect(longUrl);
+  } catch (err) {
     console.log("Error on redirect/add click", err);
     await connection.query("ROLLBACK;");
     res.sendst;
@@ -100,7 +105,7 @@ router.get('/:short_url', async (req, res)=>{
     // FREE THE CONNECTION IN FINALLY
     connection.release();
   }
-})
+});
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   console.log("in link router disable by id", req.params.id);
