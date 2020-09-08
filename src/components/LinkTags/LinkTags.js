@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
+import Button from  '@material-ui/core/Button';
 
 class LinkTags extends Component {
+  // to move to link details re show:false
   state = {
       tags: this.props.reduxState.details.tags,
+      show: false,
     };
   
     componentDidMount() {
@@ -23,18 +26,27 @@ class LinkTags extends Component {
   removeTag = (i) => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
-    this.setState({ tags: newTags });
+    this.setState({ tags: newTags,
+                    show: true
+                  });
   };
 
   inputKeyDown = (e) => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
-      this.setState({ tags: [...this.state.tags, val.toLowerCase()] });
+      this.setState({ tags: [...this.state.tags, val.toLowerCase()],
+                      show: true });
       this.tagInput.value = null;
     } else if (e.key === "Backspace" && !val) {
       this.removeTag(this.state.tags.length - 1);
     }
   };
+
+  revealMe = () => {
+    this.setState({
+      show: true
+    });
+  }
 
   saveTags = () => {
     console.log('saveTags clicks, this.state is', this.state)
@@ -45,6 +57,9 @@ class LinkTags extends Component {
       type: "SAVE_TAGS",
       payload: {tags, details}
     });
+    this.setState ({
+      show: false
+    });
     ///Could reroute to main dashboard after save?
   }
   render() {
@@ -52,7 +67,6 @@ class LinkTags extends Component {
 
     return (
       <div className="input-tag">
-        <p>Tags Component</p>
         <ul className="input-tag__tags">
           {tags.map((tag, i) => (
             <li key={tag}>
@@ -70,17 +84,28 @@ class LinkTags extends Component {
           <li className="input-tag__tags__input">
             <input
               type="text"
-              placeholder="Add a tag here!"
+              placeholder="add here..."
               onKeyDown={this.inputKeyDown}
+              // onChange={()=> this.revealMe()}
               ref={(c) => {
                 this.tagInput = c;
               }}
             />
           </li>
         </ul>
-        <button
-        onClick={this.saveTags}
-        >Save Tags</button>
+        <div className='link-item button save'>
+          {this.state.show === true && (
+          <Button
+            id="save"
+            className="short"
+            variant="outlined"
+            color="primary" 
+            onClick={this.saveTags}
+          >Save</Button>
+        )}
+        </div>
+        
+        
       </div>
     );
   }
