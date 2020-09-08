@@ -6,6 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 const iplocate = require("node-iplocate");
 router.get("/", rejectUnauthenticated, (req, res) => {
+
   //   Possible errors here if no user
   console.log("req.user", req.user);
   // Maybe one route for free, another for registered/logged in?
@@ -16,7 +17,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   WHERE "user_id" = $1 AND "disabled_link" = FALSE 
   ORDER BY "id" DESC
   ;`;
-
   pool
     .query(queryString, [req.user.id])
     .then((result) => {
@@ -26,21 +26,27 @@ router.get("/", rejectUnauthenticated, (req, res) => {
       console.log("Error making SELECT for links when logged in:", error);
       res.sendStatus(500);
     });
-  //end if user is logged in
-  // else {
-  //   let queryString = `SELECT * FROM "link"
-  //         ;`;
-  //   pool
-  //     .query(queryString)
-  //     .then((result) => {
-  //       res.send(result.rows);
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error making SELECT for links when not logged in:", error);
-  //       res.sendStatus(500);
-  //     });
-  // }
 });
+
+
+//This route gets links from a user based 
+//on the tag they enter as a filter
+router.get("/:tags", rejectUnauthenticated, (req, res) => {
+  let queryString = `
+  SELECT * FROM link WHERE $1 = ANY (tags) AND user_id = $2
+  AND "disabled_link" = FALSE
+  ORDER BY id DESC;
+`;
+  pool
+    .query(queryString, [req.params.tags, req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+    }) 
+    .catch((error) => {
+      res.sendStatus(500);
+    });
+  });
+
 
 // // This route performs the redirection
 // router.get("/:short_url", (req, res) => {
@@ -98,6 +104,7 @@ router.get("/:short_url", async (req, res) => {
     await iplocate("66.39.154.26").then((results) => {
       console.log("results is", results);
       clientPostalCode = results.postal_code;
+
     });
     const queryString2 = `INSERT INTO click (link_id, location, referral) VALUES ($1, $2, $3);`;
     await connection.query(queryString2, [
