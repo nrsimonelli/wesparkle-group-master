@@ -5,6 +5,9 @@ import QRCode from "qrcode.react";
 import copy from "clipboard-copy";
 import LinkTags from '../LinkTags/LinkTags';
 import Button from '@material-ui/core/Button';
+import GraphOne from '../GraphOne/GraphOne';
+import GraphTwo from '../GraphTwo/GraphTwo';
+import GraphThree from '../GraphThree/GraphThree';
 
 
 class LinkDetails extends Component {
@@ -90,14 +93,17 @@ class LinkDetails extends Component {
         :
         <></>}
         </div>
-        <div className='container link-item'>
-          component 1 goes here
+        <h1>Graph Title</h1>
+        <div className='container graph link-item'>
+          <GraphOne />
         </div>
-        <div className='container link-item'>
-          component 2 goes here
+        <h1>Graph Title</h1>
+        <div className='container graph link-item'>
+          <GraphTwo />
         </div>
-        <div className='container link-item'>
-          component 3 goes here
+        <h1>Graph Title</h1>
+        <div className='container graph link-item'>
+          <GraphThree />
         </div>
       </div>
     );
