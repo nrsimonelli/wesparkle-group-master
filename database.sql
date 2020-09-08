@@ -15,19 +15,8 @@ CREATE TABLE "link" (
 	"user_id" INT REFERENCES "user",
 	"long_url" VARCHAR (2000),
 	"short_url" VARCHAR (1000) UNIQUE,
-	"disabled_link" BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE "tag" (
-	"id" SERIAL PRIMARY KEY,
-	"user_id" INT REFERENCES "user",
-	"tag_name" VARCHAR (1000)
-);
-
-CREATE TABLE "link_tag" (
-	"id" SERIAL PRIMARY KEY,
-	"link_id" INT REFERENCES "link",
-	"tag_id" INT REFERENCES "tag"
+	"disabled_link" BOOLEAN DEFAULT FALSE,
+	"tags" text array
 );
 
 CREATE TABLE "click" (
@@ -37,3 +26,23 @@ CREATE TABLE "click" (
 	"referral" VARCHAR (2000),
 	"time" TIMESTAMP
 );
+
+-- CREATE TABLE "link" (
+-- 	"id" SERIAL PRIMARY KEY,
+-- 	"user_id" INT REFERENCES "user",
+-- 	"long_url" VARCHAR (2000),
+-- 	"short_url" VARCHAR (1000) UNIQUE,
+-- 	"disabled_link" BOOLEAN DEFAULT FALSE
+-- );
+
+-- CREATE TABLE "tag" (
+-- 	"id" SERIAL PRIMARY KEY,
+-- 	"user_id" INT REFERENCES "user",
+-- 	"tag_name" VARCHAR (1000)
+-- );
+
+-- CREATE TABLE "link_tag" (
+-- 	"id" SERIAL PRIMARY KEY,
+-- 	"link_id" INT REFERENCES "link",
+-- 	"tag_id" INT REFERENCES "tag"
+-- );

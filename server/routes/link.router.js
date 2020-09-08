@@ -7,13 +7,16 @@ const {
 
 router.get("/", rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
+  console.log('req.user', req.user)
   // Maybe one route for free, another for registered/logged in?
   // if (req.user != undefined) {
-  let queryString = `SELECT * FROM "link" 
-    WHERE "user_id" = $1
-    AND  "disabled_link" = FALSE
-    ORDER BY "id" DESC
-    ;`;
+
+  let queryString = `
+  SELECT * from link
+  WHERE "user_id" = $1 AND "disabled_link" = FALSE 
+  ORDER BY "id" DESC
+  ;`;
+
   pool
     .query(queryString, [req.user.id])
     .then((result) => {
@@ -69,26 +72,23 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   // didn't want to rejectUnauth here if non logged in users can add link
   console.log("req.body is:", req.body);
   console.log("req.user is:", req.user);
   const link = req.body;
   // This seems like a janky workaround, but works for now
   if (req.user != undefined) {
-    const queryString = `INSERT INTO "link" ("user_id", "long_url", "short_url")
-    VALUES ($1, $2, $3);`;
-    // Hopefully this will still work with no login,
-    // and req.user.id will be added as NULL
-    // Or possibly ignore user here and create new route for logged in POST?
+    const queryString = `INSERT INTO "link" ("user_id", "long_url", "short_url", "tags")
+    VALUES ($1, $2, $3, '{"example tag"}');`;
     pool
       .query(queryString, [req.user.id, link.long_url, link.short_url])
       .then((result) => {
-        console.log("Successful link POST add by a registered user!");
+        console.log("Successful link POST add!");
         res.send(result.rows);
       })
       .catch((error) => {
-        console.log("error in link POST:", error);
+        console.log("error in link POST when no user is registered:", error);
         res.sendStatus(500);
       });
   } //end if there is a user

@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import QRCode from "qrcode.react";
+import copy from "clipboard-copy";
+import LinkTags from '../LinkTags/LinkTags';
 import Button from '@material-ui/core/Button';
 
+
 class LinkDetails extends Component {
+  state = {
+    copySuccess: "",
+    baseUrl: "http://localhost:5000/api/link/",
+  };
+
   componentDidMount() {
     //if no details in redux, it will call this
     //to get it from server based on id in /details/:id
@@ -18,6 +27,11 @@ class LinkDetails extends Component {
 
   copyLink = () => {
     console.log("copyLink clicked");
+    // this calls the clipboard-copy library imported above
+    copy(this.state.baseUrl + this.props.reduxState.details.short_url);
+    this.setState({
+        copySuccess: "Link copied!",
+      });
   };
 
   deleteLink = (link) => {
@@ -38,15 +52,14 @@ class LinkDetails extends Component {
             Long URL: 
             </div>
             <div className='item-text item-link'>
-            {link.long_url}
+            {<a href={link.long_url}>{link.long_url}</a>}
             </div>
             <div className='item-text item-title'>
 
             Short URL:
             </div>
             <div className='item-text item-link'>
-
-            {link.short_url}
+            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
             </div>
             <div className="link-item button">
               <Button
@@ -71,6 +84,11 @@ class LinkDetails extends Component {
               >x
             </Button>
           </div>
+         <p>{this.state.copySuccess}</p>
+                 {this.props.reduxState.details.id ? 
+        <LinkTags link={link}/>
+        :
+        <></>}
         </div>
         <div className='container link-item'>
           component 1 goes here
@@ -81,9 +99,7 @@ class LinkDetails extends Component {
         <div className='container link-item'>
           component 3 goes here
         </div>
-        
       </div>
-      
     );
   }
 }
