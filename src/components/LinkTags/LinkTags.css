@@ -1,7 +1,5 @@
 .input-tag {
     background: white;
-    border: 1px solid #d6d6d6;
-    border-radius: 2px;
     display: flex;
     flex-wrap: wrap;
     padding: 5px 5px 0;
@@ -22,7 +20,7 @@
   
   .input-tag__tags li {
     align-items: center;
-    background: #85A3BF;
+    background: var(--midnight-blue);
     border-radius: 2px;
     color: white;
     display: flex;
@@ -36,10 +34,10 @@
   .input-tag__tags li button {
     align-items: center;
     appearance: none;
-    background: #333333;
+    background: var(--white);
     border: none;
     border-radius: 50%;
-    color: white;
+    color: var(--midnight-blue);
     cursor: pointer;
     display: inline-flex;
     font-size: 12px;

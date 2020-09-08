@@ -51,14 +51,14 @@ class LinkDetails extends Component {
                 <h1>Link Details</h1>
                 {/* move to nav?? */}
                 <Button
-              id="edit"
+              id="back"
               className="short"
               onClick={() => this.props.history.push('/home')}
               variant="outlined"
               color="primary" 
               >back</Button>
 
-        <div className='container link-item'>
+        <div className='container link-item details'>
           <div className='item-text item-title'>
             Long URL: 
             </div>
@@ -84,14 +84,6 @@ class LinkDetails extends Component {
               variant="outlined"
               color="primary" 
               >copy</Button>
-
-              <Button
-              id="save"
-              className="short"
-              // onClick={}
-              variant="outlined"
-              color="primary" 
-              >Save</Button>
 
               <Button 
               id='delete'

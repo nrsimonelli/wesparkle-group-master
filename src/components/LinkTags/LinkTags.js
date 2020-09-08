@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
+import Button from  '@material-ui/core/Button';
 
 class LinkTags extends Component {
   // to move to link details re show:false
@@ -33,7 +34,8 @@ class LinkTags extends Component {
   inputKeyDown = (e) => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
-      this.setState({ tags: [...this.state.tags, val.toLowerCase()] });
+      this.setState({ tags: [...this.state.tags, val.toLowerCase()],
+                      show: true });
       this.tagInput.value = null;
     } else if (e.key === "Backspace" && !val) {
       this.removeTag(this.state.tags.length - 1);
@@ -82,20 +84,27 @@ class LinkTags extends Component {
           <li className="input-tag__tags__input">
             <input
               type="text"
-              placeholder="Add a tag here!"
+              placeholder="add here..."
               onKeyDown={this.inputKeyDown}
-              onChange={()=> this.revealMe()}
+              // onChange={()=> this.revealMe()}
               ref={(c) => {
                 this.tagInput = c;
               }}
             />
           </li>
         </ul>
-        {this.state.show === true && (
-          <button
-          onClick={this.saveTags}
-          >Save Tags</button>
+        <div className='link-item button save'>
+          {this.state.show === true && (
+          <Button
+            id="save"
+            className="short"
+            variant="outlined"
+            color="primary" 
+            onClick={this.saveTags}
+          >Save</Button>
         )}
+        </div>
+        
         
       </div>
     );
