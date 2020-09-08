@@ -1,21 +1,20 @@
 .feedback {
-    background-color: white;
     margin: 10%;
-    width: 200px;
-    height: 300px;
+    width: 300px;
 }
 
-/* .feedback {
-    margin: 10%;
-    width: 200px;
-    height: 600px;
-} */
-
-.feedback.img {
-    background-size: contain;
-    background-repeat: no-repeat;
+.carousel .slide {
+    background: var(--vermilion);
+    color: white;
 }
 
-.image-one {
-    background-image: url('/images/parakeetCooking.jpg');
+.feedback p {
+    padding: 0 0 20px 0;
+}
+
+.carousel-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }

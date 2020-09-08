@@ -10,11 +10,13 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   console.log('req.user', req.user)
   // Maybe one route for free, another for registered/logged in?
   // if (req.user != undefined) {
+
   let queryString = `
   SELECT * from link
   WHERE "user_id" = $1 AND "disabled_link" = FALSE 
   ORDER BY "id" DESC
   ;`;
+
   pool
     .query(queryString, [req.user.id])
     .then((result) => {
@@ -40,6 +42,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   // }
 });
 
+// This route performs the redirection
 router.get("/:short_url", (req, res) => {
   let queryString = `SELECT * FROM "link" WHERE short_url = '${req.params.short_url}';`;
   pool

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../FeedbackForm/FeedbackForm.css";
 import * as EmailValidator from "email-validator";
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 // corresponds to 1.3
 class FeedbackForm extends Component {
@@ -52,29 +54,44 @@ class FeedbackForm extends Component {
       <>
         <center>
           <h2>Feedback</h2>
-          <p>
-            <input
+          <div className='feedback-input'>
+            <TextField
+              id="outlined-name-input"
+              label="Name"
               type="text"
-              placeholder="Name"
+              name="name"
+              margin="normal"
+              variant="outlined"
               value={this.state.userName}
               onChange={this.handleInputChangeFor("userName")}
             />
 
-            <input
+            <TextField
+              id="outlined-email-input"
+              label="Email"
               type="text"
-              placeholder="Email"
+              name="email"
+              margin="normal"
+              variant="outlined"            
               value={this.state.userEmail}
               onChange={this.handleInputChangeFor("userEmail")}
             />
-          </p>
+          </div>
           <p>
             <textarea
+              className='text-area-2'
               placeholder="Type your message here..."
               value={this.state.emailBody}
               onChange={this.handleInputChangeFor("emailBody")}
             ></textarea>
           </p>
-          <button onClick={this.prepareToSendEmail}>Submit</button>
+          <Button 
+            variant='outlined'
+            color='secondary'
+            id='delete'
+            onClick={this.prepareToSendEmail}
+            >Submit
+          </Button>
           {this.state.emailValid ? <p>E-mail sent successfully</p> : <p></p>}
           {this.state.emailError ? (
             <p>Error: invalid email address</p>

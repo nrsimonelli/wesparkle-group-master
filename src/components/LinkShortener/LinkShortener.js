@@ -2,7 +2,11 @@ import shortId from "shortid";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QRCode from "qrcode.react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import copy from "clipboard-copy";
+import parse from "url-parse";
+import validUrl from "valid-url";
 
 // corresponds to 1.0
 class LinkShortener extends Component {
@@ -14,32 +18,8 @@ class LinkShortener extends Component {
     inputUrl: "",
     shortenedUrl: "",
     copySuccess: "",
+    urlIsValid: true,
   };
-
-  generateClicked = () => {
-    console.log("Button clicked");
-
-    // Base URL goes in this variable
-    // This can be changed to a custom domain later,
-    // if needed.
-    const baseUrl = "localhost:5000/api/link/";
-    const shortString = shortId.generate();
-    this.setState({
-      shortenedUrl: baseUrl + shortString,
-    });
-    console.log(
-      "In generateClicked. this.state.shortenedUrl is",
-      this.state.shortenedUrl
-    );
-    this.props.dispatch({
-      type: "ADD_LINK",
-      payload: {
-        //variable names changed here to match names on '/' POST route
-        long_url: this.state.inputUrl,
-        short_url: shortString,
-      },
-    });
-  }; // end generateClicked()
 
   copyClicked = (e) => {
     this.textArea.select();
@@ -51,9 +31,72 @@ class LinkShortener extends Component {
     this.setState({
       copySuccess: "Link copied!",
       inputUrl: "",
-      shortenedUrl: "",
+      // Don't reset short url since we want shortened link and
+      //QR code to persist after copy
+      //shortenedUrl: "",
     });
   }; // end copyClicked()
+
+  generateClicked = () => {
+    console.log("Button clicked");
+    // Only generate if they have entered a URL
+    if (this.state.inputUrl != "") {
+      // Use url-parse library (as 'parse') to clean input URL
+      let cleanUrl = this.state.inputUrl;
+      console.log("this.state.inputUrl is", this.state.inputUrl);
+
+      // Use parse to create the parsed object, forcing any URL
+      // to the http (not https) protocol
+      cleanUrl = parse(cleanUrl, {
+        host: "",
+        hostname: "",
+        href: cleanUrl,
+        origin: "",
+        password: "",
+        pathname: "",
+        port: "",
+        protocol: "http:",
+        query: "",
+        slashes: true,
+        username: "",
+      });
+      console.log("cleanUrl is", cleanUrl);
+      console.log("cleanUrl.href is", cleanUrl.href);
+      // Check if URL generated above is valid. If not, show error.
+      if (validUrl.isUri(cleanUrl.href)) {
+        console.log("URL looks valid");
+        this.setState({
+          urlIsValid: true,
+        });
+
+        // Base URL goes in this variable
+        // This can be changed to a custom domain later,
+        // if needed.
+        const baseUrl = "localhost:5000/api/link/";
+        const shortString = shortId.generate();
+        this.setState({
+          shortenedUrl: baseUrl + shortString,
+          copySuccess: "",
+        });
+        console.log(
+          "In generateClicked. this.state.shortenedUrl is",
+          this.state.shortenedUrl
+        );
+        this.props.dispatch({
+          type: "ADD_LINK",
+          payload: {
+            //variable names changed here to match names on '/' POST route
+            long_url: cleanUrl.href,
+            short_url: shortString,
+          },
+        });
+      } else {
+        this.setState({
+          urlIsValid: false,
+        });
+      }
+    }
+  }; // end generateClicked()
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -63,42 +106,78 @@ class LinkShortener extends Component {
 
   render() {
     return (
-      <center>
-        <div>
-          <input
-            type="text"
-            name="username"
-            value={this.state.inputUrl}
-            onChange={this.handleInputChangeFor("inputUrl")}
-          />
-          <button onClick={this.generateClicked}>Generate</button>
-          <br />
-          Your shortened link:
-          <br />
-          {/* <input type="text" name="username" value={this.state.shortenedUrl} /> */}
-          <textarea
-            ref={(textarea) => (this.textArea = textarea)}
-            name="username"
-            defaultValue={this.state.shortenedUrl}
-          />
-          {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
-          <div>
-            {
-              /* Logical shortcut for only displaying the 
+      <div className="container link-shortener">
+        {/* If the user submits an invalid URL, show error */}
+        {this.state.urlIsValid ? (
+          <div />
+        ) : (
+          <span>Please enter a valid URL</span>
+        )}
+        <TextField
+          id="outlined-link-input"
+          label="Type link here"
+          type="text"
+          className="text-field short"
+          name="link"
+          margin="normal"
+          variant="outlined"
+          value={this.state.inputUrl}
+          onChange={this.handleInputChangeFor("inputUrl")}
+        />
+        <Button
+          id="generate"
+          className="big short"
+          onClick={this.generateClicked}
+          variant="outlined"
+          color="default"
+        >
+          Generate
+        </Button>
+        <div className="short">Your shortened link:</div>
+
+        <textarea
+          type="text"
+          className="text-area short"
+          ref={(textArea) => (this.textArea = textArea)}
+          name="shorturl"
+          defaultValue={this.state.shortenedUrl}
+        />
+        {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
+        <div className="qr-div short">
+          {
+            /* Logical shortcut for only displaying the 
             button if the copy command exists */
-              document.queryCommandSupported("copy") && (
-                <div>
-                  <button onClick={this.copyClicked}>
-                    Copy Shortened Link
-                  </button>
-                  {this.state.copySuccess}
-                </div>
-              )
-            }
-            <QRCode value={this.state.shortenedUrl} />
+            document.queryCommandSupported("copy") && (
+              <div>
+                <Button
+                  id="copy"
+                  className="big short"
+                  onClick={this.copyClicked}
+                  variant="outlined"
+                  color="primary"
+                >
+                  Copy Shortened Link
+                </Button>
+                <center>{this.state.copySuccess}</center>
+              </div>
+            )
+          }
+
+          {/* Render QR code only if URL has been submitted */}
+          <div>
+            {this.state.shortenedUrl !== "" ? (
+              <center>
+                <QRCode className="qr" value={this.state.shortenedUrl} />
+                <br />
+                Right click or long press to save image
+              </center>
+            ) : (
+              <div />
+            )}
           </div>
         </div>
-      </center>
+        {/* {JSON.stringify(this.state.shortenedUrl)} */}
+      </div>
     ); // end return
   } // end render
 } // end class

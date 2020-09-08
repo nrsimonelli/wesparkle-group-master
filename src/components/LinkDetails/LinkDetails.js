@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import QRCode from "qrcode.react";
 import copy from "clipboard-copy";
 import LinkTags from '../LinkTags/LinkTags';
+import Button from '@material-ui/core/Button';
+
 
 class LinkDetails extends Component {
   state = {
@@ -42,31 +44,62 @@ class LinkDetails extends Component {
   render() {
     const link = this.props.reduxState.details;
     return (
-      <center>
-        <p>Link Details</p>
-        <div className="container link-item">
-        Long URL: {<a href={link.long_url}>{link.long_url}</a>}
-        <br></br>
-        Short URL: {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
-        {/* <p>{link.short_url}</p> */}
-        <p>{this.state.copySuccess}</p>
-        <div className="link-item button">
-          <button 
-          onClick={this.copyLink}
-          >copy</button>
-          <button 
-          onClick={()=>this.deleteLink(link)}
-          >x</button> </div>
-         {/* asynchronicity doesn't like this. 
-         It tries to generate QR before componentDidMount 
-         <QRCode value={link.short_url} /> */}
-         
-        </div>
-        {this.props.reduxState.details.id ? 
+      <div className='landing'>
+                <h1>Link Details</h1>
+
+        <div className='container link-item'>
+          <div className='item-text item-title'>
+            Long URL: 
+            </div>
+            <div className='item-text item-link'>
+            {<a href={link.long_url}>{link.long_url}</a>}
+            </div>
+            <div className='item-text item-title'>
+
+            Short URL:
+            </div>
+            <div className='item-text item-link'>
+            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
+            </div>
+            <div className="link-item button">
+              <Button
+              id="copy"
+              className="short"
+              onClick={this.copyLink}
+              variant="outlined"
+              color="primary" 
+              >copy</Button>
+              <Button
+              id="edit"
+              className="short"
+              onClick={() => this.props.history.push('/home')}
+              variant="outlined"
+              color="primary" 
+              >back</Button>
+              <Button 
+              id='delete'
+              onClick={() => this.deleteLink(link)}
+              variant='outlined'
+              color='secondary'
+              >x
+            </Button>
+          </div>
+         <p>{this.state.copySuccess}</p>
+                 {this.props.reduxState.details.id ? 
         <LinkTags link={link}/>
         :
         <></>}
-      </center>
+        </div>
+        <div className='container link-item'>
+          component 1 goes here
+        </div>
+        <div className='container link-item'>
+          component 2 goes here
+        </div>
+        <div className='container link-item'>
+          component 3 goes here
+        </div>
+      </div>
     );
   }
 }
