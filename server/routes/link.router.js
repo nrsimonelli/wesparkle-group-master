@@ -4,8 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
-const geoIP = require('geoip-lite');
-
+const iplocate = require("node-iplocate");
 router.get("/", rejectUnauthenticated, (req, res) => {
   //   Possible errors here if no user
   console.log("req.user", req.user);
@@ -89,10 +88,16 @@ router.get("/:short_url", async (req, res) => {
     // // We don't care about the result coming back so ignore it
     // await connection.query(depositStatement, [newAcctId, amount]);
 
+    // Get client's IP
+    const clientIP = req.connection.remoteAddress;
+    console.log("clientIP is", clientIP);
+    // Get location from iplocate
+    // await iplocate(clientIP).then((results) => {
+    //   console.log("results is", results);
+    //   const clientLocation = results;
+    // });
     const queryString2 = `INSERT INTO click (link_id, location, referral) VALUES ($1, $2, '${req.headers.referer}');`;
-    await connection.query(
-      queryString2, [linkRecord.rows[0].id, "Minneapolis"]
-    );
+    await connection.query(queryString2, [linkRecord.rows[0].id, clientIP]);
     await connection.query("COMMIT;");
     res.redirect(longUrl);
   } catch (err) {
