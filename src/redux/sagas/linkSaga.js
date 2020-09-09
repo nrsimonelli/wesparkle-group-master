@@ -25,7 +25,7 @@ function* getLink(action){
 function* getFilter(action){
   console.log('getting filter links', action.payload)
   try {
-    const response = yield axios.get(`/api/link/${action.payload.filterTag}`, action.payload);
+    const response = yield axios.get(`/api/tags/${action.payload.filterTag}`, action.payload);
     yield put({ type: 'SET_LINKS', payload: response.data });
   } catch (error){
     console.log('error with get filter Saga:', error)
