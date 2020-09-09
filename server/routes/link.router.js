@@ -27,24 +27,6 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
-//This route gets links from a user based 
-//on the tag they enter as a filter
-router.get("/:tags", rejectUnauthenticated, (req, res) => {
-  let queryString = `
-  SELECT * FROM link WHERE $1 = ANY (tags) AND user_id = $2
-  AND "disabled_link" = FALSE
-  ORDER BY id DESC;
-`;
-  pool
-    .query(queryString, [req.params.tags, req.user.id])
-    .then((result) => {
-      res.send(result.rows);
-    }) 
-    .catch((error) => {
-      res.sendStatus(500);
-    });
-  });
-
 // // This route performs the redirection
 // router.get("/:short_url", (req, res) => {
 //   let queryString = `
