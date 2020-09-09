@@ -7,11 +7,11 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav root">
     <Link to="/home">
+      {/* This is the logo - 'title' serves as an alt tag */}
       <div className="nav-logo-box nav-logo" title="We Sparkle logo"></div>
     </Link>
 
     <div className="nav-right">
-
       {/* Show the basic features vs. logged in features main page */}
       {props.user.id ? 
       ( <Link className="nav-link" to="/home">Home</Link>) 

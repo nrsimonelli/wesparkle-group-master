@@ -25,7 +25,7 @@ class FeedbackCarousel extends Component {
             <div>
               <div className="feedbackCarousel image-box image-jump"></div>
               <p>
-              "It's nice to be able to shorten my links for free and give back to the community at the same time!"
+                "It's nice to be able to shorten my links for free and give back to the community at the same time!"
                 <br /><br />
                 - Nick M.
               </p>
