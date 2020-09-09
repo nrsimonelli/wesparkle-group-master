@@ -14,7 +14,8 @@ class FeedbackCarousel extends Component {
       <div className='carousel-flex'>
           <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedback">
             <div>
-              <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
+              <div className="image-box image-jump"></div>
+              {/* <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" /> */}
               <p>
                 "What a great feature. I love this!"
                 <br /><br />

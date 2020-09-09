@@ -18,3 +18,16 @@
     align-items: center;
     justify-content: space-around;
 }
+
+.image-box {
+    /* width: 50vw;
+    min-width: 400px; */
+    /* min-height: 200px; */
+    height: 3vh;
+    /* max-width: 600px; */
+
+}
+.image-jump {
+    background-image: url('/images/jump.png');
+    
+}
