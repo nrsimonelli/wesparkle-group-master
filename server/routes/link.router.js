@@ -73,8 +73,6 @@ router.get("/:tags", rejectUnauthenticated, (req, res) => {
 
 // Attempt at GET /:short_url transaction
 router.get("/:short_url", async (req, res) => {
-  console.log("req.body is", req.body);
-
   const connection = await pool.connect();
 
   try {
@@ -106,7 +104,7 @@ router.get("/:short_url", async (req, res) => {
       clientPostalCode = results.postal_code;
 
     });
-    const queryString2 = `INSERT INTO click (link_id, location, referral) VALUES ($1, $2, $3);`;
+    const queryString2 = `INSERT INTO click (link_id, client_ip, referrer) VALUES ($1, $2, $3);`;
     await connection.query(queryString2, [
       linkRecord.rows[0].id,
       clientPostalCode,
@@ -117,7 +115,7 @@ router.get("/:short_url", async (req, res) => {
   } catch (err) {
     console.log("Error on redirect/add click", err);
     await connection.query("ROLLBACK;");
-    res.sendst;
+    res.sendStatus(500);
   } finally {
     // THIS IS ALSO REALLY IMPORTANT!!!
     // Puts the connection back in the pool to be used again later.
