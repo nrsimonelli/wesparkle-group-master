@@ -7,7 +7,8 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav root">
     <Link to="/home">
-      <h2 className="nav-title">We Sparkle</h2>
+      {/* I couldn't figure out how to manipulate the size of the image if I used CSS url(...) :( */}
+      <img className="nav-logo" src="https://static.wixstatic.com/media/450dbd_791a4f2fc1c94a339a98cdeca033fa20~mv2.png/v1/fill/w_500,h_84,al_c,lg_1,q_85/WeSparkle_H_Red.webp" />
     </Link>
 
     <div className="nav-right">
