@@ -2,34 +2,40 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
+import Button from "@material-ui/core/Button";
 
 class LinkTags extends Component {
+  // to move to link details re show:false
   state = {
-      tags: this.props.reduxState.details.tags,
-    };
-  
-    componentDidMount() {
-      //if no details in redux, it will call this
-      //to get it from server based on id in /details/:id
-      if (!this.props.reduxState.details.id) {
-        console.log('in fetch details for linktags')
-        this.props.dispatch({
-          type: "FETCH_DETAILS",
-          payload: this.props.match.params.id,
-        });
-      }
-      console.log("this.props.reduxState...", this.props.reduxState);
+    tags: this.props.reduxState.details.tags,
+  };
+
+  componentDidMount() {
+    //if no details in redux, it will call this
+    //to get it from server based on id in /details/:id
+    if (!this.props.reduxState.details.id) {
+      console.log("in fetch details for linktags");
+      this.props.dispatch({
+        type: "FETCH_DETAILS",
+        payload: this.props.match.params.id,
+      });
     }
+    console.log("this.props.reduxState...", this.props.reduxState);
+  }
   removeTag = (i) => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
-    this.setState({ tags: newTags });
+    this.setState({ tags: newTags }, () => {
+      this.saveTags();
+    });
   };
 
   inputKeyDown = (e) => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
-      this.setState({ tags: [...this.state.tags, val.toLowerCase()] });
+      this.setState({ tags: [...this.state.tags, val.toLowerCase()] }, () => {
+        this.saveTags();
+      });
       this.tagInput.value = null;
     } else if (e.key === "Backspace" && !val) {
       this.removeTag(this.state.tags.length - 1);
@@ -37,22 +43,18 @@ class LinkTags extends Component {
   };
 
   saveTags = () => {
-    console.log('saveTags clicks, this.state is', this.state)
-    console.log('saveTags clicks, this.props.reduxState.details is', this.props.reduxState.details)
     const tags = this.state.tags;
     const details = this.props.reduxState.details;
     this.props.dispatch({
       type: "SAVE_TAGS",
-      payload: {tags, details}
+      payload: { tags, details },
     });
-    ///Could reroute to main dashboard after save?
-  }
+  };
   render() {
     const { tags } = this.state;
 
     return (
       <div className="input-tag">
-        <p>Tags Component</p>
         <ul className="input-tag__tags">
           {tags.map((tag, i) => (
             <li key={tag}>
@@ -70,7 +72,7 @@ class LinkTags extends Component {
           <li className="input-tag__tags__input">
             <input
               type="text"
-              placeholder="Add a tag here!"
+              placeholder="add here..."
               onKeyDown={this.inputKeyDown}
               ref={(c) => {
                 this.tagInput = c;
@@ -78,9 +80,6 @@ class LinkTags extends Component {
             />
           </li>
         </ul>
-        <button
-        onClick={this.saveTags}
-        >Save Tags</button>
       </div>
     );
   }
@@ -90,4 +89,3 @@ const mapReduxStateToProps = (reduxState) => ({
 });
 
 export default withRouter(connect(mapReduxStateToProps)(LinkTags));
-
