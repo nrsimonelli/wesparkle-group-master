@@ -17,6 +17,7 @@ router.post("/", (req, res) => {
 
   // here's where we set who does what
   let mailOptions = {
+    subject: 'We Sparkle User Feedback',
     to: process.env.FEEDBACK_EMAIL,
     html: `<p>From: ${req.body.userName}</p>
            <p>Email: ${req.body.userEmail}</p>
