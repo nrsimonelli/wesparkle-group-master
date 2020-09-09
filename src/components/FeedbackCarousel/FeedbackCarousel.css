@@ -11,7 +11,6 @@
     justify-content: space-around;
 }
 .slide {
-    /* height: 28em;  */
     height: 23em;
 }
 
@@ -20,23 +19,15 @@
     margin: 10%;
     max-width: 500px;
     max-height: 500px;
-    /* width: 26em; */
-    /* max-width: 30em; */
-    /* width: 30vw; */
-    /* min-width: 20vw; */
 }
 
 .feedbackCarousel p {
     padding: 0 0 20px 0;
 }
 
-.image-boxxxxx {
-    /* max-height: 25em; */
-    height: 26vh;
+.feedbackCarousel.image-box {
+    height: 50vh;
     width: auto;
-    /* min-width: 400px; 
-    min-height: 200px; */
-    /* max-width: 99vw; */
     background-size: contain;
     background-repeat: no-repeat;
     margin: 2%;

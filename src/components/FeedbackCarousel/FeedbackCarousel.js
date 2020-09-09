@@ -14,28 +14,29 @@ class FeedbackCarousel extends Component {
       <div className='carousel-flex'>
           <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedbackCarousel">
             <div>
-              <div className="image-boxxxxx image-circle"></div>
-              {/* <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" /> */}
+              <div className="feedbackCarousel image-box image-circle"></div>
               <p>
-                "What a great feature. I love this!"
+                "This link shortener is so easy to use. Thank you!"
                 <br /><br />
-                 -Mary M.
+                 - Margaret T.
               </p>
             </div>
+
             <div>
-              <div className="image-boxxxxx image-armsUp"></div>
+              <div className="image-boxxxxx image-jump"></div>
               <p>
-                "Whoever built this is awesome!"
+              "It's nice to be able to shorten my links for free and give back to the community at the same time!"
                 <br /><br />
-                -Dev J.
+                - Nick M.
               </p>
+
             </div>
             <div>
               <div className="image-boxxxxx image-bigPhone"></div>           
               <p>
-                "I mean, it sure ain't terrible!"
+                "Loved printing my QR code on my business cards. Thanks!"
                 <br /><br />
-                -Parakeet Pete
+                - Rebecca F.
               </p>
             </div>
           </Carousel>
