@@ -25,9 +25,11 @@
     /* min-height: 200px; */
     height: 3vh;
     /* max-width: 600px; */
+    
 
 }
 .image-jump {
     background-image: url('/images/jump.png');
+    background-size: contain;
     
 }
