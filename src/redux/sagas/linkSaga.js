@@ -22,6 +22,16 @@ function* getLink(action){
   }
 }
 
+function* getFilter(action){
+  console.log('getting filter links', action.payload)
+  try {
+    const response = yield axios.get(`/api/link/${action.payload.filterTag}`, action.payload);
+    yield put({ type: 'SET_LINKS', payload: response.data });
+  } catch (error){
+    console.log('error with get filter Saga:', error)
+  }
+}
+
 function* disableLink(action){
   console.log('disabling link', action.payload.id)
   try {
@@ -37,6 +47,8 @@ function* linkSaga() {
   yield takeLatest("ADD_LINK", addLink);
   yield takeLatest("FETCH_LINKS", getLink);
   yield takeLatest("REMOVE_LINK", disableLink);
+  yield takeLatest("FETCH_FILTERED_LINKS", getFilter);
+
 }
 
 export default linkSaga;
