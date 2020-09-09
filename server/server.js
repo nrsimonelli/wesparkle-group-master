@@ -14,6 +14,7 @@ const linkRouter = require('./routes/link.router');
 const feedbackRouter = require('./routes/feedback.router');
 const detailsRouter = require('./routes/details.router');
 const tagsRouter = require('./routes/tags.router');
+const graphRouter = require('./routes/graph.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use('/api/link', linkRouter);
 app.use('/api/feedback', feedbackRouter);
 app.use('/api/details', detailsRouter);
 app.use('/api/tags', tagsRouter);
+app.use('/api/graph', graphRouter);
 
 // Serve static files
 app.use(express.static('build'));
