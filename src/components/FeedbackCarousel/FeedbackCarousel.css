@@ -1,6 +1,6 @@
-/* alter react-responsive-carousel css */
+/* react-responsive-carousel css */
 .carousel .slide {
-    background: var(--vermilion);
+    background: var(--midnight-blue);
     color: white;
 }
 
@@ -10,38 +10,14 @@
     align-items: center;
     justify-content: space-around;
 }
-.slide {
-    height: 23em;
-}
 
 /* we sparkle css */
 .feedbackCarousel {
     margin: 10%;
-    max-width: 500px;
-    max-height: 500px;
+    width: 100vw;
 }
 
 .feedbackCarousel p {
-    padding: 0 0 20px 0;
-}
-
-.feedbackCarousel.image-box {
-    height: 55vh;
-    width: auto;
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin: 2%;
-}
-
-.image-circle {
-    background-image: url('/images/circle.png');
-    /* AUDRY alt tags */
-}
-.image-armsUp {
-    background-image: url('/images/armsUp.png');
-    /* AUDRY alt tags */
-}
-.image-bigPhone {
-    background-image: url('/images/bigPhone.png');
-    /* AUDRY alt tags */
+    padding: 2em;
+    font-size: 1.25em;
 }
