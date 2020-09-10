@@ -184,6 +184,7 @@ a {
 .text-field {
     margin: inherit;
     /* color: var(--battleship-grey); */
+    /* border-color: rgb(189, 189, 189); */
     background-color: var(--white);
     width: var(--default-width);
     border-radius: var(--roundtangle);
@@ -270,12 +271,13 @@ a {
 }
 
 #copy {
-    background-color: var(--white);
-    color: var(--midnight-blue);
+    color: var(--white);
+    background-color: var(--midnight-blue);
+    margin-bottom: 15px;
 }
 #copy:hover {
-    background-color: var(--midnight-blue);
-    color: var(--white);
+    color: var(--midnight-blue);
+    background-color: var(--white);
     font-weight: 800;
 }
 
@@ -354,9 +356,9 @@ a {
     width: 337px;
     border-color: rgb(189, 189, 189);
     border-radius: var(--roundtangle);
-    height: 50px;
+    height: 20px;
     font-family: var(--fonts);
-    margin-top: 16px;
+    margin-top: 2px;
     margin-bottom: 8px;
     resize: none;
     padding: 15px;

@@ -133,7 +133,7 @@ class LinkShortener extends Component {
         >
           Generate
         </Button>
-        <div className="short">Your shortened link:</div>
+        <div>Your Shortened Link</div>
 
         <textarea
           type="text"
