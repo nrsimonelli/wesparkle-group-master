@@ -54,6 +54,19 @@
   cursor: pointer;
   outline:0;
 }
+button.nav-link{
+  float: left;
+  color: var(--midnight-blue);
+  background-color: var(--white);
+  text-align: center;
+  padding: 24px 10px;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border:none;
+  cursor: pointer;
+  outline:0;
+}
 
 .nav-link:hover {
   color: var(--vermilion);

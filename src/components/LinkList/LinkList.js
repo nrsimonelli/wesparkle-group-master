@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import LinkListItem from "../LinkListItem/LinkListItem";
+import { Button } from "@material-ui/core";
 
 class LinkList extends Component {
   state = {
@@ -32,18 +33,24 @@ class LinkList extends Component {
   render() {
     return (
       <div className="link-list container">
-        <h3>Here are your links!</h3>
+        <p>Here are your links!</p>
        
        {/* This input is to filter link list
        by tags */}
-        <input
+        <textarea
           type="text"
+          className="text-area short"
+          name="filter"
+
           onChange={this.handleChange}
           placeholder="See links by tag"
         />
-        <button
+        <Button
+        id='filter'
+        variant='outlined'
+        color='default'
         onClick={this.filterTag}
-        >Filter</button>
+        >Filter</Button>
         
         {/* maps links in database and 
     passes down props to LinkListItem */}

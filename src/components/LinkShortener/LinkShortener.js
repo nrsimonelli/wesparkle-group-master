@@ -113,12 +113,12 @@ class LinkShortener extends Component {
         ) : (
           <span>Please enter a valid URL</span>
         )}
-        <div>This is a Url Shortner!!! Wow</div>
-        <TextField
-          id="outlined-link-input"
-          label="Type link here"
+        <div>This is a link shortner!</div>
+        <textarea
           type="text"
-          className="text-field short"
+          className="text-area short"
+          id="outlined-link-input"
+          placeholder="Type link here"
           name="link"
           margin="normal"
           variant="outlined"

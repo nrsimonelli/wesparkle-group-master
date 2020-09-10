@@ -66,6 +66,8 @@ input {
     outline:0;
     border-bottom:1px solid var(--battleship-grey); 
     cursor: pointer;
+
+
 }
 
 .shortener.container{
@@ -273,7 +275,6 @@ a {
 #copy {
     color: var(--white);
     background-color: var(--midnight-blue);
-    margin-bottom: 15px;
 }
 #copy:hover {
     color: var(--midnight-blue);
@@ -286,7 +287,18 @@ a {
     color: var(--midnight-blue);
 }
 #edit:hover {
-    background-color: var(--battleship-grey);
+    background-color: green;
+    color: var(--white);
+    font-weight: 800;
+}
+#filter {
+    background-color: var(--white);
+    color: var(--midnight-blue);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#filter:hover {
+    background-color: green;
     color: var(--white);
     font-weight: 800;
 }
@@ -363,6 +375,12 @@ a {
 /* history of shortened links */
 .item-text {
     color: var(--battleship-grey);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 
 }
 .item-title {
@@ -393,6 +411,7 @@ a {
 }
 .link-item.details {
     height: 350px;
+    
 }
 .link-item.button.save {
     width: 100%;
