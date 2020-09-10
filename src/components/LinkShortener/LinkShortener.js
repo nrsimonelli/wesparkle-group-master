@@ -113,6 +113,7 @@ class LinkShortener extends Component {
         ) : (
           <span>Please enter a valid URL</span>
         )}
+        <div>This is a Url Shortner!!! Wow</div>
         <TextField
           id="outlined-link-input"
           label="Type link here"
@@ -133,7 +134,6 @@ class LinkShortener extends Component {
         >
           Generate
         </Button>
-        <div>Your Shortened Link</div>
 
         <textarea
           type="text"
@@ -141,6 +141,7 @@ class LinkShortener extends Component {
           ref={(textArea) => (this.textArea = textArea)}
           name="shorturl"
           defaultValue={this.state.shortenedUrl}
+          placeholder="Your shortened link"
         />
         {/* From example at: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard */}
         <div className="qr-div short">
