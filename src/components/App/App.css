@@ -66,6 +66,8 @@ input {
     outline:0;
     border-bottom:1px solid var(--battleship-grey); 
     cursor: pointer;
+
+    
 }
 
 .shortener.container{
