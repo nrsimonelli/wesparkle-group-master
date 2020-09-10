@@ -215,6 +215,7 @@ a {
     width: 300px;
     justify-content: space-around;
     align-items: center;
+    border: 2px solid green;
 
 }
 
@@ -273,7 +274,6 @@ a {
 #copy {
     color: var(--white);
     background-color: var(--midnight-blue);
-    margin-bottom: 15px;
 }
 #copy:hover {
     color: var(--midnight-blue);
@@ -363,6 +363,12 @@ a {
 /* history of shortened links */
 .item-text {
     color: var(--battleship-grey);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 
 }
 .item-title {
@@ -393,6 +399,7 @@ a {
 }
 .link-item.details {
     height: 350px;
+    
 }
 .link-item.button.save {
     width: 100%;
