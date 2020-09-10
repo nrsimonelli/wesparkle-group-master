@@ -17,7 +17,8 @@ CREATE TABLE "link" (
 	"long_url" VARCHAR (2000),
 	"short_url" VARCHAR (1000) UNIQUE,
 	"disabled_link" BOOLEAN DEFAULT FALSE,
-	"tags" text array
+	"tags" text array,
+	"date_created" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "click" (

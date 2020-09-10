@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 
 class LoginPage extends Component {
   state = {
@@ -20,11 +20,10 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
-      this.props.history.push('/home')
+      this.props.history.push("/home");
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
-    
   }; // end login
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -33,16 +32,23 @@ class LoginPage extends Component {
     });
   };
 
+  filler = () => {
+    this.setState({
+      username: "Prime Consulting",
+      password: "Prime Consulting",
+    });
+  };
+
   render() {
     return (
-      <div className='container landing'>
+      <div className="container landing">
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
+          <h1 onClick={this.filler}>Login</h1>
           <div>
             <TextField
               id="outlined-username-input"
@@ -80,18 +86,16 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
-        <button
+          <button
             type="button"
             className="link-button"
             onClick={() => {
-              this.props.history.push('/register');
+              this.props.history.push("/register");
             }}
           >
             Register
           </button>
-          
         </center>
-        
       </div>
     );
   }
