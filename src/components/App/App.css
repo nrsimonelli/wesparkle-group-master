@@ -291,6 +291,17 @@ a {
     color: var(--white);
     font-weight: 800;
 }
+#filter {
+    background-color: var(--white);
+    color: var(--midnight-blue);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#filter:hover {
+    background-color: green;
+    color: var(--white);
+    font-weight: 800;
+}
 
 #back {
     background-color: var(--white);
