@@ -1,11 +1,3 @@
-.root {
-  --battleship-grey: #888787ff;
-  --white: #ffffffff;
-  --vermilion: #da291cff;
-  --midnight-blue: #0c1466ff;
-  background-color: var(--white);
-  color: var(--midnight-blue);
-}
 
 .nav-title {
     font-size: 24px;
@@ -20,7 +12,12 @@
     height: 35px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 2%;
+
+/* AUDRY - thought this would help logo show on nav but no */
+  /* width: 32vw;
+  height: 5vh;
+  background-size: contain;
+  background-repeat: no-repeat; */
 }
 
 .nav-logo {
