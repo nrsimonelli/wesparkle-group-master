@@ -1,12 +1,13 @@
 body {
     font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0px;
+    margin: 8vw;
 }
 .root {
     --battleship-grey: #888787ff;
     --white: #ffffffff;
     --vermilion: #da291cff;
     --midnight-blue: #0c1466ff;
+    --default-width: 350px;
     background-color: var(--white);
     color: var(--midnight-blue);
 }
@@ -25,7 +26,7 @@ form {
     color: var(--white);
     width: 30%;
     height: 100%;
-    width: 400px;
+    width: var(--default-width);
     margin: .2em;
     border-radius: 2px;
 }
@@ -184,6 +185,7 @@ a {
     margin: inherit;
     color: var(--battleship-grey);
     background-color: var(--white);
+    width: var(--default-width);
 }
 
 
@@ -193,7 +195,7 @@ a {
 }
 .link-item.container {
     height: 200px;
-    width: 400px;
+    width: var(--default-width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,7 +203,9 @@ a {
     margin: .2em;
     margin-bottom: 2em;
     padding: .2em;
-    box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4);
+    /* box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4); */
+    border: 1px solid var(--battleship-grey);
+    border-radius: 0.5vw;
 }
 .link-item.button {
     display: flex;
@@ -250,40 +254,38 @@ a {
     background-color: var(--vermilion);
     color: var(--white);
 }
+
 #generate {
     color: var(--white);
     background-color: var(--vermilion);
     font-weight: 600;
-    
-    
 }
 #generate:hover {
     box-shadow: inset 0 0 0 2em var(--midnight-blue);
     font-weight: 800;
     border-color: var(--midnight-blue);
 }
+
 #copy {
     background-color: var(--white);
     color: var(--midnight-blue);
-    
-    
 }
 #copy:hover {
     background-color: var(--midnight-blue);
     color: var(--white);
     font-weight: 800;
 }
+
 #edit {
     background-color: var(--white);
     color: var(--midnight-blue);
-    
-    
 }
 #edit:hover {
     background-color: var(--battleship-grey);
     color: var(--white);
     font-weight: 800;
 }
+
 #back {
     background-color: var(--white);
     color: var(--midnight-blue);
@@ -294,9 +296,6 @@ a {
     margin-right: 10px;
     z-index: 1;
     /* visibility: hidden; */
-
-    
-    
 }
 #back:hover {
     background-color: var(--midnight-blue);
@@ -306,8 +305,6 @@ a {
 #save {
     background-color: var(--white);
     color: green;
-    
-    
 }
 #save:hover {
     background-color: green;
@@ -318,7 +315,6 @@ a {
     display: inline-flex;
     flex-wrap: wrap;
     width: 100%;
-    
 }
 
 
@@ -333,16 +329,17 @@ a {
     font-weight: 800;
 }
 
-.text-field {
-    width: 250px;
-}
+/* expierementing... */
+/* .text-field {
+    width: 350px;
+} */
 .big {
-    width: 250px
+    /* width: 250px; */
+    width: var(--default-width);
 }
 
 .qr {
     margin-top: 40px;
-    
 }
 .qr-div {
     display: flex;
@@ -351,14 +348,12 @@ a {
     align-items: center;
 }
 .text-area {
-    width: 250px;
+    width: var(--default-width);
     height: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* history of shortened links */
-
 .item-text {
     color: var(--battleship-grey);
 
@@ -384,7 +379,6 @@ a {
     width: 400px;
     height: 100px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
 
 .link-item.graph {

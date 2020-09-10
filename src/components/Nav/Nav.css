@@ -20,7 +20,12 @@
     height: 35px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 2%;
+
+/* thought this would help logo show on nav but no */
+  /* width: 32vw;
+  height: 5vh;
+  background-size: contain;
+  background-repeat: no-repeat; */
 }
 
 .nav-logo {
