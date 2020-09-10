@@ -5,36 +5,32 @@ import { Carousel } from "react-responsive-carousel";
 import "./FeedbackCarousel.css";
 
 class FeedbackCarousel extends Component {
-  componentDidMount() {
-    console.log("did mount FeedbackCarousel");
-  }
 
   render() {
     return (
       <div className='carousel-flex'>
-          <Carousel showThumbs={false} showStatus={false} infiniteLoop className="feedback">
+          <Carousel autoplay infiniteLoop showThumbs={false} showStatus={false} className="feedbackCarousel">
             <div>
-              <img alt="a parakeet cooking in a mini kitchen" src="/images/parakeetCooking.jpg" />
               <p>
-                "What a great feature. I love this!"
+                " This link shortener is so easy to use. Thank you! "
                 <br /><br />
-                 -Mary M.
+                 - Margaret T.
               </p>
             </div>
+
             <div>
-              <img alt="a cat sleeping" src="/images/mervyn.png" />
               <p>
-                "Whoever built this is awesome!"
+                " It's nice to be able to shorten my links for free and give back to the community at the same time! "
                 <br /><br />
-                -Dev J.
+                - Nick M.
               </p>
+
             </div>
             <div>
-              <img alt="a cat in a chair" src="/images/mervynChair.png" />              
               <p>
-                "I mean, it sure ain't terrible!"
+                " Loved printing my QR code on my business cards. Thanks! "
                 <br /><br />
-                -Parakeet Pete
+                - Rebecca F.
               </p>
             </div>
           </Carousel>

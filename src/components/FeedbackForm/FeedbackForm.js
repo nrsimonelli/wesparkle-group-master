@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../FeedbackForm/FeedbackForm.css";
+import "./FeedbackForm.css";
 import * as EmailValidator from "email-validator";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';

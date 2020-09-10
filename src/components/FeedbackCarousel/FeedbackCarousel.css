@@ -1,15 +1,7 @@
-.feedback {
-    margin: 10%;
-    width: 300px;
-}
-
+/* react-responsive-carousel css */
 .carousel .slide {
-    background: var(--vermilion);
+    background: var(--midnight-blue);
     color: white;
-}
-
-.feedback p {
-    padding: 0 0 20px 0;
 }
 
 .carousel-flex {
@@ -17,4 +9,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+/* we sparkle css */
+.feedbackCarousel {
+    margin: 10%;
+    width: 100vw;
+}
+
+.feedbackCarousel p {
+    padding: 2em;
+    font-size: 1.25em;
 }
