@@ -67,7 +67,7 @@ input {
     border-bottom:1px solid var(--battleship-grey); 
     cursor: pointer;
 
-    
+
 }
 
 .shortener.container{
@@ -215,9 +215,8 @@ a {
     display: flex;
     flex-direction: row;
     width: 300px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border: 2px solid green;
 
 }
 
