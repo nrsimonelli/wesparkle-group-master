@@ -1,12 +1,15 @@
 body {
     font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0px;
+    margin: 0;
 }
 .root {
     --battleship-grey: #888787ff;
     --white: #ffffffff;
     --vermilion: #da291cff;
     --midnight-blue: #0c1466ff;
+    --default-width: 370px;
+    --fonts: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --roundtangle: 4px;
     background-color: var(--white);
     color: var(--midnight-blue);
 }
@@ -25,9 +28,9 @@ form {
     color: var(--white);
     width: 30%;
     height: 100%;
-    width: 400px;
+    width: var(--default-width);
     margin: .2em;
-    border-radius: 2px;
+    border-radius: var(--roundtangle);
 }
 
 input {
@@ -37,7 +40,7 @@ input {
 
 .log-in, .log-out, .register {
   background-color: var(--vermilion);
-  border-radius: 4px;
+  border-radius: var(--roundtangle);
   color: var(--white);
   font-weight: 800;
   min-height: 50px;
@@ -64,7 +67,6 @@ input {
     border-bottom:1px solid var(--battleship-grey); 
     cursor: pointer;
 }
-
 
 .shortener.container{
     display: flex;
@@ -93,9 +95,8 @@ input {
 .image-box {
     width: 50vw;
     min-width: 400px;
-    min-height: 200px;
+    min-height: 300px;
     max-width: 600px;
-
 }
 a {
     color: inherit; 
@@ -135,19 +136,22 @@ a {
 
 }*/
 .image-1 {
-    background-image: url('/images/birdGang.jpg');
+    background-image: url('/images/bigPhone.png');
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .image-2 {
-    background-image: url('/images/birdGang.jpg');
+    background-image: url('/images/armUp.png');
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .image-3 {
-    background-image: url('/images/birdGang.jpg');
+    background-image: url('/images/circle.png');
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 /* Support Styling 1.1 */
 .support.container {
@@ -168,7 +172,7 @@ a {
 .support.image-box {
     width: 50vw;
     min-width: 400px;
-    min-height: 200px;
+    min-height: 300px;
     max-width: 600px;
 }
 .support.description {
@@ -177,15 +181,15 @@ a {
     font-weight: 100;
 }
 .link-to-main.container {
- 
     height: 200px;
 }
 .text-field {
     margin: inherit;
     color: var(--battleship-grey);
     background-color: var(--white);
+    width: var(--default-width);
+    border-radius: var(--roundtangle);
 }
-
 
 /* linkListItem */
 .link-list {
@@ -193,7 +197,7 @@ a {
 }
 .link-item.container {
     height: 200px;
-    width: 400px;
+    width: var(--default-width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,7 +205,9 @@ a {
     margin: .2em;
     margin-bottom: 2em;
     padding: .2em;
-    box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4);
+    /* box-shadow: 3px 3px 5px 6px rgba(0,0,0, .4); */
+    border: 1px solid var(--battleship-grey);
+    border-radius: var(--roundtangle);
 }
 .link-item.button {
     display: flex;
@@ -228,9 +234,10 @@ a {
     flex-direction: column;
     align-items: center;
 }
-.short {
+
+/* .short {
     padding: 2em;
-}
+} */
 
 .container.login-button {
     margin-top: 2em;
@@ -250,40 +257,40 @@ a {
     background-color: var(--vermilion);
     color: var(--white);
 }
+
 #generate {
     color: var(--white);
     background-color: var(--vermilion);
     font-weight: 600;
-    
-    
+    margin-bottom: 4em;
 }
 #generate:hover {
     box-shadow: inset 0 0 0 2em var(--midnight-blue);
     font-weight: 800;
     border-color: var(--midnight-blue);
 }
+
 #copy {
-    background-color: var(--white);
-    color: var(--midnight-blue);
-    
-    
+    color: var(--white);
+    background-color: var(--midnight-blue);
+    margin-bottom: 15px;
 }
 #copy:hover {
-    background-color: var(--midnight-blue);
-    color: var(--white);
+    color: var(--midnight-blue);
+    background-color: var(--white);
     font-weight: 800;
 }
+
 #edit {
     background-color: var(--white);
     color: var(--midnight-blue);
-    
-    
 }
 #edit:hover {
     background-color: var(--battleship-grey);
     color: var(--white);
     font-weight: 800;
 }
+
 #back {
     background-color: var(--white);
     color: var(--midnight-blue);
@@ -294,9 +301,6 @@ a {
     margin-right: 10px;
     z-index: 1;
     /* visibility: hidden; */
-
-    
-    
 }
 #back:hover {
     background-color: var(--midnight-blue);
@@ -306,8 +310,6 @@ a {
 #save {
     background-color: var(--white);
     color: green;
-    
-    
 }
 #save:hover {
     background-color: green;
@@ -318,7 +320,6 @@ a {
     display: inline-flex;
     flex-wrap: wrap;
     width: 100%;
-    
 }
 
 
@@ -333,16 +334,12 @@ a {
     font-weight: 800;
 }
 
-.text-field {
-    width: 250px;
-}
 .big {
-    width: 250px
+    width: var(--default-width);
 }
 
 .qr {
     margin-top: 40px;
-    
 }
 .qr-div {
     display: flex;
@@ -351,14 +348,19 @@ a {
     align-items: center;
 }
 .text-area {
-    width: 250px;
-    height: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    width: 337px;
+    border-color: rgb(189, 189, 189);
+    border-radius: var(--roundtangle);
+    height: 20px;
+    font-family: var(--fonts);
+    margin-top: 2px;
+    margin-bottom: 8px;
+    resize: none;
+    padding: 15px;
+    font-size: 14pt;
 }
 
 /* history of shortened links */
-
 .item-text {
     color: var(--battleship-grey);
 
@@ -384,7 +386,6 @@ a {
     width: 400px;
     height: 100px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
 
 .link-item.graph {
@@ -397,5 +398,3 @@ a {
     width: 100%;
     height: 50px;
 }
-
-
