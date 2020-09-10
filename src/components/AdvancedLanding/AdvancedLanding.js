@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import LinkShortener from "../LinkShortener/LinkShortener";
 import LinkList from "../LinkList/LinkList";
 import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
-import FeedbackForm from '../FeedbackForm/FeedbackForm';
-import LinkToMain from '../LinkToMain/LinkToMain';
+import FeedbackForm from "../FeedbackForm/FeedbackForm";
+import LinkToMain from "../LinkToMain/LinkToMain";
 
 class AdvancedLanding extends Component {
 
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
-      <div className='landing'>
+      <div className="landing">
         <LinkShortener />
         <LinkList />
         <FeedbackCarousel />
