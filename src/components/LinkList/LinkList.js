@@ -23,35 +23,37 @@ class LinkList extends Component {
     event.preventDefault();
     const filterTag = this.state.filterTag;
     const user = this.props.reduxState.user;
-    this.props.dispatch({ 
-      type: "FETCH_FILTERED_LINKS", 
-      payload: {filterTag, user} })
+    this.props.dispatch({
+      type: "FETCH_FILTERED_LINKS",
+      payload: { filterTag, user },
+    });
     this.setState({
-      filterTag: ''
-    })
-  }
+      filterTag: "",
+    });
+  };
   render() {
     return (
       <div className="link-list container">
         <p>Here are your links!</p>
-       
-       {/* This input is to filter link list
+
+        {/* This input is to filter link list
        by tags */}
         <textarea
           type="text"
           className="text-area short"
           name="filter"
-
           onChange={this.handleChange}
           placeholder="See links by tag"
         />
         <Button
-        id='filter'
-        variant='outlined'
-        color='default'
-        onClick={this.filterTag}
-        >Filter</Button>
-        
+          id="filter"
+          variant="outlined"
+          color="default"
+          onClick={this.filterTag}
+        >
+          Filter
+        </Button>
+
         {/* maps links in database and 
     passes down props to LinkListItem */}
         {this.props.reduxState.link.map((link, i) => (
