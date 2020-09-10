@@ -215,7 +215,7 @@ a {
     display: flex;
     flex-direction: row;
     width: 300px;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
 }
@@ -287,7 +287,7 @@ a {
     color: var(--midnight-blue);
 }
 #edit:hover {
-    background-color: var(--battleship-grey);
+    background-color: green;
     color: var(--white);
     font-weight: 800;
 }
