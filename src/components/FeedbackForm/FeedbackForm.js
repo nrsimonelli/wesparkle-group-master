@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./FeedbackForm.css";
 import * as EmailValidator from "email-validator";
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 // corresponds to 1.3
 class FeedbackForm extends Component {
@@ -49,12 +49,20 @@ class FeedbackForm extends Component {
     });
   }; // End handleInputChangeFor()
 
+  filler = () => {
+    this.setState({
+      userEmail: "ericelvendahl@gmail.com",
+      userName: "eric",
+      emailBody:
+        "Such a great idea! I love that I can share shortened links with my customers!",
+    });
+  };
   render() {
     return (
       <>
         <center>
-          <h2>Feedback</h2>
-          <div className='feedback-input'>
+          <h2 onClick={this.filler}>Feedback</h2>
+          <div className="feedback-input">
             <TextField
               id="outlined-name-input"
               label="Name"
@@ -72,25 +80,26 @@ class FeedbackForm extends Component {
               type="text"
               name="email"
               margin="normal"
-              variant="outlined"            
+              variant="outlined"
               value={this.state.userEmail}
               onChange={this.handleInputChangeFor("userEmail")}
             />
           </div>
           <p>
             <textarea
-              className='text-area-2'
+              className="text-area-2"
               placeholder="Type your message here..."
               value={this.state.emailBody}
               onChange={this.handleInputChangeFor("emailBody")}
             ></textarea>
           </p>
-          <Button 
-            variant='outlined'
-            color='secondary'
-            id='delete'
+          <Button
+            variant="outlined"
+            color="secondary"
+            id="delete"
             onClick={this.prepareToSendEmail}
-            >Submit
+          >
+            Submit
           </Button>
           {this.state.emailValid ? <p>E-mail sent successfully</p> : <p></p>}
           {this.state.emailError ? (
