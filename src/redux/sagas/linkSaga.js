@@ -1,54 +1,105 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 // Saga to add a link POST route
 function* addLink(action) {
-  console.log('trying to send a link:', action.payload)
+  console.log("trying to send a link:", action.payload);
   try {
-    const response = yield axios.post('/api/link', action.payload)
-    yield put({type:"FETCH_LINKS", payload: response.data})
+    const response = yield axios.post("/api/link", action.payload);
+    yield put({ type: "FETCH_LINKS", payload: response.data });
   } catch (error) {
-    console.log('issue with post link saga:', error)
+    console.log("issue with post link saga:", error);
   }
 }
 
-function* getLink(action){
-  console.log('getting links', action.payload)
+function* getLink(action) {
+  console.log("getting links", action.payload);
   try {
-    const response = yield axios.get('/api/link');
-    yield put({ type: 'SET_LINKS', payload: response.data });
-  } catch (error){
-    console.log('error with get link Saga:', error)
+    const response = yield axios.get("/api/link");
+    yield put({ type: "SET_LINKS", payload: response.data });
+  } catch (error) {
+    console.log("error with get link Saga:", error);
   }
 }
 
-function* getFilter(action){
-  console.log('getting filter links', action.payload)
+function* getFilter(action) {
+  console.log("getting filter links", action.payload);
   try {
-    const response = yield axios.get(`/api/tags/${action.payload.filterTag}`, action.payload);
-    yield put({ type: 'SET_LINKS', payload: response.data });
-  } catch (error){
-    console.log('error with get filter Saga:', error)
+    const response = yield axios.get(
+      `/api/tags/${action.payload.filterTag}`,
+      action.payload
+    );
+    yield put({ type: "SET_LINKS", payload: response.data });
+  } catch (error) {
+    console.log("error with get filter Saga:", error);
   }
 }
 
-function* disableLink(action){
-  console.log('disabling link', action.payload.id)
+function* disableLink(action) {
+  console.log("disabling link", action.payload.id);
   try {
     const response = yield axios.put(`/api/link/${action.payload.id}`);
-    yield put({ type: 'FETCH_LINKS', payload: response.data });
-  } catch (error){
-    console.log('error with get link Saga:', error)
+    yield put({ type: "FETCH_LINKS", payload: response.data });
+  } catch (error) {
+    console.log("error with get link Saga:", error);
   }
 }
 
+//sorts by oldest links first with and then without tags
+function* getNewestLinks(action) {
+  if (action.payload.filterTag != "") {
+    console.log(" getNewestLinks links", action.payload);
+    try {
+      const response = yield axios.get(
+        `/api/tags/newer/${action.payload.filterTag}`,
+        action.payload
+      );
+      yield put({ type: "SET_LINKS", payload: response.data });
+    } catch (error) {
+      console.log("error with get filter Saga:", error);
+    }
+  } else {
+    console.log("no tag selected");
+    try {
+      // If no tag selected, simply calls the original GET from /link
+      const response = yield axios.get("/api/link");
+      yield put({ type: "SET_LINKS", payload: response.data });
+    } catch (error) {
+      console.log("error with get link Saga:", error);
+    }
+  }
+}
 
+//sorts by oldest links first with and then without tags
+function* getOldestLinks(action) {
+  if (action.payload.filterTag != "") {
+    console.log(" getOldestLinks links", action.payload);
+    try {
+      const response = yield axios.get(
+        `/api/tags/older/${action.payload.filterTag}`,
+        action.payload
+      );
+      yield put({ type: "SET_LINKS", payload: response.data });
+    } catch (error) {
+      console.log("error with  getOldestLinks Saga:", error);
+    }
+  } else {
+    console.log("no tag selected");
+    try {
+      const response = yield axios.get("/api/tags/");
+      yield put({ type: "SET_LINKS", payload: response.data });
+    } catch (error) {
+      console.log("error with getOldestLinks Saga:", error);
+    }
+  }
+}
 function* linkSaga() {
   yield takeLatest("ADD_LINK", addLink);
   yield takeLatest("FETCH_LINKS", getLink);
   yield takeLatest("REMOVE_LINK", disableLink);
   yield takeLatest("FETCH_FILTERED_LINKS", getFilter);
-
+  yield takeLatest("FETCH_NEW_FILTERED_LINKS", getNewestLinks);
+  yield takeLatest("FETCH_OLD_FILTERED_LINKS", getOldestLinks);
 }
 
 export default linkSaga;
