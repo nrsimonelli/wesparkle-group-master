@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import './LoginPage.css';
 
 class LoginPage extends Component {
   state = {
@@ -47,7 +48,7 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
+        <form className="login form" onSubmit={this.login}>
           <h1 onClick={this.filler}>Login</h1>
           <div>
             <TextField

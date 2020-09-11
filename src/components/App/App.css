@@ -49,6 +49,9 @@ input {
   cursor: pointer;
   text-transform: capitalize;
   font-size: 1em;
+  /* be rid of this 3-D input button */
+  appearance: none;
+  border: 1px solid var(--battleship-grey);
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
@@ -387,22 +390,10 @@ a {
     color: var(--vermilion);
 }
 
-.feedback-input {
-    width: 400px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* border: 2px solid black; */
-}
-.text-area-2 {
-    width: 400px;
-    height: 100px;
-    font-family: var(--fonts);
-}
-
 .link-item.graph {
     height: 550px;
 }
+
 .link-item.details {
     height: 350px;
 }
