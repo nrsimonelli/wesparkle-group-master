@@ -103,7 +103,7 @@ h2 {
 .image-title {
     font-size: calc(10px + 2vmin);
     font-weight: 600;
-    width: 400px;
+    width: var(--default-width);
 }
 .image-box {
     width: 50vw;
