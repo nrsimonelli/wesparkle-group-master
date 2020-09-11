@@ -92,6 +92,7 @@ class FeedbackForm extends Component {
             onChange={this.handleInputChangeFor("emailBody")}
           >  
           </textarea>
+          <div>
           <Button
             variant="outlined"
             color="secondary"
@@ -100,6 +101,8 @@ class FeedbackForm extends Component {
           >
             Submit
           </Button>
+          </div>
+          
           {this.state.emailValid ? <p>E-mail sent successfully</p> : <p></p>}
           {this.state.emailError ? (
             <p>Error: invalid email address</p>
