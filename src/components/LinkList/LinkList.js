@@ -7,6 +7,7 @@ import { Button } from "@material-ui/core";
 class LinkList extends Component {
   state = {
     filterTag: "",
+    newLinkShow: true,
   };
   componentDidMount() {
     console.log("component did mount, LinkList");
@@ -27,8 +28,36 @@ class LinkList extends Component {
       type: "FETCH_FILTERED_LINKS",
       payload: { filterTag, user },
     });
+    // this.setState({
+    //   filterTag: "",
+    // });
+  };
+
+  newLinksFirst = () => {
+    console.log("newLinksFirst clicked");
+    const filterTag = this.state.filterTag;
+    const user = this.props.reduxState.user;
+    this.props.dispatch({
+      type: "FETCH_NEW_FILTERED_LINKS",
+      payload: { filterTag, user },
+    });
     this.setState({
-      filterTag: "",
+      // filterTag: "",
+      newLinkShow: true,
+    });
+  };
+
+  oldLinksFirst = () => {
+    console.log("oldLinksFirst clicked");
+    const filterTag = this.state.filterTag;
+    const user = this.props.reduxState.user;
+    this.props.dispatch({
+      type: "FETCH_OLD_FILTERED_LINKS",
+      payload: { filterTag, user },
+    });
+    this.setState({
+      // filterTag: "",
+      newLinkShow: false,
     });
   };
   render() {
@@ -45,15 +74,43 @@ class LinkList extends Component {
           onChange={this.handleChange}
           placeholder="See links by tag"
         />
-        <Button
-          id="filter"
-          variant="outlined"
-          color="default"
-          onClick={this.filterTag}
-        >
-          Filter
-        </Button>
-
+        <div className="filter-items">
+          <Button
+            id="filter"
+            variant="outlined"
+            color="default"
+            onClick={this.filterTag}
+          >
+            Filter
+          </Button>
+          {this.state.newLinkShow ? (
+            <Button
+              id="filter"
+              variant="outlined"
+              color="default"
+              onClick={this.oldLinksFirst}
+            >
+              Oldest First
+            </Button>
+          ) : (
+            <Button
+              id="filter"
+              variant="outlined"
+              color="default"
+              onClick={this.newLinksFirst}
+            >
+              Newest First
+            </Button>
+          )}
+          <Button
+              id="filter"
+              variant="outlined"
+              color="default"
+              onClick={()=>{this.props.dispatch({ type: "FETCH_LINKS" })}}
+            >
+              Clear
+            </Button>
+        </div>
         {/* maps links in database and 
     passes down props to LinkListItem */}
         {this.props.reduxState.link.map((link, i) => (
