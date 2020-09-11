@@ -217,9 +217,14 @@ a {
     width: 300px;
     justify-content: space-around;
     align-items: center;
-
 }
-
+.filter-items {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    justify-content: space-around;
+    align-items: center;
+}
 /* linkShortener */
 .container.link-shortener {
     display: flex;

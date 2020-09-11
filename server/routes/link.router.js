@@ -14,7 +14,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   let queryString = `
   SELECT * from link
   WHERE "user_id" = $1 AND "disabled_link" = FALSE 
-  ORDER BY "id" DESC
+  ORDER BY "date_created" DESC
   ;`;
   pool
     .query(queryString, [req.user.id])
