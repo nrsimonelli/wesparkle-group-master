@@ -59,6 +59,7 @@ class LinkDetails extends Component {
               >back</Button>
 
         <div className='container link-item details'>
+        <p><QRCode value={this.state.baseUrl + link.short_url} /></p>
           <div className='item-text item-title'>
             Long URL: 
             </div>
