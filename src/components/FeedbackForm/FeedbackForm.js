@@ -73,7 +73,7 @@ class FeedbackForm extends Component {
               value={this.state.userName}
               onChange={this.handleInputChangeFor("userName")}
             />
-
+            <div id="sign-in-spacer"></div>
             <TextField
               id="outlined-email-input"
               label="Email"
@@ -85,14 +85,13 @@ class FeedbackForm extends Component {
               onChange={this.handleInputChangeFor("userEmail")}
             />
           </div>
-          <p>
-            <textarea
-              className="text-area-2"
-              placeholder="Type your message here..."
-              value={this.state.emailBody}
-              onChange={this.handleInputChangeFor("emailBody")}
-            ></textarea>
-          </p>
+          <textarea
+            className="feedback text-area"
+            placeholder="Type your message here..."
+            value={this.state.emailBody}
+            onChange={this.handleInputChangeFor("emailBody")}
+          >  
+          </textarea>
           <Button
             variant="outlined"
             color="secondary"

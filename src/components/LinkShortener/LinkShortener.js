@@ -113,7 +113,7 @@ class LinkShortener extends Component {
         ) : (
           <span>Please enter a valid URL</span>
         )}
-        <div>This is a link shortner!</div>
+        <h2>Shorten Links For Free and Support Small Businesses</h2>
         <textarea
           type="text"
           className="text-area short"
