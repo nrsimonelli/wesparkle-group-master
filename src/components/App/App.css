@@ -379,6 +379,9 @@ a {
     color: var(--vermilion);
     font-size: 17px;
 }
+.item-link {
+    margin-bottom: 1.5em;
+}
 .item-link:hover {
     font-weight: 600;
     color: var(--vermilion);
