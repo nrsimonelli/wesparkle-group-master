@@ -191,12 +191,12 @@ a {
     width: var(--default-width);
     border-radius: var(--roundtangle);
 }
-
 /* linkListItem */
 .link-list {
-    margin-top: 50px;
+    background-color: var(--midnight-blue);
 }
 .link-item.container {
+    background-color: var(--white);
     width: calc(var(--default-width) - 4em);
     display: flex;
     flex-direction: column;
