@@ -96,15 +96,15 @@ class LinkDetails extends Component {
          <p>{this.state.copySuccess}</p>
                  
         </div>
-        <h1>Graph Title</h1>
+        <h1>Clicks by Day</h1>
         <div className='container graph link-item'>
           <GraphOne />
         </div>
-        <h1>Graph Title</h1>
+        <h1>Top Performing Links</h1>
         <div className='container graph link-item'>
           <GraphTwo />
         </div>
-        <h1>Graph Title</h1>
+        <h1>Links Generated</h1>
         <div className='container graph link-item'>
           <GraphThree />
         </div>
