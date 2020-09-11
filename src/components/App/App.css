@@ -197,12 +197,12 @@ a {
     margin-top: 50px;
 }
 .link-item.container {
-    width: var(--default-width);
+    width: calc(var(--default-width) - 4em);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    padding: 2em 0;
+    padding: 2em;
     border: 1px solid var(--battleship-grey);
     border-radius: var(--roundtangle);
     margin-bottom: 2em;
@@ -211,9 +211,8 @@ a {
     display: flex;
     flex-direction: row;
     width: 300px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-
 }
 
 /* linkShortener */
@@ -372,20 +371,17 @@ a {
     color: var(--battleship-grey);
     display: flex;
     flex-direction: column;
-    width: 80%;
-    align-items: center;
     flex-wrap: wrap;
     overflow-wrap: anywhere;
-
 }
 .item-title {
     text-transform: uppercase;
-    color: var(--midnight-blue);
-    font-size: 18px;
+    color: var(--vermilion);
+    font-size: 17px;
 }
 .item-link:hover {
     font-weight: 600;
-    color: var(--midnight-blue);
+    color: var(--vermilion);
 }
 
 .feedback-input {
@@ -406,8 +402,8 @@ a {
 }
 .link-item.details {
     height: 350px;
-    
 }
+
 .link-item.button.save {
     width: 100%;
     height: 50px;
