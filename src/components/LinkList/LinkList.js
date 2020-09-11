@@ -63,7 +63,7 @@ class LinkList extends Component {
   render() {
     return (
       <div className="link-list container">
-        <p>Here are your links!</p>
+        <h2 id="userHeader">{this.props.reduxState.user.username}, here are your links!</h2>
 
         {/* This input is to filter link list
        by tags */}
