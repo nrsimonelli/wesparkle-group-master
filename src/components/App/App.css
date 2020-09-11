@@ -1,7 +1,7 @@
 body {
     font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
 }
+
 .root {
     --battleship-grey: #888787ff;
     --white: #ffffffff;
@@ -36,6 +36,15 @@ form {
 input {
     margin: 5px;
     margin-bottom: 10px;
+}
+
+h2 {
+    /* margin: .75em; */
+    /* width: 90%; */
+    width: var(--default-width);
+    text-align: center;
+    font-size: 1.6em;
+    margin: 0;
 }
 
 .log-in, .log-out, .register {
@@ -112,81 +121,6 @@ a {
 } */
 
 
-/* Benefits Styling */
-.benefits.container {
-    min-height: 600px;
-    /* display: flex;
-    flex-direction: column;
-    width: 100vw;
-    border: 2px solid black;
-    justify-content: space-between;
-    align-items: center; */
-}
-/* 
-.benefits.image-title {
-  margin: .2em;  
-  font-size: calc(10px + 2vmin);
-  font-weight: 400;
-  letter-spacing: .1em; 
-}
-.benefits.image-box {
-    /* margin: .2em;
-    padding: .2em;
-    border: 2px solid pink;
-    width: 50vw;
-    min-width: 400px;
-    min-height: 200px;
-    max-width: 600px; 
-
-}*/
-.image-1 {
-    background-image: url('/images/bigPhone.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.image-2 {
-    background-image: url('/images/armUp.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.image-3 {
-    background-image: url('/images/circle.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-/* Support Styling 1.1 */
-.support.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
-    width: 100vw;
-    justify-content: space-around;
-    align-items: center;
-}
-/* .support.image-title {
-  /* margin: .2em;  
-  font-size: calc(10px + 2vmin);
-  font-weight: 400;
-  letter-spacing: .1em; 
-
-} */
-.support.image-box {
-    width: 50vw;
-    min-width: 400px;
-    min-height: 300px;
-    max-width: 600px;
-}
-.support.description {
-    max-width: 400px;
-    color: var(--battleship-grey);
-    font-weight: 100;
-}
-.link-to-main.container {
-    height: 200px;
-}
 .text-field {
     margin: inherit;
     color: var(--battleship-grey);
