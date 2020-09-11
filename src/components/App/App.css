@@ -175,9 +175,10 @@ a {
     align-items: center;
 }
 
-/* .short {
-    padding: 2em;
-} */
+#userHeader {
+    color: var(--white);
+    margin: 10px;
+}
 
 .container.login-button {
     margin-top: 2em;
