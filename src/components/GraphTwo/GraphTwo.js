@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {XYPlot, MarkSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import {XYPlot, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, VerticalBarSeries, VerticalBarSeriesCanvas} from 'react-vis';
 
 
 
 const data = [
-  {x: 1, y: 10, size: 30},
-  {x: 1.7, y: 12, size: 10},
-  {x: 2, y: 5, size: 1},
-  {x: 3, y: 15, size: 12},
-  {x: 2.5, y: 7, size: 4}
+  {x: 'Roster Management', y: 25},
+  {x: 'Why We Sleep', y: 22},
+  {x: 'On Field Nutrition', y: 19}
 ]
 
 class GraphTwo extends Component {
@@ -22,15 +20,14 @@ class GraphTwo extends Component {
     return (
       <>
         <XYPlot
+          xType={'ordinal'}
           width={380}
           height={500}>
             <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
-          <MarkSeries
-            className="mark-series-example"
-            sizeRange={[5, 15]}
+          <VerticalBarSeriesCanvas
             data={data}/>
           
         </XYPlot>

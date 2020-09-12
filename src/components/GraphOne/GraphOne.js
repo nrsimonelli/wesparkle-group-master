@@ -10,16 +10,16 @@ import {
 } from "react-vis";
 
 const data = [
-  { x: 0, y: 8 },
-  { x: 1, y: 5 },
-  { x: 2, y: 4 },
-  { x: 3, y: 9 },
-  { x: 4, y: 1 },
-  { x: 5, y: 7 },
-  { x: 6, y: 6 },
-  { x: 7, y: 3 },
-  { x: 8, y: 2 },
-  { x: 9, y: 0 },
+  { x: "9/6", y: 28 },
+  { x: "9/7", y: 25 },
+  { x: "9/8", y: 24 },
+  { x: "9/9", y: 29 },
+  { x: "9/10", y: 31 },
+  { x: "9/11", y: 27 },
+  { x: "9/12", y: 26 },
+  { x: "9/13", y: 13 },
+  { x: "9/14", y: 12 },
+  { x: "9/15", y: 0 },
 ];
 
 class GraphOne extends Component {
@@ -32,7 +32,7 @@ class GraphOne extends Component {
   render() {
     return (
       <>
-        <XYPlot height={500} width={380}>
+        <XYPlot xType={'ordinal'} height={500} width={380}>
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
