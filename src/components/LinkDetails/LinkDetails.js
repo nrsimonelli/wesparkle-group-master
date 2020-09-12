@@ -58,8 +58,8 @@ class LinkDetails extends Component {
               color="primary" 
               >back</Button>
 
-        <div className='container link-item details'>
-        <p><QRCode value={this.state.baseUrl + link.short_url} /></p>
+        <div className='container link-item'>
+        <QRCode className='item-link' value={this.state.baseUrl + link.short_url} />
           <div className='item-text item-title'>
             Long URL: 
             </div>
@@ -94,7 +94,7 @@ class LinkDetails extends Component {
               >x
             </Button>
           </div>
-         <p>{this.state.copySuccess}</p>
+         <center className="link-copied">{this.state.copySuccess}</center>
                  
         </div>
         <h1>Clicks by Day</h1>

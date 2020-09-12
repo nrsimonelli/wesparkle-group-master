@@ -159,7 +159,7 @@ class LinkShortener extends Component {
                 >
                   Copy Shortened Link
                 </Button>
-                <center>{this.state.copySuccess}</center>
+                <center className="link-copied">{this.state.copySuccess}</center>
               </div>
             )
           }

@@ -39,8 +39,6 @@ input {
 }
 
 h2 {
-    /* margin: .75em; */
-    /* width: 90%; */
     width: var(--default-width);
     text-align: center;
     font-size: 1.6em;
@@ -342,4 +340,8 @@ a {
 .link-item.button.save {
     width: 100%;
     height: 50px;
+}
+
+.link-copied {
+    margin-top: 1em;
 }
