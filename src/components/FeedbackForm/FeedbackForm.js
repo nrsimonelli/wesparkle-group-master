@@ -94,6 +94,7 @@ class FeedbackForm extends Component {
           </textarea>
           <div>
           <Button
+            className="feedbackButton"
             variant="outlined"
             color="secondary"
             id="delete"
