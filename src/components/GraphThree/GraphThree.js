@@ -27,7 +27,9 @@ class GraphThree extends Component {
               {x: 5, y: 7},
               {x: 6, y: 5},
               {x: 7, y: 10}
-            ]}/>
+              
+            ]}
+            color={'#0c1466ff'}/>
   
         </XYPlot>
       </>

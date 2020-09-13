@@ -28,7 +28,8 @@ class GraphTwo extends Component {
           <XAxis />
           <YAxis />
           <VerticalBarSeriesCanvas
-            data={data}/>
+            data={data}
+            color={'#0c1466ff'} />
           
         </XYPlot>
       </>

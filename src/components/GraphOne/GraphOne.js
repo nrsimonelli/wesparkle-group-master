@@ -37,7 +37,7 @@ class GraphOne extends Component {
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
-          <VerticalBarSeriesCanvas data={data} />
+          <VerticalBarSeriesCanvas data={data} color={'#0c1466ff'} />
         </XYPlot>
       </>
     ); // end return
