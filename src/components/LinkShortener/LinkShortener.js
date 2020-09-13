@@ -107,13 +107,14 @@ class LinkShortener extends Component {
   render() {
     return (
       <div className="container link-shortener">
+        <h2 id="landingHeader">Shorten Links For Free and Support Small Businesses</h2>
+
         {/* If the user submits an invalid URL, show error */}
         {this.state.urlIsValid ? (
           <div />
         ) : (
           <span>Please enter a valid URL</span>
         )}
-        <h2>Shorten Links For Free and Support Small Businesses</h2>
         <textarea
           type="text"
           className="text-area short"

@@ -45,6 +45,10 @@ h2 {
     margin: 0;
 }
 
+#landingHeader {
+    margin-bottom: 1em;
+}
+
 .log-in, .log-out, .register {
   background-color: var(--vermilion);
   border-radius: var(--roundtangle);
@@ -76,11 +80,9 @@ h2 {
     outline:0;
     border-bottom:1px solid var(--battleship-grey); 
     cursor: pointer;
-
-
 }
 
-.shortener.container{
+.shortener.container {
     display: flex;
     align-items: center;
     width: 40%;
@@ -175,7 +177,7 @@ a {
 
 #userHeader {
     color: var(--white);
-    margin: 10px;
+    margin: 1.5em 0 1em 0;
 }
 
 .container.login-button {
@@ -201,7 +203,7 @@ a {
     color: var(--white);
     background-color: var(--vermilion);
     font-weight: 600;
-    margin-bottom: 3em;
+    margin-bottom: 2.5em;
 }
 #generate:hover {
     box-shadow: inset 0 0 0 2em var(--midnight-blue);
