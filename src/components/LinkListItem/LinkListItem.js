@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import copy from "clipboard-copy";
-import Button from '@material-ui/core/Button'
+import Button from "@material-ui/core/Button";
 
 class LinkListItem extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "http://localhost:5000/api/link/",
+    baseUrl: "http://sprk.le/",
   };
   goToDetails = (link) => {
     console.log("editDetails clicked");
@@ -38,46 +38,52 @@ class LinkListItem extends Component {
 
     return (
       <div className="container link-item">
-        <div className='item-text item-title'>
-        Long URL:
+        <div className="item-text item-title">Long URL:</div>
+        <div className="item-text item-link">
+          {<a href={link.long_url}>{link.long_url}</a>}
         </div>
-        <div className='item-text item-link'>
-        {<a href={link.long_url}>{link.long_url}</a>}
-        </div>
-        <div className='item-text item-title'>
-        Short URL:
-        </div>
-        <div className='item-text item-link'>
-        {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
+        <div className="item-text item-title">Short URL:</div>
+        <div className="item-text item-link">
+          {
+            // Changed functionality for presentation.
+            // Original code in comment here:
+            // <a href={this.state.baseUrl + link.short_url}>
+            //   {this.state.baseUrl + link.short_url}
+            // </a>
+            <a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>
+          }
         </div>
         <div className="input-tag">
           <ul className="input-tag__tags">
             {link.tags.map((tag, i) => (
               <li key={tag}>{tag}</li>
             ))}
-        </ul>
+          </ul>
         </div>
         <div className="link-item button">
-          <Button 
-            id='copy'
+          <Button
+            id="copy"
             onClick={this.copyLink}
-            variant='outlined'
-            color='primary'
-            >copy
+            variant="outlined"
+            color="primary"
+          >
+            copy
           </Button>
-          <Button 
-            id='edit'
+          <Button
+            id="edit"
             onClick={() => this.goToDetails(link)}
-            variant='outlined'
-            color='default'
-            >edit
+            variant="outlined"
+            color="default"
+          >
+            edit
           </Button>
-          <Button 
-            id='delete'
+          <Button
+            id="delete"
             onClick={() => this.deleteLink(link)}
-            variant='outlined'
-            color='secondary'
-            >x
+            variant="outlined"
+            color="secondary"
+          >
+            x
           </Button>
         </div>
       </div>

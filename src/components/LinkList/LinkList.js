@@ -42,7 +42,6 @@ class LinkList extends Component {
       payload: { filterTag, user },
     });
     this.setState({
-      // filterTag: "",
       newLinkShow: true,
     });
   };
@@ -56,10 +55,16 @@ class LinkList extends Component {
       payload: { filterTag, user },
     });
     this.setState({
-      // filterTag: "",
       newLinkShow: false,
     });
   };
+
+  clearFilters = () => {
+    this.props.dispatch({ type: "FETCH_LINKS" })
+    this.setState({
+      filterTag: "",
+    });
+  }
   render() {
     return (
       <div className="link-list container">
@@ -71,6 +76,7 @@ class LinkList extends Component {
           type="text"
           className="text-area short"
           name="filter"
+          value={this.state.filterTag}
           onChange={this.handleChange}
           placeholder="See links by tag"
         />
@@ -106,7 +112,7 @@ class LinkList extends Component {
               id="filter"
               variant="outlined"
               color="default"
-              onClick={()=>{this.props.dispatch({ type: "FETCH_LINKS" })}}
+              onClick={this.clearFilters}
             >
               Clear
             </Button>

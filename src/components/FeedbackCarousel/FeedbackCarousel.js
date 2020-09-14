@@ -9,7 +9,16 @@ class FeedbackCarousel extends Component {
   render() {
     return (
       <div className='carousel-flex'>
-          <Carousel autoplay infiniteLoop showThumbs={false} showStatus={false} className="feedbackCarousel">
+          <Carousel autoPlay interval={6000} infiniteLoop showThumbs={false} showStatus={false} className="feedbackCarousel">
+            
+          <div>
+              <p>
+                " Loved printing my QR code on my business cards. Thanks! "
+                <br /><br />
+                - Rebecca F.
+              </p>
+            </div>
+            
             <div>
               <p>
                 " This link shortener is so easy to use. Thank you! "
@@ -24,15 +33,8 @@ class FeedbackCarousel extends Component {
                 <br /><br />
                 - Nick M.
               </p>
-
             </div>
-            <div>
-              <p>
-                " Loved printing my QR code on my business cards. Thanks! "
-                <br /><br />
-                - Rebecca F.
-              </p>
-            </div>
+            
           </Carousel>
         </div>
     );
