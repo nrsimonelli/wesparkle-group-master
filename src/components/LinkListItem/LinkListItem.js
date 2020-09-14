@@ -45,9 +45,12 @@ class LinkListItem extends Component {
         <div className="item-text item-title">Short URL:</div>
         <div className="item-text item-link">
           {
-            <a href={this.state.baseUrl + link.short_url}>
-              {this.state.baseUrl + link.short_url}
-            </a>
+            // Changed functionality for presentation.
+            // Original code in comment here:
+            // <a href={this.state.baseUrl + link.short_url}>
+            //   {this.state.baseUrl + link.short_url}
+            // </a>
+            <a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>
           }
         </div>
         <div className="input-tag">

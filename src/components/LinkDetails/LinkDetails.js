@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import QRCode from "qrcode.react";
 import copy from "clipboard-copy";
-import LinkTags from '../LinkTags/LinkTags';
-import Button from '@material-ui/core/Button';
-import GraphOne from '../GraphOne/GraphOne';
-import GraphTwo from '../GraphTwo/GraphTwo';
-import GraphThree from '../GraphThree/GraphThree';
-
+import LinkTags from "../LinkTags/LinkTags";
+import Button from "@material-ui/core/Button";
+import GraphOne from "../GraphOne/GraphOne";
+import GraphTwo from "../GraphTwo/GraphTwo";
+import GraphThree from "../GraphThree/GraphThree";
 
 class LinkDetails extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "http://localhost:5000/api/link/",
+    baseUrl: "http://sprk.le/",
   };
 
   componentDidMount() {
@@ -33,8 +32,8 @@ class LinkDetails extends Component {
     // this calls the clipboard-copy library imported above
     copy(this.state.baseUrl + this.props.reduxState.details.short_url);
     this.setState({
-        copySuccess: "Link copied!",
-      });
+      copySuccess: "Link copied!",
+    });
   };
 
   deleteLink = (link) => {
@@ -47,66 +46,68 @@ class LinkDetails extends Component {
   render() {
     const link = this.props.reduxState.details;
     return (
-      <div className='landing'>
-                <h1>Link Details</h1>
-                {/* move to nav?? */}
-                <Button
-              id="back"
-              className="short"
-              onClick={() => this.props.history.push('/home')}
-              variant="outlined"
-              color="primary" 
-              >back</Button>
+      <div className="landing">
+        <h1>Link Details</h1>
+        {/* move to nav?? */}
+        <Button
+          id="back"
+          className="short"
+          onClick={() => this.props.history.push("/home")}
+          variant="outlined"
+          color="primary"
+        >
+          back
+        </Button>
 
-        <div className='container link-item'>
-        <QRCode className='item-link' value={this.state.baseUrl + link.short_url} />
-          <div className='item-text item-title'>
-            Long URL: 
-            </div>
-            <div className='item-text item-link'>
+        <div className="container link-item">
+          <QRCode
+            className="item-link"
+            value={this.state.baseUrl + link.short_url}
+          />
+          <div className="item-text item-title">Long URL:</div>
+          <div className="item-text item-link">
             {<a href={link.long_url}>{link.long_url}</a>}
-            </div>
-            <div className='item-text item-title'>
-
-            Short URL:
-            </div>
-            <div className='item-text item-link'>
-            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
-            </div>
-            {this.props.reduxState.details.id ? 
-        <LinkTags link={link}/>
-        :
-        <></>}
-            <div className="link-item button">
-              <Button
+          </div>
+          <div className="item-text item-title">Short URL:</div>
+          <div className="item-text item-link">
+            {/* Link code changed for presentation.
+            Original here:
+            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>} */}
+            {<a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>}
+          </div>
+          {this.props.reduxState.details.id ? <LinkTags link={link} /> : <></>}
+          <div className="link-item button">
+            <Button
               id="copy"
               className="short"
               onClick={this.copyLink}
               variant="outlined"
-              color="primary" 
-              >copy</Button>
+              color="primary"
+            >
+              copy
+            </Button>
 
-              <Button 
-              id='delete'
+            <Button
+              id="delete"
               onClick={() => this.deleteLink(link)}
-              variant='outlined'
-              color='secondary'
-              >x
+              variant="outlined"
+              color="secondary"
+            >
+              x
             </Button>
           </div>
-         <center className="link-copied">{this.state.copySuccess}</center>
-                 
+          <center className="link-copied">{this.state.copySuccess}</center>
         </div>
         <h1>Clicks by Day</h1>
-        <div className='container graph link-item'>
+        <div className="container graph link-item">
           <GraphOne />
         </div>
         <h1>Top Performing Links</h1>
-        <div className='container graph link-item'>
+        <div className="container graph link-item">
           <GraphTwo />
         </div>
         <h1>Links Generated</h1>
-        <div className='container graph link-item'>
+        <div className="container graph link-item">
           <GraphThree />
         </div>
       </div>
