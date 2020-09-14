@@ -47,7 +47,7 @@ button.nav-link{
   color: var(--midnight-blue);
   background-color: var(--white);
   text-align: center;
-  padding: 24px 10px;
+  padding: 24px 5px;
   text-decoration: none;
   font-size: 15px;
   font-family: var(--fonts);

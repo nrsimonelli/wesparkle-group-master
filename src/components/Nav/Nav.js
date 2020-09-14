@@ -13,7 +13,7 @@ const Nav = (props) => (
     <div className="nav-right">
       {/* Show the basic features vs. logged in features main page */}
       {props.user.id ? 
-      ( <Link className="nav-link" to="/home">Home</Link>) 
+      ( <button className="nav-link"><Link to="/home">Home</Link></button>) 
       :
       (<Link className="nav-link" to="/login">Login/Register</Link>)}
 
