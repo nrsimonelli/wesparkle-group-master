@@ -27,6 +27,10 @@
     margin-bottom: 3em;
 }
 
+.paragraph {
+    line-height: 1.5em;
+}
+
 .link-to-main.container {
     margin: 2em 0 1em 0;
 }
