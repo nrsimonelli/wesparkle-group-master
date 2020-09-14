@@ -5,9 +5,9 @@ import {XYPlot, VerticalGridLines, HorizontalGridLines, XAxis, YAxis, VerticalBa
 
 
 const data = [
-  {x: 'Roster Management', y: 25},
-  {x: 'Why We Sleep', y: 22},
-  {x: 'On Field Nutrition', y: 19}
+  {x: 'Roster Management', y: 1925},
+  {x: 'Why We Sleep', y: 922},
+  {x: 'On Field Nutrition', y: 619}
 ]
 
 class GraphTwo extends Component {
