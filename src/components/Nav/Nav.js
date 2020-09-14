@@ -7,8 +7,7 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav root">
     <Link to="/home">
-      {/* This is the logo - 'title' serves as an alt tag */}
-      <div className="nav-logo-box nav-logo" title="We Sparkle logo"></div>
+      <img className="nav-logo" src="/images/wsLogo.png" alt="We Sparkle logo" />
     </Link>
 
     <div className="nav-right">

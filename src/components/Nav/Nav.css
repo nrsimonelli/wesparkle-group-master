@@ -7,21 +7,8 @@
     padding-left: 10px;
 }
 
-.nav-logo-box {
-    width: 204px;
-    height: 35px;
-    background-size: contain;
-    background-repeat: no-repeat;
-
-/* AUDRY - thought this would help logo show on nav but no */
-  /* width: 32vw;
-  height: 5vh;
-  background-size: contain;
-  background-repeat: no-repeat; */
-}
-
 .nav-logo {
-  background-image: url('https://static.wixstatic.com/media/450dbd_791a4f2fc1c94a339a98cdeca033fa20~mv2.png/v1/fill/w_500,h_84,al_c,lg_1,q_85/WeSparkle_H_Red.webp');
+    margin-top: 0.5em;
 }
 
 .nav {
@@ -54,6 +41,7 @@
   cursor: pointer;
   outline:0;
 }
+
 button.nav-link{
   float: left;
   color: var(--midnight-blue);
@@ -62,7 +50,7 @@ button.nav-link{
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
-  font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--fonts);
   border:none;
   cursor: pointer;
   outline:0;

@@ -316,6 +316,9 @@ a {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    /* phones will only break chars with word-wrap - this one has to come first */
+    word-wrap: break-word;
+    /* but desktop will only break chars with overflow-wrap */
     overflow-wrap: anywhere;
 }
 .item-title {
@@ -325,6 +328,7 @@ a {
 }
 .item-link {
     margin-bottom: 1.5em;
+    width: 306px;
 }
 .item-link:hover {
     font-weight: 600;
