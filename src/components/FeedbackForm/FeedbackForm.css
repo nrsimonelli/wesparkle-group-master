@@ -14,3 +14,7 @@
 .feedback.text-area {
     min-height: 200px;
 }
+
+.feedbackButton {
+    width: var(--default-width);
+}
