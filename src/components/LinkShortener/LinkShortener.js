@@ -72,7 +72,7 @@ class LinkShortener extends Component {
         // Base URL goes in this variable
         // This can be changed to a custom domain later,
         // if needed.
-        const baseUrl = "http://sprk.le/";
+        const baseUrl = "http://sprkl.es/";
         const shortString = shortId.generate();
         this.setState({
           shortenedUrl: baseUrl + shortString,
@@ -106,15 +106,16 @@ class LinkShortener extends Component {
 
   filler = () => {
     this.setState({
-      inputUrl: "https://static1.squarespace.com/static/56c4a5a1ab48de157ce9eac5/t/59fa3d9324a694c411d827ac/1509572006127/Academy+Report+-+Celebrating+10+Years.pdf",
+      inputUrl:
+        "https://static1.squarespace.com/static/56c4a5a1ab48de157ce9eac5/t/59fa3d9324a694c411d827ac/1509572006127/Academy+Report+-+Celebrating+10+Years.pdf",
     });
   };
   render() {
     return (
       <div className="container link-shortener">
-        <h2 
-        onClick={this.filler}
-        id="landingHeader">Shorten Links For Free and Support Small Businesses</h2>
+        <h2 onClick={this.filler} id="landingHeader">
+          Shorten Links For Free and Support Small Businesses
+        </h2>
 
         {/* If the user submits an invalid URL, show error */}
         {this.state.urlIsValid ? (
@@ -167,7 +168,9 @@ class LinkShortener extends Component {
                 >
                   Copy Shortened Link
                 </Button>
-                <center className="link-copied">{this.state.copySuccess}</center>
+                <center className="link-copied">
+                  {this.state.copySuccess}
+                </center>
               </div>
             )
           }

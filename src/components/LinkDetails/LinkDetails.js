@@ -12,7 +12,7 @@ import GraphThree from "../GraphThree/GraphThree";
 class LinkDetails extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "http://sprk.le/",
+    baseUrl: "http://sprkl.es/",
   };
 
   componentDidMount() {
