@@ -147,7 +147,7 @@ a {
 .link-item.button {
     display: flex;
     flex-direction: row;
-    width: 300px;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 }

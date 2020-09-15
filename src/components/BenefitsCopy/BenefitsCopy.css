@@ -29,6 +29,7 @@
 
 .paragraph {
     line-height: 1.5em;
+    width: 350px;
 }
 
 .link-to-main.container {
