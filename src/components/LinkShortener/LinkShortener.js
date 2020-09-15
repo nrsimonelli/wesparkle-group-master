@@ -104,10 +104,17 @@ class LinkShortener extends Component {
     });
   }; // end handleInputChangeFor()
 
+  filler = () => {
+    this.setState({
+      inputUrl: "https://static1.squarespace.com/static/56c4a5a1ab48de157ce9eac5/t/59fa3d9324a694c411d827ac/1509572006127/Academy+Report+-+Celebrating+10+Years.pdf",
+    });
+  };
   render() {
     return (
       <div className="container link-shortener">
-        <h2 id="landingHeader">Shorten Links For Free and Support Small Businesses</h2>
+        <h2 
+        onClick={this.filler}
+        id="landingHeader">Shorten Links For Free and Support Small Businesses</h2>
 
         {/* If the user submits an invalid URL, show error */}
         {this.state.urlIsValid ? (
