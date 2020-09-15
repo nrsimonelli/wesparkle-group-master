@@ -51,7 +51,6 @@ class LinkDetails extends Component {
         {/* move to nav?? */}
         <Button
           id="back"
-          className="short"
           onClick={() => this.props.history.push("/home")}
           variant="outlined"
           color="primary"
