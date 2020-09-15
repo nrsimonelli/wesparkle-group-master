@@ -247,11 +247,10 @@ a {
     color: var(--midnight-blue);
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0.75em;
     margin-bottom: 10px;
     margin-right: 10px;
     z-index: 1;
-    /* visibility: hidden; */
 }
 #back:hover {
     background-color: var(--midnight-blue);

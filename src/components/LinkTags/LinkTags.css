@@ -9,7 +9,6 @@
   width: 90%;
   height: 78%;
   border: none;
-  /* border: 1px solid blueviolet; */
   font-family: var(--fonts);
   margin: 0 0 10px 8px;
   padding: 5px 0 0 0;
@@ -17,7 +16,6 @@
 
 .input-tag input:focus {
   outline: none;
-  /* color */
 }
 
 .input-tag__tags {
