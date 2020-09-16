@@ -15,7 +15,9 @@ Before you get started, make sure you have the following software installed on y
 ## Screen Shots
 
 ### User View
-![Title](GifFileName.gif)
+![Main Page - A shortened link](documentation/images/mainShortenedLink.png)
+![Logged in - Saved links](documentation/images/savedLinks.png)
+![Logged in - Details of one link](documentation/images/linkDetails.png)
 
 
 ## Installation
