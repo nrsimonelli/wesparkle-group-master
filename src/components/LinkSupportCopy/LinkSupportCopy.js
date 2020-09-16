@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 
-
 import {connect} from 'react-redux';
-
 
 class LinkSupportCopy extends Component {
 
   render() {
+    // Copy from WeSparkle re community support
     return (
       <div className='support container'>
 

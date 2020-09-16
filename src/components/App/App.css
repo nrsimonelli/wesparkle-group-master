@@ -1,7 +1,8 @@
+/* global font family */
 body {
     font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+/* global color variables and font repeated */
 .root {
     --battleship-grey: #888787ff;
     --white: #ffffffff;
@@ -89,7 +90,6 @@ h2 {
     
 }
 
-/* Globals */
 .container {
     display: flex;
     flex-direction: column;

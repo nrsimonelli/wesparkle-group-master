@@ -8,9 +8,7 @@ class Home extends Component {
   componentDidMount () {
     console.log('componentDidMount Home');
   }
-
-
-
+// chooses which component tree to render based on log-in status
   render() {
     return (
       <>

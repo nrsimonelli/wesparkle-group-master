@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "react-vis";
 
+// sample data
 const data = [
   { x: "9/6", y: 728 },
   { x: "9/7", y: 905 },
@@ -30,6 +31,7 @@ class GraphOne extends Component {
   }
 
   render() {
+    // react-vis for graph documentation
     return (
       <>
         <XYPlot xType={'ordinal'} height={500} width={380}>

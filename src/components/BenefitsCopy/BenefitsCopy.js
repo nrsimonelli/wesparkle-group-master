@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './BenefitsCopy.css';
 
-// 1.1
+// copy from weSparkle re link shortening benefits
 class BenefitsCopy extends Component {
 
   render() {
@@ -14,11 +14,11 @@ class BenefitsCopy extends Component {
         <div className='benefits image-box image-1'>
         </div>
         <div className='support description'>
-          - Makes it easy for people to remember your website or link!
+          Makes it easy for people to remember your website or link!
           <br /><br />
-          - Some social media channels like Twitter have character limits.
+          Some social media channels like Twitter have character limits.
           <br /><br />
-          - Makes your social media posts, flyers, and emails look more professional.
+          Makes your social media posts, flyers, and emails look more professional.
         </div>
 
         <h2>
@@ -28,11 +28,11 @@ class BenefitsCopy extends Component {
 
         </div>
         <div className='support description'>
-          - Makes it easy for people to use their phones to scan and be directed to the correct website.   
+          Makes it easy for people to use their phones to scan and be directed to the correct website.   
           <br /><br />
-          - People don't have to remember your website or type it into their phone/laptop (and accidentally misspell it).        
+          People don't have to remember your website or type it into their phone/laptop (and accidentally misspell it).        
           <br /><br />
-          - QR codes are graphics that can sometimes be more eye-catching than a website link.
+          QR codes are graphics that can sometimes be more eye-catching than a website link.
         </div>
         
         <div className='image-title link-button'>
