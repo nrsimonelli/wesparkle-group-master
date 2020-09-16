@@ -10,12 +10,20 @@ class LinkShortener extends Component {
   componentDidMount() {
     console.log("component did mount, link Shortener");
   }
+  componentDidUpdate() {
+    if (this.state.baseUrl === "") {
+      this.setState({
+        baseUrl: this.props.reduxState.baseUrl.url,
+      });
+    }
+  }
 
   state = {
     inputUrl: "",
     shortenedUrl: "",
     copySuccess: "",
     urlIsValid: true,
+    baseUrl: "",
   };
 
   copyClicked = (e) => {
@@ -34,7 +42,6 @@ class LinkShortener extends Component {
   }; // end copyClicked()
 
   generateClicked = () => {
-    console.log("Button clicked");
     // Only generate if they have entered a URL
     if (this.state.inputUrl != "") {
       // Use url-parse library (as 'parse') to clean input URL
@@ -65,10 +72,10 @@ class LinkShortener extends Component {
         // Base URL goes in this variable
         // This can be changed to a custom domain later,
         // if needed.
-        const baseUrl = process.env.BASE_URL;
+
         const shortString = shortId.generate();
         this.setState({
-          shortenedUrl: baseUrl + shortString,
+          shortenedUrl: this.state.baseUrl + shortString,
           copySuccess: "",
         });
         this.props.dispatch({
@@ -176,4 +183,8 @@ class LinkShortener extends Component {
   } // end render
 } // end class
 
-export default connect()(LinkShortener);
+const mapReduxStateToProps = (reduxState) => ({
+  reduxState,
+});
+
+export default connect(mapReduxStateToProps)(LinkShortener);

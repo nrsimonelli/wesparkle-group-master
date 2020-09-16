@@ -5,12 +5,23 @@ import copy from "clipboard-copy";
 import Button from "@material-ui/core/Button";
 
 class LinkListItem extends Component {
+  componentDidMount() {
+    this.setState({
+      baseUrl: "",
+    });
+  }
+  componentDidUpdate() {
+    if (this.state.baseUrl === "") {
+      this.setState({
+        baseUrl: this.props.reduxState.baseUrl.url,
+      });
+    }
+  }
   state = {
     copySuccess: "",
-    baseUrl: process.env.BASE_URL,
+    baseUrl: "",
   };
   goToDetails = (link) => {
-    console.log("editDetails clicked");
     // calls SET_DETAILS (details reducer) with
     //payload of the selected link's details
     this.props.dispatch({
@@ -22,14 +33,11 @@ class LinkListItem extends Component {
   };
 
   copyLink = () => {
-    console.log("copyLink clicked");
     // this calls the clipboard-copy library imported above
     copy(this.state.baseUrl + this.props.link.short_url);
   };
 
   deleteLink = (link) => {
-    //id isn't being passed yet
-    console.log("deleteLink clicked,", link);
     this.props.dispatch({ type: "REMOVE_LINK", payload: link });
   };
 
@@ -45,7 +53,6 @@ class LinkListItem extends Component {
         <div className="item-text item-title">Short URL:</div>
         <div className="item-text item-link">
           {
-
             <a href={this.state.baseUrl + link.short_url}>
               {this.state.baseUrl + link.short_url}
             </a>
