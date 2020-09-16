@@ -19,7 +19,6 @@ Before you get started, make sure you have the following software installed on y
 ![Logged in - Saved links](documentation/images/savedLinks.png)
 ![Logged in - Details of one link](documentation/images/linkDetails.png)
 
-
 ## Installation
 
 1. Create a database named `wesparkle_client`.
@@ -32,11 +31,15 @@ Before you get started, make sure you have the following software installed on y
 
 ## Usage
 
-1. Lorem ipsum 
-2. Lorem ipsum
-3. Lorem ipsum 
-4. Lorem ipsum
-5. Lorem ipsum
+1. Enter a link that is too long and would like to shorten into the first text field and 
+2. Click generate
+3. A much shorter link (beginning with http://sprkl.es/) will appear in the second text field
+   A QR code also appears at the bottom of the screen
+4. When the short link is clicked, it will direct to the same location as the long link
+   When the QR code is scanned it will direct to the same location as well
+5. 
+
+
 
 ## Built With
 
