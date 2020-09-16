@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 class LinkListItem extends Component {
   state = {
     copySuccess: "",
-    baseUrl: "http://sprkl.es/",
+    baseUrl: process.env.BASE_URL,
   };
   goToDetails = (link) => {
     console.log("editDetails clicked");

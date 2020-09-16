@@ -39,7 +39,6 @@ class LinkShortener extends Component {
     if (this.state.inputUrl != "") {
       // Use url-parse library (as 'parse') to clean input URL
       let cleanUrl = this.state.inputUrl;
-      console.log("this.state.inputUrl is", this.state.inputUrl);
 
       // Use parse to create the parsed object, forcing any URL
       // to the http (not https) protocol
@@ -59,7 +58,6 @@ class LinkShortener extends Component {
 
       // Check if URL generated above is valid. If not, show error.
       if (validUrl.isUri(cleanUrl.href)) {
-        console.log("URL looks valid");
         this.setState({
           urlIsValid: true,
         });
@@ -67,16 +65,12 @@ class LinkShortener extends Component {
         // Base URL goes in this variable
         // This can be changed to a custom domain later,
         // if needed.
-        const baseUrl = "http://sprkl.es/";
+        const baseUrl = process.env.BASE_URL;
         const shortString = shortId.generate();
         this.setState({
           shortenedUrl: baseUrl + shortString,
           copySuccess: "",
         });
-        console.log(
-          "In generateClicked. this.state.shortenedUrl is",
-          this.state.shortenedUrl
-        );
         this.props.dispatch({
           type: "ADD_LINK",
           payload: {
