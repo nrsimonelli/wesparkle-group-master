@@ -63,6 +63,7 @@ class LinkList extends Component {
     this.props.dispatch({ type: "FETCH_LINKS" })
     this.setState({
       filterTag: "",
+      newLinkShow: true,
     });
   }
   render() {

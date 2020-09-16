@@ -5,6 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
+//route that gets the details for a particular link for a particular user
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const query = `
   SELECT * from link
@@ -21,13 +22,13 @@ WHERE "user_id" = $2 AND "id" = $1
     });
 });
 
+//route that edits the tags of a particular link
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   const link = req.body;
   const queryString = `UPDATE "link" SET
     tags = $1 
     WHERE id = $2
     AND user_id = $3;`;
-
   pool
     .query(queryString, [link.tags, link.details.id, req.user.id])
     .then((result) => {

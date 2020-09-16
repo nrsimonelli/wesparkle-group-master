@@ -3,27 +3,24 @@ import axios from "axios";
 
 // Saga to add a link POST route
 function* addLink(action) {
-  console.log("trying to send a link:", action.payload);
   try {
     const response = yield axios.post("/api/link", action.payload);
     yield put({ type: "FETCH_LINKS", payload: response.data });
   } catch (error) {
-    console.log("issue with post link saga:", error);
+    console.log(error);
   }
 }
 
 function* getLink(action) {
-  console.log("getting links", action.payload);
   try {
     const response = yield axios.get("/api/link");
     yield put({ type: "SET_LINKS", payload: response.data });
   } catch (error) {
-    console.log("error with get link Saga:", error);
+    console.log(error);
   }
 }
 
 function* getFilter(action) {
-  console.log("getting filter links", action.payload);
   try {
     const response = yield axios.get(
       `/api/tags/${action.payload.filterTag}`,
@@ -31,24 +28,22 @@ function* getFilter(action) {
     );
     yield put({ type: "SET_LINKS", payload: response.data });
   } catch (error) {
-    console.log("error with get filter Saga:", error);
+    console.log(error);
   }
 }
 
 function* disableLink(action) {
-  console.log("disabling link", action.payload.id);
   try {
     const response = yield axios.put(`/api/link/${action.payload.id}`);
     yield put({ type: "FETCH_LINKS", payload: response.data });
   } catch (error) {
-    console.log("error with get link Saga:", error);
+    console.log(error);
   }
 }
 
 //sorts by oldest links first with and then without tags
 function* getNewestLinks(action) {
   if (action.payload.filterTag != "") {
-    console.log(" getNewestLinks links", action.payload);
     try {
       const response = yield axios.get(
         `/api/tags/newer/${action.payload.filterTag}`,
@@ -56,16 +51,15 @@ function* getNewestLinks(action) {
       );
       yield put({ type: "SET_LINKS", payload: response.data });
     } catch (error) {
-      console.log("error with get filter Saga:", error);
+      console.log(error);
     }
   } else {
-    console.log("no tag selected");
     try {
       // If no tag selected, simply calls the original GET from /link
       const response = yield axios.get("/api/link");
       yield put({ type: "SET_LINKS", payload: response.data });
     } catch (error) {
-      console.log("error with get link Saga:", error);
+      console.log(error);
     }
   }
 }
@@ -73,7 +67,6 @@ function* getNewestLinks(action) {
 //sorts by oldest links first with and then without tags
 function* getOldestLinks(action) {
   if (action.payload.filterTag != "") {
-    console.log(" getOldestLinks links", action.payload);
     try {
       const response = yield axios.get(
         `/api/tags/older/${action.payload.filterTag}`,
@@ -81,18 +74,19 @@ function* getOldestLinks(action) {
       );
       yield put({ type: "SET_LINKS", payload: response.data });
     } catch (error) {
-      console.log("error with  getOldestLinks Saga:", error);
+      console.log(error);
     }
   } else {
-    console.log("no tag selected");
+    // No tags in the search
     try {
       const response = yield axios.get("/api/tags/");
       yield put({ type: "SET_LINKS", payload: response.data });
     } catch (error) {
-      console.log("error with getOldestLinks Saga:", error);
+      console.log(error);
     }
   }
 }
+
 function* linkSaga() {
   yield takeLatest("ADD_LINK", addLink);
   yield takeLatest("FETCH_LINKS", getLink);

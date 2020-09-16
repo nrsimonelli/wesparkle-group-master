@@ -4,7 +4,6 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
-
 router.get("/:tags", rejectUnauthenticated, (req, res) => {
   let queryString = `
     SELECT * FROM link WHERE $1 = ANY (tags) AND user_id = $2
@@ -57,7 +56,6 @@ router.get("/older/:tags", rejectUnauthenticated, (req, res) => {
 
 //Sorts link list by oldest links first if no tags sent
 router.get("/", rejectUnauthenticated, (req, res) => {
-  console.log('sort by oldest if with no tags')
   let queryString = `
   SELECT * from link
   WHERE "user_id" = $1 AND "disabled_link" = FALSE 
