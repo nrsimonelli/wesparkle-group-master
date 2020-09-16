@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-
 import {connect} from 'react-redux';
-
 
 class LinkToMain extends Component {
   componentDidMount () {
@@ -10,6 +8,7 @@ class LinkToMain extends Component {
   }
 
   render() {
+    // Link ref to wesparkle.org
     return (
       <div className='link-to-main container'>
 

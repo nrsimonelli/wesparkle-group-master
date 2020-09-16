@@ -7,7 +7,6 @@ import FeedbackCarousel from "../FeedbackCarousel/FeedbackCarousel";
 
 class UserPage extends Component {
 
-  // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
       <div>
@@ -22,7 +21,6 @@ class UserPage extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
 const mapStateToProps = (state) => ({
   user: state.user,
 });
