@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "./LinkTags.css";
-import Button from "@material-ui/core/Button";
 
 class LinkTags extends Component {
-  // to move to link details re show:false
+  // sets initial state to what's in redux
   state = {
     tags: this.props.reduxState.details.tags,
   };
@@ -14,14 +13,14 @@ class LinkTags extends Component {
     //if no details in redux, it will call this
     //to get it from server based on id in /details/:id
     if (!this.props.reduxState.details.id) {
-      console.log("in fetch details for linktags");
       this.props.dispatch({
         type: "FETCH_DETAILS",
         payload: this.props.match.params.id,
       });
     }
-    console.log("this.props.reduxState...", this.props.reduxState);
   }
+  
+  //this removes a tag, either by clicking the x or backspace
   removeTag = (i) => {
     const newTags = [...this.state.tags];
     newTags.splice(i, 1);
@@ -30,6 +29,7 @@ class LinkTags extends Component {
     });
   };
 
+  //accounts for a tag added or removed
   inputKeyDown = (e) => {
     const val = e.target.value;
     if (e.key === "Enter" && val) {
@@ -42,6 +42,8 @@ class LinkTags extends Component {
     }
   };
 
+  //called whenever a tag is added or removed
+  //sends the tags in state with the details for that link
   saveTags = () => {
     const tags = this.state.tags;
     const details = this.props.reduxState.details;
@@ -50,9 +52,9 @@ class LinkTags extends Component {
       payload: { tags, details },
     });
   };
+
   render() {
     const { tags } = this.state;
-
     return (
       <div className="input-tag">
         <ul className="input-tag__tags">

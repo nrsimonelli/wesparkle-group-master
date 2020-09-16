@@ -5,17 +5,14 @@ import Landing from '../Landing/Landing';
 
 class Home extends Component {
   
-  componentDidMount () {
-    console.log('componentDidMount Home');
-  }
 // chooses which component tree to render based on log-in status
   render() {
     return (
       <>
         { this.props.reduxState.user.id ? (<AdvancedLanding />) : (<Landing />)}
         
-        {/* Not an ideal way to do this as it reroutes after rendering */}
-        { this.props.reduxState.errors.loginMessage != "" ? 
+        {/* Reroutes back to login if error on login */}
+        { this.props.reduxState.errors.loginMessage !== "" ? 
          this.props.history.push('/login')
         :
         <></>
