@@ -1,17 +1,12 @@
-import { combineReducers } from 'redux';
-import errors from './errorsReducer';
-import loginMode from './loginModeReducer';
-import user from './userReducer';
-import link from './linkReducer';
-import details from './linkDetailsReducer';
-import graph from './graphReducer';
+import { combineReducers } from "redux";
+import errors from "./errorsReducer";
+import loginMode from "./loginModeReducer";
+import user from "./userReducer";
+import link from "./linkReducer";
+import details from "./linkDetailsReducer";
+import graph from "./graphReducer";
+import baseUrl from "./baseUrlReducer";
 
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
-// This is imported in index.js as rootSaga
-
-// Lets make a bigger object for our store, with the objects from our reducers.
-// This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
@@ -19,6 +14,7 @@ const rootReducer = combineReducers({
   link,
   details,
   graph,
+  baseUrl,
 });
 
 export default rootReducer;

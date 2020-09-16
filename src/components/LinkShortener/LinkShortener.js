@@ -3,15 +3,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import QRCode from "qrcode.react";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import copy from "clipboard-copy";
 import parse from "url-parse";
 import validUrl from "valid-url";
 
-// corresponds to 1.0
 class LinkShortener extends Component {
   componentDidMount() {
     console.log("component did mount, link Shortener");
+  }
+  componentDidUpdate() {
+    if (this.state.baseUrl === "") {
+      this.setState({
+        baseUrl: this.props.reduxState.baseUrl.url,
+      });
+    }
   }
 
   state = {
@@ -19,31 +23,29 @@ class LinkShortener extends Component {
     shortenedUrl: "",
     copySuccess: "",
     urlIsValid: true,
+    baseUrl: "",
   };
 
   copyClicked = (e) => {
     this.textArea.select();
     document.execCommand("copy");
     // Next two lines from example code:
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
+    // "This is just personal preference.
+    // I prefer to not show the whole text area selected."
     e.target.focus();
     this.setState({
       copySuccess: "Link copied!",
       inputUrl: "",
       // Don't reset short url since we want shortened link and
-      //QR code to persist after copy
-      //shortenedUrl: "",
+      // QR code to persist after copy
     });
   }; // end copyClicked()
 
   generateClicked = () => {
-    console.log("Button clicked");
     // Only generate if they have entered a URL
     if (this.state.inputUrl != "") {
       // Use url-parse library (as 'parse') to clean input URL
       let cleanUrl = this.state.inputUrl;
-      console.log("this.state.inputUrl is", this.state.inputUrl);
 
       // Use parse to create the parsed object, forcing any URL
       // to the http (not https) protocol
@@ -60,11 +62,9 @@ class LinkShortener extends Component {
         slashes: true,
         username: "",
       });
-      console.log("cleanUrl is", cleanUrl);
-      console.log("cleanUrl.href is", cleanUrl.href);
+
       // Check if URL generated above is valid. If not, show error.
       if (validUrl.isUri(cleanUrl.href)) {
-        console.log("URL looks valid");
         this.setState({
           urlIsValid: true,
         });
@@ -72,16 +72,12 @@ class LinkShortener extends Component {
         // Base URL goes in this variable
         // This can be changed to a custom domain later,
         // if needed.
-        const baseUrl = "http://sprkl.es/";
+
         const shortString = shortId.generate();
         this.setState({
-          shortenedUrl: baseUrl + shortString,
+          shortenedUrl: this.state.baseUrl + shortString,
           copySuccess: "",
         });
-        console.log(
-          "In generateClicked. this.state.shortenedUrl is",
-          this.state.shortenedUrl
-        );
         this.props.dispatch({
           type: "ADD_LINK",
           payload: {
@@ -104,16 +100,10 @@ class LinkShortener extends Component {
     });
   }; // end handleInputChangeFor()
 
-  filler = () => {
-    this.setState({
-      inputUrl:
-        "https://static1.squarespace.com/static/56c4a5a1ab48de157ce9eac5/t/59fa3d9324a694c411d827ac/1509572006127/Academy+Report+-+Celebrating+10+Years.pdf",
-    });
-  };
   render() {
     return (
       <div className="container link-shortener">
-        <h2 onClick={this.filler} id="landingHeader">
+        <h2 id="landingHeader">
           Shorten Links For Free and Support Small Businesses
         </h2>
 
@@ -188,10 +178,13 @@ class LinkShortener extends Component {
             )}
           </div>
         </div>
-        {/* {JSON.stringify(this.state.shortenedUrl)} */}
       </div>
     ); // end return
   } // end render
 } // end class
 
-export default connect()(LinkShortener);
+const mapReduxStateToProps = (reduxState) => ({
+  reduxState,
+});
+
+export default connect(mapReduxStateToProps)(LinkShortener);

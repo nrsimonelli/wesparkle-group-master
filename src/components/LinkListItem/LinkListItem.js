@@ -5,9 +5,21 @@ import copy from "clipboard-copy";
 import Button from "@material-ui/core/Button";
 
 class LinkListItem extends Component {
+  componentDidMount() {
+    this.setState({
+      baseUrl: "",
+    });
+  }
+  componentDidUpdate() {
+    if (this.state.baseUrl === "") {
+      this.setState({
+        baseUrl: this.props.reduxState.baseUrl.url,
+      });
+    }
+  }
   state = {
     copySuccess: "",
-    baseUrl: "http://sprkl.es/",
+    baseUrl: "",
   };
   goToDetails = (link) => {
     // calls SET_DETAILS (details reducer) with
@@ -41,12 +53,11 @@ class LinkListItem extends Component {
         <div className="item-text item-title">Short URL:</div>
         <div className="item-text item-link">
           {
-            // Changed functionality for presentation.
-            // Original code in comment here:
-            // <a href={this.state.baseUrl + link.short_url}>
-            //   {this.state.baseUrl + link.short_url}
-            // </a>
-            <a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>
+            <a href={this.state.baseUrl + link.short_url}>
+              {this.state.baseUrl + link.short_url}
+            </a>
+            // Debug version:
+            // <a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>
           }
         </div>
         <div className="item-text item-title">Tags:</div>
