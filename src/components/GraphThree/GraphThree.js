@@ -4,12 +4,9 @@ import {XYPlot, LineSeries, HorizontalGridLines, XAxis, YAxis } from 'react-vis'
 
 
 class GraphThree extends Component {
-  
-  componentDidMount () {
-    console.log('componentDidMount G3');
-  }
 
   render() {
+    //  sample data directly inserted via LineSeries
     return (
       <>
         <XYPlot
