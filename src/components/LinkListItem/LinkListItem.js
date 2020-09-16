@@ -53,6 +53,7 @@ class LinkListItem extends Component {
             <a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>
           }
         </div>
+        <div className="item-text item-title">Tags:</div>
         <div className="input-tag">
           <ul className="input-tag__tags">
             {link.tags.map((tag, i) => (
