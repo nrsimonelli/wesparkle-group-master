@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "./FeedbackCarousel.css";
 
 class FeedbackCarousel extends Component {
 
+  // this is the animation displaying positive user feedback quotes
+  // built with react-responsive-carousel
+
   render() {
     return (
       <div className='carousel-flex'>
+
+          {/* carousel settings can be manipulated here 
+              see react-responsive-carousel documentation */}
           <Carousel autoPlay interval={6000} infiniteLoop showThumbs={false} showStatus={false} className="feedbackCarousel">
             
-          <div>
+            <div>
               <p>
                 " Loved printing my QR code on my business cards. Thanks! "
                 <br /><br />
