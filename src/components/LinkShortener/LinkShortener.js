@@ -3,12 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import QRCode from "qrcode.react";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import copy from "clipboard-copy";
 import parse from "url-parse";
 import validUrl from "valid-url";
 
-// corresponds to 1.0
 class LinkShortener extends Component {
   componentDidMount() {
     console.log("component did mount, link Shortener");
@@ -25,15 +22,14 @@ class LinkShortener extends Component {
     this.textArea.select();
     document.execCommand("copy");
     // Next two lines from example code:
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
+    // "This is just personal preference.
+    // I prefer to not show the whole text area selected."
     e.target.focus();
     this.setState({
       copySuccess: "Link copied!",
       inputUrl: "",
       // Don't reset short url since we want shortened link and
-      //QR code to persist after copy
-      //shortenedUrl: "",
+      // QR code to persist after copy
     });
   }; // end copyClicked()
 
@@ -60,8 +56,7 @@ class LinkShortener extends Component {
         slashes: true,
         username: "",
       });
-      console.log("cleanUrl is", cleanUrl);
-      console.log("cleanUrl.href is", cleanUrl.href);
+
       // Check if URL generated above is valid. If not, show error.
       if (validUrl.isUri(cleanUrl.href)) {
         console.log("URL looks valid");
@@ -104,16 +99,10 @@ class LinkShortener extends Component {
     });
   }; // end handleInputChangeFor()
 
-  filler = () => {
-    this.setState({
-      inputUrl:
-        "https://static1.squarespace.com/static/56c4a5a1ab48de157ce9eac5/t/59fa3d9324a694c411d827ac/1509572006127/Academy+Report+-+Celebrating+10+Years.pdf",
-    });
-  };
   render() {
     return (
       <div className="container link-shortener">
-        <h2 onClick={this.filler} id="landingHeader">
+        <h2 id="landingHeader">
           Shorten Links For Free and Support Small Businesses
         </h2>
 
@@ -188,7 +177,6 @@ class LinkShortener extends Component {
             )}
           </div>
         </div>
-        {/* {JSON.stringify(this.state.shortenedUrl)} */}
       </div>
     ); // end return
   } // end render
