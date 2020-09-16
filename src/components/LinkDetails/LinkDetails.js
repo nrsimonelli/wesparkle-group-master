@@ -45,7 +45,6 @@ class LinkDetails extends Component {
     return (
       <div className="landing">
         <h1>Link Details</h1>
-        {/* move to nav?? */}
         <Button
           id="back"
           onClick={() => this.props.history.push("/home")}

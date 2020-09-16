@@ -43,7 +43,7 @@ function* disableLink(action) {
 
 //sorts by oldest links first with and then without tags
 function* getNewestLinks(action) {
-  if (action.payload.filterTag != "") {
+  if (action.payload.filterTag !== "") {
     try {
       const response = yield axios.get(
         `/api/tags/newer/${action.payload.filterTag}`,
@@ -66,7 +66,7 @@ function* getNewestLinks(action) {
 
 //sorts by oldest links first with and then without tags
 function* getOldestLinks(action) {
-  if (action.payload.filterTag != "") {
+  if (action.payload.filterTag !== "") {
     try {
       const response = yield axios.get(
         `/api/tags/older/${action.payload.filterTag}`,
