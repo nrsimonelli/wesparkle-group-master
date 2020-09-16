@@ -7,14 +7,14 @@
     margin-bottom: 0.4em;
 }
 
-#sign-in-spacer {
-    width: 0.75em;
-}
-
 .feedback.text-area {
     min-height: 200px;
 }
 
 .feedbackButton {
     width: var(--default-width);
+}
+
+#sign-in-spacer {
+    width: 0.75em;
 }

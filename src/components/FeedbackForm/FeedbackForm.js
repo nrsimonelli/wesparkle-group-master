@@ -5,8 +5,12 @@ import * as EmailValidator from "email-validator";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-// corresponds to 1.3
+
 class FeedbackForm extends Component {
+
+  // this is the animation displaying positive user feedback quotes
+  // built with react-responsive-carousel
+  
   state = {
     userEmail: "",
     userName: "",
@@ -29,7 +33,7 @@ class FeedbackForm extends Component {
           userName: this.state.userName,
         },
       });
-      // Clear inputs after submit
+      // clear inputs after submit
       this.setState({
         emailBody: "",
         userEmail: "",
@@ -41,27 +45,20 @@ class FeedbackForm extends Component {
       this.setState({ emailError: true });
       console.log("E-mail address error");
     }
-  }; // End prepareToSendEmail()
+  };
 
+  // deal with all user input changes
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
-  }; // End handleInputChangeFor()
-
-  filler = () => {
-    this.setState({
-      userEmail: "ericelvendahl@gmail.com",
-      userName: "eric",
-      emailBody:
-        "Such a great idea! I love that I can share shortened links with my customers!",
-    });
   };
+
   render() {
     return (
       <>
         <center>
-          <h2 onClick={this.filler}>Feedback</h2>
+          <h2>Feedback</h2>
           <div className="feedback-input">
             <TextField
               id="outlined-name-input"
@@ -93,23 +90,27 @@ class FeedbackForm extends Component {
           >  
           </textarea>
           <div>
-          <Button
-            className="feedbackButton"
-            variant="outlined"
-            color="secondary"
-            id="delete"
-            onClick={this.prepareToSendEmail}
-          >
-            Submit
-          </Button>
+            <Button
+              className="feedbackButton"
+              variant="outlined"
+              color="secondary"
+              id="delete"
+              onClick={this.prepareToSendEmail}
+            >
+              Submit
+            </Button>
           </div>
           
+          {/* email is on its way? */}
           {this.state.emailValid ? <p>E-mail sent successfully</p> : <p></p>}
+          
+          {/* user's entered a bad email address? */}
           {this.state.emailError ? (
             <p>Error: invalid email address</p>
           ) : (
             <p></p>
           )}
+
         </center>
       </>
     ); // end return
