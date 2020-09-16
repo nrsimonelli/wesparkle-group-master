@@ -24,11 +24,9 @@ class LinkDetails extends Component {
         payload: this.props.match.params.id,
       });
     }
-    console.log("this.props.reduxState...", this.props.reduxState);
   }
 
   copyLink = () => {
-    console.log("copyLink clicked");
     // this calls the clipboard-copy library imported above
     copy(this.state.baseUrl + this.props.reduxState.details.short_url);
     this.setState({
@@ -38,7 +36,6 @@ class LinkDetails extends Component {
 
   deleteLink = (link) => {
     //   deletes (disables) link and returns user to main page
-    console.log("deleteLink clicked,", link);
     this.props.dispatch({ type: "REMOVE_LINK", payload: link });
     this.props.history.push(`/`);
   };

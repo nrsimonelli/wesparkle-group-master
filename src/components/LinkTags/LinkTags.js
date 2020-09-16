@@ -5,7 +5,7 @@ import "./LinkTags.css";
 import Button from "@material-ui/core/Button";
 
 class LinkTags extends Component {
-  // to move to link details re show:false
+  // sets initial state to what's in redux
   state = {
     tags: this.props.reduxState.details.tags,
   };
@@ -14,13 +14,11 @@ class LinkTags extends Component {
     //if no details in redux, it will call this
     //to get it from server based on id in /details/:id
     if (!this.props.reduxState.details.id) {
-      console.log("in fetch details for linktags");
       this.props.dispatch({
         type: "FETCH_DETAILS",
         payload: this.props.match.params.id,
       });
     }
-    console.log("this.props.reduxState...", this.props.reduxState);
   }
   removeTag = (i) => {
     const newTags = [...this.state.tags];

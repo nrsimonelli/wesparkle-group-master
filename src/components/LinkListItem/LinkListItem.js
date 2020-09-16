@@ -10,7 +10,6 @@ class LinkListItem extends Component {
     baseUrl: "http://sprkl.es/",
   };
   goToDetails = (link) => {
-    console.log("editDetails clicked");
     // calls SET_DETAILS (details reducer) with
     //payload of the selected link's details
     this.props.dispatch({
@@ -22,14 +21,11 @@ class LinkListItem extends Component {
   };
 
   copyLink = () => {
-    console.log("copyLink clicked");
     // this calls the clipboard-copy library imported above
     copy(this.state.baseUrl + this.props.link.short_url);
   };
 
   deleteLink = (link) => {
-    //id isn't being passed yet
-    console.log("deleteLink clicked,", link);
     this.props.dispatch({ type: "REMOVE_LINK", payload: link });
   };
 

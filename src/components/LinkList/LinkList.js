@@ -10,7 +10,6 @@ class LinkList extends Component {
     newLinkShow: true,
   };
   componentDidMount() {
-    console.log("component did mount, LinkList");
     this.props.dispatch({ type: "FETCH_LINKS" });
   }
 
@@ -28,13 +27,9 @@ class LinkList extends Component {
       type: "FETCH_FILTERED_LINKS",
       payload: { filterTag, user },
     });
-    // this.setState({
-    //   filterTag: "",
-    // });
   };
 
   newLinksFirst = () => {
-    console.log("newLinksFirst clicked");
     const filterTag = this.state.filterTag;
     const user = this.props.reduxState.user;
     this.props.dispatch({
@@ -47,7 +42,6 @@ class LinkList extends Component {
   };
 
   oldLinksFirst = () => {
-    console.log("oldLinksFirst clicked");
     const filterTag = this.state.filterTag;
     const user = this.props.reduxState.user;
     this.props.dispatch({
