@@ -3,10 +3,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class LinkToMain extends Component {
-  componentDidMount () {
-    console.log('did mount linkToMain')
-  }
-
   render() {
     // Link ref to wesparkle.org
     return (
