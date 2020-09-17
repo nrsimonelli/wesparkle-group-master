@@ -15,8 +15,9 @@ Before you get started, make sure you have the following software installed on y
 ## Screen Shots
 
 ### User View
-![Title](GifFileName.gif)
-
+![Main Page - A shortened link](documentation/images/mainShortenedLink.png)
+![Logged in - Saved links](documentation/images/savedLinks.png)
+![Logged in - Details of one link](documentation/images/linkDetails.png)
 
 ## Installation
 
@@ -30,15 +31,28 @@ Before you get started, make sure you have the following software installed on y
 
 ## Usage
 
-1. Lorem ipsum 
-2. Lorem ipsum
-3. Lorem ipsum 
-4. Lorem ipsum
-5. Lorem ipsum
+- Enter a link that is too long and would like to shorten into the first text field and 
+- Click generate
+- A much shorter link (beginning with http://sprkl.es/) will appear in the second text field
+- A QR code also appears at the bottom of the screen
+- When the short link is clicked, it will direct to the same location as the long link
+- When the QR code is scanned it will direct to the same location as well
+- If an account is created, the user will have access to advanced features
+    - all shortened links will be saved and displayed
+    - they can be sorted by creation date, starting with oldest or newest
+    - tags can be added to any link and then be filtered for
+    - when in a link's edit mode, the user can see metrics about that link (amount of clicks by day, etc.)
 
 ## Built With
-
-Technologies here!
+- HTML
+- CSS
+- Javascript
+- React
+- Redux
+- Redux-Saga
+- Express
+- Node.js
+- PostgreSQL
 
 ## Acknowledgement
 Thanks to our clients at WeSparkle, Michelle and Rachel. Thanks also to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us to make this application a reality, as well as the members of our cohort, Paxos, for their support.
