@@ -31,19 +31,20 @@ Before you get started, make sure you have the following software installed on y
 
 ## Usage
 
-1. Enter a link that is too long and would like to shorten into the first text field and 
-2. Click generate
-3. A much shorter link (beginning with http://sprkl.es/) will appear in the second text field
-   A QR code also appears at the bottom of the screen
-4. When the short link is clicked, it will direct to the same location as the long link
-   When the QR code is scanned it will direct to the same location as well
-5. 
-
-
+- Enter a link that is too long and would like to shorten into the first text field and 
+- Click generate
+- A much shorter link (beginning with http://sprkl.es/) will appear in the second text field
+- A QR code also appears at the bottom of the screen
+- When the short link is clicked, it will direct to the same location as the long link
+- When the QR code is scanned it will direct to the same location as well
+- If an account is created, the user will have access to advanced features
+    - all shortened links will be saved and displayed
+    - they can be sorted by creation date, starting with oldest or newest
+    - tags can be added to any link and then be filtered for
+    - when in a link's edit mode, the user can see metrics about that link (amount of clicks by day, etc.)
 
 ## Built With
 
-Technologies here!
 
 ## Acknowledgement
 Thanks to our clients at WeSparkle, Michelle and Rachel. Thanks also to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us to make this application a reality, as well as the members of our cohort, Paxos, for their support.
