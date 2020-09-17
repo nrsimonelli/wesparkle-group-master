@@ -43,7 +43,6 @@ class FeedbackForm extends Component {
       // set booleans for conditional rendering of email verification on DOM
       this.setState({ emailValid: false });
       this.setState({ emailError: true });
-      console.log("E-mail address error");
     }
   };
 

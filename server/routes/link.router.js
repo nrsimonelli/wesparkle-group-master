@@ -32,17 +32,15 @@ router.get("/:short_url", async (req, res) => {
     const linkRecord = await connection.query(queryString);
     // Get the id from the query result
     const longUrl = linkRecord.rows[0].long_url;
-    console.log("longUrl is", longUrl);
 
     // Get client's IP
     const clientIP = req.connection.remoteAddress;
-    console.log("clientIP is", clientIP);
+
     // Get location from iplocate
     // Note: this will not work on localhost
     // Must be run from deployed server to get correct IP
     let clientPostalCode = "";
     await iplocate("66.39.154.26").then((results) => {
-      console.log("results is", results);
       clientPostalCode = results.postal_code;
     });
     const queryString2 = `INSERT INTO click (link_id, client_ip, referrer) VALUES ($1, $2, $3);`;
@@ -62,7 +60,6 @@ router.get("/:short_url", async (req, res) => {
   }
 });
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  console.log("in link router disable by id", req.params.id);
   const link_id = req.params.id;
   const queryString = `UPDATE "link" SET disabled_link = true WHERE link.id = $1;`;
   pool
@@ -78,7 +75,6 @@ router.post("/", async (req, res) => {
     pool
       .query(queryString, [req.user.id, link.long_url, link.short_url])
       .then((result) => {
-        console.log("Successful link POST add!");
         res.send(result.rows);
       })
       .catch((error) => {
@@ -92,7 +88,6 @@ router.post("/", async (req, res) => {
     pool
       .query(queryString, [link.long_url, link.short_url])
       .then((result) => {
-        console.log("Successful link POST add!");
         res.send(result.rows);
       })
       .catch((error) => {
