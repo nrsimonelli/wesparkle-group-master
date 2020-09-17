@@ -25,7 +25,6 @@ const data = [
 
 class GraphOne extends Component {
   componentDidMount() {
-    console.log("componentDidMount graph");
     // Scroll to top
     window.scrollTo(0, 0);
   }

@@ -7,9 +7,6 @@ import parse from "url-parse";
 import validUrl from "valid-url";
 
 class LinkShortener extends Component {
-  componentDidMount() {
-    console.log("component did mount, link Shortener");
-  }
   componentDidUpdate() {
     if (this.state.baseUrl === "") {
       this.setState({

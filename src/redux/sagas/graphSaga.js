@@ -3,7 +3,6 @@ import axios from "axios";
 
 
 function* getData(action){
-  console.log('getting graph One', action.payload)
   try {
     const response = yield axios.get('/api/graph');
     yield put({ type: 'SET_CLICKS', payload: response.data });
