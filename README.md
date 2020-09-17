@@ -44,7 +44,15 @@ Before you get started, make sure you have the following software installed on y
     - when in a link's edit mode, the user can see metrics about that link (amount of clicks by day, etc.)
 
 ## Built With
-
+- HTML
+- CSS
+- Javascript
+- React
+- Redux
+- Redux-Saga
+- Express
+- Node.js
+- PostgreSQL
 
 ## Acknowledgement
 Thanks to our clients at WeSparkle, Michelle and Rachel. Thanks also to [Prime Digital Academy](www.primeacademy.io) who equipped and helped us to make this application a reality, as well as the members of our cohort, Paxos, for their support.
