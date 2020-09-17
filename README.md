@@ -1,8 +1,13 @@
 # Client Project - We Sparkle
 
-_Duration: 2 Week Sprint_
+_Duration: 3 weeks_
 
-Description
+Say a user of WeSparkle's Sparkle Assistant would like to share a document with her customers.
+The link is very long and confusing. She could go to a third party link shortener but WeSparkle now has their own that exists within the Sparkle Ecosystem.
+Now she can create a short link and a QR code with less steps and less frustraion.
+
+But anyone on the internet can use this link shortener. If they create an account, they will have access to advanced features. Each link shortened will saved. Links can i be tagged and sorted.
+Also, metrics can be viewed. Clicks by Day, Top Performing Links, etc.
 
 ## Prerequisites
 
