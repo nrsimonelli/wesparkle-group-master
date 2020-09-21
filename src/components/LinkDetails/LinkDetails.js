@@ -66,9 +66,9 @@ class LinkDetails extends Component {
           <div className="item-text item-title">Short URL:</div>
           <div className="item-text item-link">
             {/* Link code changed for presentation.
-            Original here:
-            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>} */}
-            {<a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>}
+            Original here:*/}
+            {<a href={this.state.baseUrl + link.short_url}>{this.state.baseUrl + link.short_url}</a>}
+            {/* {<a href={link.long_url}>{this.state.baseUrl + link.short_url}</a>} */}
           </div>
           <div className="item-text item-title">Tags:</div>
           {this.props.reduxState.details.id ? <LinkTags link={link} /> : <></>}
